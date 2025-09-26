@@ -1,0 +1,5 @@
+import './users/routes.js'
+import './posts/routes.js'
+import './comments/routes.js'
+import './likes/routes.js'
+import './friends/routes.js'

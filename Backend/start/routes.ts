@@ -8,5 +8,8 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import '../app/controllers/http/index.js'
 
-router.on('/').render('pages/home')
+router.get('/', async () => {
+  return { hello: 'world' }
+})
