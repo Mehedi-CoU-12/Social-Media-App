@@ -1,4 +1,3 @@
-// database/migrations/xxxx_users.ts
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class Users extends BaseSchema {
@@ -11,6 +10,10 @@ export default class Users extends BaseSchema {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('profile_picture').nullable()
+      //   table.string('bio').nullable()
+      //   table.date('date_of_birth').nullable()
+      //   table.boolean('is_verified').defaultTo(false)
+      //   table.timestamp('last_login_at', { useTz: true }).nullable()
       table.timestamps(true)
     })
   }
