@@ -1,4 +1,4 @@
-import UsersQuery from './query.js'
+import UsersQuery from './userQuery.js'
 
 export default class UsersService {
   private Query: UsersQuery
