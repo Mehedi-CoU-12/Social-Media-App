@@ -1,0 +1,12 @@
+/Frontend
+/node_modules
+.DS_Store
+.env
+/build
+npm-debug.log
+yarn-error.log
+.idea
+.vscode
+*.log
+*.tsbuildinfo
+coverage
