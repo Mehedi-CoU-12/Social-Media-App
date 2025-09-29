@@ -20,18 +20,6 @@ export default class User extends BaseModel {
   @column()
   declare password: string
 
-  //   @column()
-  //   declare bio: string
-
-  //   @column({ columnName: 'date_of_birth' })
-  //   declare dateOfBirth: DateTime
-
-  //   @column({ columnName: 'is_varified' })
-  //   declare isVerified: boolean
-
-  //   @column({ columnName: 'last_login_at' })
-  //   declare lastLoginAt: DateTime
-
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
