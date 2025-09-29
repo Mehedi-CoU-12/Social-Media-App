@@ -10,10 +10,15 @@ export default class UsersQuery {
   }
 
   public async getUserByEmail(email: string) {
-    return await User.query().where('emmail', email).first()
+    return await User.query().where('email', email).first()
   }
 
-  public async createUser(data: { name: string; email: string; password: string }) {
+  public async createUser(data: {
+    name: string
+    email: string
+    password: string
+    profilePicture?: string
+  }) {
     return await User.create(data)
   }
 

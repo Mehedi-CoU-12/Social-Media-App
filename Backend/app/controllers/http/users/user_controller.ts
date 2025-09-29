@@ -1,28 +1,34 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import UserService from './user_service.js'
+import { loginSchema, signupSchema, userIdParamSchema } from './user_validator.js'
 
 export default class UsersController {
   private service = new UserService()
   constructor() {
     this.service = new UserService()
   }
-  public async getAllUsers({ response }: HttpContext) {
+  public async getAllUsers() {
     return await this.service.getAllUsers()
   }
 
-  public async getIndividualUser({ params, response }: HttpContext) {
-    const { id } = params
-    return await this.service.getIndividualUser(id)
+  public async getIndividualUser(ctx: HttpContext) {
+    const payload = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
+    return await this.service.getIndividualUser(payload)
   }
 
-  public async login({ request, response }: HttpContext) {
-    const { email, password } = request.body()
-    return await this.service.login(email, password)
+  public async login(ctx: HttpContext) {
+    const payload = await ctx.request.validateUsing(loginSchema)
+    return await this.service.login(payload, ctx.auth)
   }
 
-  public async createUser({ request, response }: HttpContext) {
-    const { name, email, password } = request.body()
-    return await this.service.createUser(name, email, password)
+  public async logout(ctx: HttpContext) {
+    await ctx.auth.use('web').logout()
+    return { message: 'log out successfully!' }
+  }
+
+  public async createUser(ctx: HttpContext) {
+    const payload = await ctx.request.validateUsing(signupSchema)
+    return await this.service.createUser(payload)
   }
 
   public async forgetPassword({ request, response }: HttpContext) {
