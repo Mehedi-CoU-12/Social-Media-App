@@ -1,5 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import UserService from './userService.js'
+import UserService from './user_service.js'
 
 export default class UsersController {
   private service = new UserService()
@@ -7,7 +7,6 @@ export default class UsersController {
     this.service = new UserService()
   }
   public async getAllUsers({ response }: HttpContext) {
-    console.log('-------------getAllUsers controller---------------------')
     return await this.service.getAllUsers()
   }
 
@@ -17,7 +16,6 @@ export default class UsersController {
   }
 
   public async login({ request, response }: HttpContext) {
-    console.log('-------------login controller---------------------')
     const { email, password } = request.body()
     return await this.service.login(email, password)
   }

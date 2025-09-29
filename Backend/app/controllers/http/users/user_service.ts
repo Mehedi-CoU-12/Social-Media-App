@@ -1,4 +1,4 @@
-import UsersQuery from './userQuery.js'
+import UsersQuery from './user_query.js'
 
 export default class UsersService {
   private Query: UsersQuery
@@ -16,7 +16,6 @@ export default class UsersService {
   }
 
   public async login(email: string, password: string) {
-    console.log('-------------login service---------------------')
     // return await this.Query.login(email, password)
   }
 
@@ -25,12 +24,10 @@ export default class UsersService {
   }
 
   public async forgetPassword(email: string) {
-    console.log('-------------forget password service---------------------')
     // return await this.Query.forgetPassword(email)
   }
 
   public async resetPassword(token: string, newPassword: string) {
-    console.log('-------------reset service---------------------')
     // return await this.Query.resetPassword(token, newPassword)
   }
 
