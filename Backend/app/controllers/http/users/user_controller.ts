@@ -4,6 +4,7 @@ import {
   getAllUsersQuerySchema,
   loginSchema,
   signupSchema,
+  updateUserSchema,
   userIdParamSchema,
 } from './user_validator.js'
 
@@ -47,14 +48,15 @@ export default class UsersController {
     return await this.service.resetPassword(token, newPassword)
   }
 
-  public async updateUser({ params, request, response }: HttpContext) {
-    const { id } = params
-    const { username, email, password, profilePicture } = request.body()
-    return await this.service.updateUser(id, { username, email, password, profilePicture })
+  public async updateUser(ctx: HttpContext) {
+    const { id } = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
+    const payload = await ctx.request.validateUsing(updateUserSchema)
+
+    return await this.service.updateUser(id, payload)
   }
 
-  public async deleteUser({ params, response }: HttpContext) {
-    const { id } = params
+  public async deleteUser(ctx: HttpContext) {
+    const { id } = await ctx.request.validateUsing(userIdParamSchema)
     return await this.service.deleteUser(id)
   }
 }

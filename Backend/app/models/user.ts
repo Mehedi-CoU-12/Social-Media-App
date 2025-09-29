@@ -1,10 +1,11 @@
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import type { HasMany } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
+import type { HasMany, HasOne } from '@adonisjs/lucid/types/relations'
 import Post from './post.js'
 import Comment from './comment.js'
 import Like from './like.js'
 import { DateTime } from 'luxon'
 import Friendship from './friend.js'
+import Profile from './profile.js'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -18,9 +19,6 @@ export default class User extends BaseModel {
 
   @column()
   declare password: string
-
-  @column({ columnName: 'profile_picture' })
-  declare profilePicture: string | null
 
   //   @column()
   //   declare bio: string
@@ -39,6 +37,9 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @hasOne(() => Profile)
+  declare profile: HasOne<typeof Profile>
 
   @hasMany(() => Post)
   declare posts: HasMany<typeof Post>
