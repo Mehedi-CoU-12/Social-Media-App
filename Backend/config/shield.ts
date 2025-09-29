@@ -15,12 +15,12 @@ const shieldConfig = defineConfig({
    * Configure CSRF protection options. Refer documentation
    * to learn more
    */
-  csrf: {
-    enabled: true,
-    exceptRoutes: [],
-    enableXsrfCookie: false,
-    methods: ['POST', 'PUT', 'PATCH', 'DELETE'],
-  },
+  //   csrf: {
+  //     enabled: true,
+  //     exceptRoutes: [],
+  //     enableXsrfCookie: false,
+  //     methods: ['POST', 'PUT', 'PATCH', 'DELETE'],
+  //   },
 
   /**
    * Control how your website should be embedded inside

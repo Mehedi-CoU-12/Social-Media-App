@@ -1,4 +1,4 @@
-import PostQuery from './query.js'
+import PostQuery from './post_query.js'
 
 export default class PostService {
   private Query = new PostQuery()

@@ -1,6 +1,7 @@
 import app from '@adonisjs/core/services/app'
 import { HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
+import { errors } from '@adonisjs/auth'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
@@ -34,6 +35,19 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    //Handle authentication errors
+    if (error instanceof errors.E_UNAUTHORIZED_ACCESS) {
+      //for api request
+      if (ctx.request.url().startsWith('/api/')) {
+        return ctx.response.status(401).json({
+          success: false,
+          message: 'Authentication required to access this resourse',
+          error: 'UNAUTHENTICATED',
+          code: 'AUTH_001',
+          timestamp: new Date().toISOString(),
+        })
+      }
+    }
     return super.handle(error, ctx)
   }
 
