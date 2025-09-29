@@ -1,14 +1,20 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import UserService from './user_service.js'
-import { loginSchema, signupSchema, userIdParamSchema } from './user_validator.js'
+import {
+  getAllUsersQuerySchema,
+  loginSchema,
+  signupSchema,
+  userIdParamSchema,
+} from './user_validator.js'
 
 export default class UsersController {
   private service = new UserService()
   constructor() {
     this.service = new UserService()
   }
-  public async getAllUsers() {
-    return await this.service.getAllUsers()
+  public async getAllUsers(ctx: HttpContext) {
+    const queryParams = await ctx.request.validateUsing(getAllUsersQuerySchema)
+    return await this.service.getAllUsers(queryParams)
   }
 
   public async getIndividualUser(ctx: HttpContext) {
