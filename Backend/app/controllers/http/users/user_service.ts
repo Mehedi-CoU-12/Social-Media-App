@@ -9,8 +9,15 @@ export default class UsersService {
     this.Query = new UsersQuery()
   }
 
-  public async getAllUsers() {
-    return await this.Query.getAllUsers()
+  public async getAllUsers(queryParams: {
+    page?: number
+    limit?: number
+    sort?: 'email' | 'name' | 'created_at' | 'updated_at'
+    order?: 'asc' | 'desc'
+    search?: string
+    status?: 'active' | 'inactive' | 'all'
+  }) {
+    return await this.Query.getAllUsers(queryParams)
   }
 
   public async getIndividualUser(payload: { id: number }) {

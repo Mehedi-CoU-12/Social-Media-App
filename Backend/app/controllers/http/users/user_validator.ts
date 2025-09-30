@@ -1,4 +1,43 @@
 import vine from '@vinejs/vine'
+
+export const getAllUsersQuerySchema = vine.compile(
+  vine.object({
+    page: vine
+      .number()
+      .positive()
+      .min(1)
+      .optional()
+      .transform((value) => value || 1),
+
+    limit: vine
+      .number()
+      .positive()
+      .min(1)
+      .max(100)
+      .optional()
+      .transform((value) => value || 10),
+
+    sort: vine
+      .enum(['name', 'email', 'created_at', 'updated_at'])
+      .optional()
+      .transform((value) => value || 'created_at'),
+
+    order: vine
+      .enum(['asc', 'desc'])
+      .optional()
+      .transform((value) => value || 'desc'),
+    search: vine
+      .string()
+      .maxLength(100)
+      .optional()
+      .transform((value) => value?.trim() || undefined),
+    status: vine
+      .enum(['active', 'inactive', 'all'])
+      .optional()
+      .transform((value) => value || 'all'),
+  })
+)
+
 export const signupSchema = vine.compile(
   vine.object({
     name: vine.string().minLength(3).maxLength(50),

@@ -1,8 +1,15 @@
 import User from '#models/user'
 
 export default class UsersQuery {
-  public async getAllUsers() {
-    return await User.query()
+  public async getAllUsers(queryParams: {
+    page?: number
+    limit?: number
+    sort?: 'email' | 'name' | 'created_at' | 'updated_at'
+    order?: 'asc' | 'desc'
+    search?: string
+    status?: 'active' | 'inactive' | 'all'
+  }) {
+    return await User.query().paginate(queryParams.page || 1, queryParams.limit || 10)
   }
 
   public async getUserById(id: number) {
