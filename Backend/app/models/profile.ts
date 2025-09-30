@@ -15,6 +15,9 @@ export default class Profile extends BaseModel {
   @column()
   declare username: string | null
 
+  @column({ columnName: 'full_name' })
+  declare fullName: string | null
+
   @column({ columnName: 'display_name' })
   declare displayName: string | null
 

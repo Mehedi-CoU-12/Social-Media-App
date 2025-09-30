@@ -40,16 +40,9 @@ export const getAllUsersQuerySchema = vine.compile(
 
 export const signupSchema = vine.compile(
   vine.object({
-    name: vine.string().minLength(3).maxLength(50),
+    fullName: vine.string().minLength(3),
     email: vine.string().email(),
     password: vine.string().minLength(6),
-    profilePicture: vine
-      //   .file({
-      //     size: '10mb',
-      //     extnames: ['jpg', 'png', 'jpeg', 'webp'],
-      //   })
-      .string()
-      .optional(),
   })
 )
 
@@ -81,13 +74,6 @@ export const resetPasswordSchema = vine.compile(
 
 export const updateUserSchema = vine.compile(
   vine.object({
-    name: vine.string().minLength(3).maxLength(6).optional(),
-    profilePicture: vine
-      //   .file({
-      //     size: '10mb',
-      //     extnames: ['jpg', 'png', 'jpeg', 'webp'],
-      //   })
-      .string()
-      .optional(),
+    password: vine.string().minLength(6).optional(),
   })
 )
