@@ -1,4 +1,10 @@
+"use client";
+import { useLogin } from "./useLogin";
+
 export default function RegisterPage() {
+    const { state, submit, setField } = useLogin();
+    const { email, password, agree, loading, errors } = state;
+
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">
             <div className="_shape_one">
@@ -33,13 +39,13 @@ export default function RegisterPage() {
                             <div className="_social_registration_right">
                                 <div className="_social_registration_right_image">
                                     <img
-                                        src="/images/registration.png"
+                                        src="/images/login.png"
                                         alt="Registration"
                                     />
                                 </div>
                                 <div className="_social_registration_right_image_dark">
                                     <img
-                                        src="/images/registration1.png"
+                                        src="/images/login.png"
                                         alt="Registration"
                                     />
                                 </div>
@@ -95,6 +101,14 @@ export default function RegisterPage() {
                                                     type="email"
                                                     className="form-control _social_registration_input"
                                                     placeholder="johndoe@example.com"
+                                                    required
+                                                    value={email}
+                                                    onChange={(e) =>
+                                                        setField(
+                                                            "email",
+                                                            e.target.value
+                                                        )
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -110,6 +124,14 @@ export default function RegisterPage() {
                                                     id="password"
                                                     type="password"
                                                     className="form-control _social_registration_input"
+                                                    required
+                                                    value={password}
+                                                    onChange={(e) =>
+                                                        setField(
+                                                            "password",
+                                                            e.target.value
+                                                        )
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -123,7 +145,9 @@ export default function RegisterPage() {
                                                     type="radio"
                                                     name="terms"
                                                     id="terms"
-                                                    defaultChecked
+                                                    onChange={(e) =>
+                                                        setField("agree", true)
+                                                    }
                                                 />
                                                 <label
                                                     className="form-check-label _social_registration_form_check_label"
@@ -142,8 +166,12 @@ export default function RegisterPage() {
                                                 <button
                                                     type="button"
                                                     className="_social_registration_form_btn_link _btn1"
+                                                    onClick={submit}
+                                                    disabled={loading}
                                                 >
-                                                    Login Now
+                                                    {loading
+                                                        ? "Logging in..."
+                                                        : "Log in"}
                                                 </button>
                                             </div>
                                         </div>

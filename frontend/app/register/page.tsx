@@ -1,4 +1,10 @@
+"use client";
+import { useRegister } from "./useRegister";
+
 export default function RegisterPage() {
+    const { state, setField, submit } = useRegister();
+    const { fullName, email, password, agree, loading, errors } = state;
+
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">
             <div className="_shape_one">
@@ -95,6 +101,15 @@ export default function RegisterPage() {
                                                     type="text"
                                                     className="form-control _social_registration_input"
                                                     placeholder="Ex. John Doe"
+                                                    value={fullName}
+                                                    onChange={(e) =>
+                                                        setField(
+                                                            "fullName",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    required
+                                                    autoComplete="name"
                                                 />
                                             </div>
                                         </div>
@@ -112,6 +127,15 @@ export default function RegisterPage() {
                                                     type="email"
                                                     className="form-control _social_registration_input"
                                                     placeholder="johndoe@example.com"
+                                                    value={email}
+                                                    onChange={(e) =>
+                                                        setField(
+                                                            "email",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    required
+                                                    autoComplete="email"
                                                 />
                                             </div>
                                         </div>
@@ -127,6 +151,16 @@ export default function RegisterPage() {
                                                     id="password"
                                                     type="password"
                                                     className="form-control _social_registration_input"
+                                                    value={password}
+                                                    onChange={(e) =>
+                                                        setField(
+                                                            "password",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    required
+                                                    autoComplete="new-password"
+                                                    minLength={8}
                                                 />
                                             </div>
                                         </div>
@@ -140,7 +174,9 @@ export default function RegisterPage() {
                                                     type="radio"
                                                     name="terms"
                                                     id="terms"
-                                                    defaultChecked
+                                                    onChange={(e) =>
+                                                        setField("agree", true)
+                                                    }
                                                 />
                                                 <label
                                                     className="form-check-label _social_registration_form_check_label"
@@ -162,8 +198,12 @@ export default function RegisterPage() {
                                                     style={{
                                                         whiteSpace: "nowrap",
                                                     }}
+                                                    disabled={loading}
+                                                    onClick={submit}
                                                 >
-                                                    Signup Now
+                                                    {loading
+                                                        ? "Signing up..."
+                                                        : "Signup Now"}
                                                 </button>
                                             </div>
                                         </div>

@@ -1,3 +1,4 @@
+import Profile from '#models/profile'
 import User from '#models/user'
 
 export default class UsersQuery {
@@ -20,18 +21,24 @@ export default class UsersQuery {
     return await User.query().where('email', email).first()
   }
 
-  public async createUser(data: {
-    name: string
-    email: string
-    password: string
-    profilePicture?: string
-  }) {
-    return await User.create(data)
+  public async createUser(
+    userInfo: {
+      email: string
+      password: string
+    },
+    profileInfo: { fullName: string; username: string }
+  ) {
+    //create user
+    const user = await User.create(userInfo)
+    //create profile
+    await user.related('profile').create(profileInfo)
+
+    return { message: 'User and Profile are created successfully' }
   }
 
   public async updateUser(
     id: number,
-    updates: { name?: string; email?: string; password?: string; profilePicture?: string }
+    updates: { email?: string; password?: string; profilePicture?: string }
   ) {
     const user = await User.find(id)
     if (user) {

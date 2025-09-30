@@ -1,7 +1,15 @@
+// next.config.ts
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    async rewrites() {
+        return [
+            {
+                source: "/api/users/:path*",
+                destination: "http://localhost:3333/api/users/:path*",
+            },
+        ];
+    },
 };
 
 export default nextConfig;

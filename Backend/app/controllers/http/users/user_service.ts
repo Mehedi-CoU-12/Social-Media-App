@@ -42,20 +42,23 @@ export default class UsersService {
   }
 
   public async createUser(payload: {
-    name: string
+    fullName: string
     email: string
     password: string
     profilePicture?: string
   }) {
-    const { name, email, password, profilePicture } = payload
+    const { fullName, email, password } = payload
     const hashedPassword = await hash.make(password)
     const newUser = {
-      name,
       email,
       password: hashedPassword,
-      profilePicture,
     }
-    return await this.Query.createUser(newUser)
+
+    const profile = {
+      fullName,
+      username: new Date().getTime() + '.' + fullName.split(' ')[0],
+    }
+    return await this.Query.createUser(newUser, profile)
   }
 
   public async forgetPassword(email: string) {
@@ -66,10 +69,7 @@ export default class UsersService {
     // return await this.Query.resetPassword(token, newPassword)
   }
 
-  public async updateUser(
-    id: number,
-    updates: { username?: string; email?: string; password?: string; profilePicture?: string }
-  ) {
+  public async updateUser(id: number, updates: { email?: string; password?: string }) {
     return await this.Query.updateUser(id, updates)
   }
 
