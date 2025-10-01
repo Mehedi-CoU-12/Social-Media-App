@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="assets/images/logo-copy.svg">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Buddy Script</title>
+	<!--Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<!--Common Css-->
+	<link rel="stylesheet" href="assets/css/common.css">
+	<!--Custom Css-->
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!--Responsive Css-->
+	<link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+	<!--Header Start-->
+	<div class="_layout_main _layout_main_wrapper _layout_chat">
+		<header class="_header_wrapper">
+			<nav class="navbar navbar-expand-lg navbar-light _header_nav _padd_t10">
+				<div class="container _custom_container">
+					<div class="_logo_wrap">
+						<a class="navbar-brand" href="feed.html">
+							<img src="assets/images/logo.svg" alt="Image" class="_nav_logo">
+						</a>
+					</div>
+					<button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<div class="_header_form ms-auto">
+							<form class="_header_form_grp">
+								<svg class="_header_form_svg" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" viewBox="0 0 17 17">
+									<circle cx="7" cy="7" r="6" stroke="#666"></circle>
+									<path stroke="#666" stroke-linecap="round" d="M16 16l-3-3"></path>
+								</svg>
+								<input class="form-control me-2 _inpt1" type="search" placeholder="input search text" aria-label="Search">
+							</form>
+						</div>
+						<ul class="navbar-nav mb-2 mb-lg-0 _header_nav_list ms-auto _mar_r8">
+							<li class="nav-item _header_nav_item">
+								<a class="nav-link _header_nav_link" aria-current="page" href="feed.html">
+									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="21" fill="none" viewBox="0 0 18 21">
+										<path class="_home" stroke="#000" stroke-width="1.5" stroke-opacity=".6" d="M1 9.924c0-1.552 0-2.328.314-3.01.313-.682.902-1.187 2.08-2.196l1.143-.98C6.667 1.913 7.732 1 9 1c1.268 0 2.333.913 4.463 2.738l1.142.98c1.179 1.01 1.768 1.514 2.081 2.196.314.682.314 1.458.314 3.01v4.846c0 2.155 0 3.233-.67 3.902-.669.67-1.746.67-3.901.67H5.57c-2.155 0-3.232 0-3.902-.67C1 18.002 1 16.925 1 14.77V9.924z"></path>
+										<path class="_home1" stroke="#000" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.857 19.341v-5.857a1 1 0 00-1-1H7.143a1 1 0 00-1 1v5.857"></path>
+									</svg>
+								</a>
+							</li>
+							<li class="nav-item _header_nav_item">
+								<a class="nav-link _header_nav_link" aria-current="page" href="friend-request.html">
+									<svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" fill="none" viewBox="0 0 26 20">
+										<path fill="#000" fill-opacity=".6" fill-rule="evenodd" d="M12.79 12.15h.429c2.268.015 7.45.243 7.45 3.732 0 3.466-5.002 3.692-7.415 3.707h-.894c-2.268-.015-7.452-.243-7.452-3.727 0-3.47 5.184-3.697 7.452-3.711l.297-.001h.132zm0 1.75c-2.792 0-6.12.34-6.12 1.962 0 1.585 3.13 1.955 5.864 1.976l.255.002c2.792 0 6.118-.34 6.118-1.958 0-1.638-3.326-1.982-6.118-1.982zm9.343-2.224c2.846.424 3.444 1.751 3.444 2.79 0 .636-.251 1.794-1.931 2.43a.882.882 0 01-1.137-.506.873.873 0 01.51-1.13c.796-.3.796-.633.796-.793 0-.511-.654-.868-1.944-1.06a.878.878 0 01-.741-.996.886.886 0 011.003-.735zm-17.685.735a.878.878 0 01-.742.997c-1.29.19-1.944.548-1.944 1.059 0 .16 0 .491.798.793a.873.873 0 01-.314 1.693.897.897 0 01-.313-.057C.25 16.259 0 15.1 0 14.466c0-1.037.598-2.366 3.446-2.79.485-.06.929.257 1.002.735zM12.789 0c2.96 0 5.368 2.392 5.368 5.33 0 2.94-2.407 5.331-5.368 5.331h-.031a5.329 5.329 0 01-3.782-1.57 5.253 5.253 0 01-1.553-3.764C7.423 2.392 9.83 0 12.789 0zm0 1.75c-1.987 0-3.604 1.607-3.604 3.58a3.526 3.526 0 001.04 2.527 3.58 3.58 0 002.535 1.054l.03.875v-.875c1.987 0 3.605-1.605 3.605-3.58S14.777 1.75 12.789 1.75zm7.27-.607a4.222 4.222 0 013.566 4.172c-.004 2.094-1.58 3.89-3.665 4.181a.88.88 0 01-.994-.745.875.875 0 01.75-.989 2.494 2.494 0 002.147-2.45 2.473 2.473 0 00-2.09-2.443.876.876 0 01-.726-1.005.881.881 0 011.013-.721zm-13.528.72a.876.876 0 01-.726 1.006 2.474 2.474 0 00-2.09 2.446A2.493 2.493 0 005.86 7.762a.875.875 0 11-.243 1.734c-2.085-.29-3.66-2.087-3.664-4.179 0-2.082 1.5-3.837 3.566-4.174a.876.876 0 011.012.72z" clip-rule="evenodd"></path>
+									</svg>
+								</a>
+							</li>
+							<li class="nav-item _header_nav_item">
+								<span id="_notify_btn" class="nav-link _header_nav_link _header_notify_btn">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" fill="none" viewBox="0 0 20 22">
+										<path fill="#000" fill-opacity=".6" fill-rule="evenodd" d="M7.547 19.55c.533.59 1.218.915 1.93.915.714 0 1.403-.324 1.938-.916a.777.777 0 011.09-.056c.318.284.344.77.058 1.084-.832.917-1.927 1.423-3.086 1.423h-.002c-1.155-.001-2.248-.506-3.077-1.424a.762.762 0 01.057-1.083.774.774 0 011.092.057zM9.527 0c4.58 0 7.657 3.543 7.657 6.85 0 1.702.436 2.424.899 3.19.457.754.976 1.612.976 3.233-.36 4.14-4.713 4.478-9.531 4.478-4.818 0-9.172-.337-9.528-4.413-.003-1.686.515-2.544.973-3.299l.161-.27c.398-.679.737-1.417.737-2.918C1.871 3.543 4.948 0 9.528 0zm0 1.535c-3.6 0-6.11 2.802-6.11 5.316 0 2.127-.595 3.11-1.12 3.978-.422.697-.755 1.247-.755 2.444.173 1.93 1.455 2.944 7.986 2.944 6.494 0 7.817-1.06 7.988-3.01-.003-1.13-.336-1.681-.757-2.378-.526-.868-1.12-1.851-1.12-3.978 0-2.514-2.51-5.316-6.111-5.316z" clip-rule="evenodd" />
+									</svg>
+									<span class="_counting">6</span> 
+									<div id="_notify_drop" class="_notification_dropdown">
+										<div class="_notifications_content">
+											<h4 class="_notifications_content_title">Notifications</h4>
+											<div class="_notification_box_right">
+												<button type="button" class="_notification_box_right_link">
+													<svg xmlns="http://www.w3.org/2000/svg" width="4" height="17" fill="none" viewBox="0 0 4 17">
+														<circle cx="2" cy="2" r="2" fill="#C4C4C4"></circle>
+														<circle cx="2" cy="8" r="2" fill="#C4C4C4"></circle>
+														<circle cx="2" cy="15" r="2" fill="#C4C4C4"></circle>
+													</svg>
+												</button>
+												<div class="_notifications_drop_right">
+													<ul class="_notification_list">
+														<li class="_notification_item">
+															<span class="_notification_link">Mark as all read</span>
+														</li>
+														<li class="_notification_item">
+															<span class="_notification_link">Notifivations seetings</span>
+														</li>
+														<li class="_notification_item">
+															<span class="_notification_link">Open Notifications</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="_notifications_drop_box">
+											<div class="_notifications_drop_btn_grp">
+												<button class="_notifications_btn_link">
+													All
+												</button>
+												<button class="_notifications_btn_link1">
+													Unread
+												</button>
+											</div>
+											<div class="_notifications_all">
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/friend-req.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															<span class="_notify_txt_link">
+																Steve Jobs
+															</span>
+															posted a link in your timeline.
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+												<div class="_notification_box">
+													<div class="_notification_image">
+														<img src="assets/images/profile-1.png" alt="Image" class="_notify_img">
+													</div>
+													<div class="_notification_txt">
+														<p class="_notification_para">
+															An admin changed the name of the group 
+															<span class="_notify_txt_link">
+																Freelacer usa
+															</span>
+															to
+															<span class="_notify_txt_link">
+																Freelacer usa 
+															</span>
+														</p>
+														<div class="_nitification_time">
+															<span>42 miniutes ago</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</span>
+							</li>
+							<li class="nav-item _header_nav_item">
+								<a class="nav-link _header_nav_link _header_nav_link_active" aria-current="page" href="chat.html">
+									<svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" fill="none" viewBox="0 0 23 22">
+										<path fill="#000" fill-opacity=".6" fill-rule="evenodd" d="M11.43 0c2.96 0 5.743 1.143 7.833 3.22 4.32 4.29 4.32 11.271 0 15.562C17.145 20.886 14.293 22 11.405 22c-1.575 0-3.16-.33-4.643-1.012-.437-.174-.847-.338-1.14-.338-.338.002-.793.158-1.232.308-.9.307-2.022.69-2.852-.131-.826-.822-.445-1.932-.138-2.826.152-.44.307-.895.307-1.239 0-.282-.137-.642-.347-1.161C-.57 11.46.322 6.47 3.596 3.22A11.04 11.04 0 0111.43 0zm0 1.535A9.5 9.5 0 004.69 4.307a9.463 9.463 0 00-1.91 10.686c.241.592.474 1.17.474 1.77 0 .598-.207 1.201-.39 1.733-.15.439-.378 1.1-.231 1.245.143.147.813-.085 1.255-.235.53-.18 1.133-.387 1.73-.391.597 0 1.161.225 1.758.463 3.655 1.679 7.98.915 10.796-1.881 3.716-3.693 3.716-9.7 0-13.391a9.5 9.5 0 00-6.74-2.77zm4.068 8.867c.57 0 1.03.458 1.03 1.024 0 .566-.46 1.023-1.03 1.023a1.023 1.023 0 11-.01-2.047h.01zm-4.131 0c.568 0 1.03.458 1.03 1.024 0 .566-.462 1.023-1.03 1.023a1.03 1.03 0 01-1.035-1.024c0-.566.455-1.023 1.025-1.023h.01zm-4.132 0c.568 0 1.03.458 1.03 1.024 0 .566-.462 1.023-1.03 1.023a1.022 1.022 0 11-.01-2.047h.01z" clip-rule="evenodd"></path>
+									</svg> <span class="_counting">2</span> 
+								</a>
+							</li>
+						</ul>
+						<div class="_header_nav_profile">
+							<div class="_header_nav_profile_image">
+								<img src="assets/images/profile.png" alt="Image" class="_nav_profile_img">
+							</div>
+							<div class="_header_nav_dropdown">
+								<p class="_header_nav_para">Dylan Field</p>
+								<button id="_profile_drop_show_btn" class="_header_nav_dropdown_btn _dropdown_toggle" type="button">
+									<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" fill="none" viewBox="0 0 10 6">
+										<path fill="#112032" d="M5 5l.354.354L5 5.707l-.354-.353L5 5zm4.354-3.646l-4 4-.708-.708 4-4 .708.708zm-4.708 4l-4-4 .708-.708 4 4-.708.708z"></path>
+									</svg>
+								</button>
+							</div>
+							<!-- dropdown -->
+							<div id="_prfoile_drop" class="_nav_profile_dropdown">
+								<div class="_nav_profile_dropdown_info">
+									<div class="_nav_profile_dropdown_image">
+										<img src="assets/images/profile.png" alt="Image" class="_nav_drop_img">
+									</div>
+									<div class="_nav_profile_dropdown_info_txt">
+										<h4 class="_nav_dropdown_title">Dylan Field</h4>
+										<a href="profile.html" class="_nav_drop_profile">
+											View Profile
+										</a>
+									</div>
+								</div>
+								<hr>
+								<ul class="_nav_dropdown_list">
+									<li class="_nav_dropdown_list_item">
+										<a href="#0" class="_nav_dropdown_link">
+											<div class="_nav_drop_info">
+												<span>
+													<svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" fill="none" viewBox="0 0 18 19">
+														<path fill="#377DFF" d="M9.584 0c.671 0 1.315.267 1.783.74.468.473.721 1.112.7 1.709l.009.14a.985.985 0 00.136.395c.145.242.382.418.659.488.276.071.57.03.849-.13l.155-.078c1.165-.538 2.563-.11 3.21.991l.58.99a.695.695 0 01.04.081l.055.107c.519 1.089.15 2.385-.838 3.043l-.244.15a1.046 1.046 0 00-.313.339 1.042 1.042 0 00-.11.805c.074.272.255.504.53.66l.158.1c.478.328.823.812.973 1.367.17.626.08 1.292-.257 1.86l-.625 1.022-.094.144c-.735 1.038-2.16 1.355-3.248.738l-.129-.066a1.123 1.123 0 00-.412-.095 1.087 1.087 0 00-.766.31c-.204.2-.317.471-.316.786l-.008.163C11.956 18.022 10.88 19 9.584 19h-1.17c-1.373 0-2.486-1.093-2.484-2.398l-.008-.14a.994.994 0 00-.14-.401 1.066 1.066 0 00-.652-.493 1.12 1.12 0 00-.852.127l-.169.083a2.526 2.526 0 01-1.698.122 2.47 2.47 0 01-1.488-1.154l-.604-1.024-.08-.152a2.404 2.404 0 01.975-3.132l.1-.061c.292-.199.467-.527.467-.877 0-.381-.207-.733-.569-.94l-.147-.092a2.419 2.419 0 01-.724-3.236l.615-.993a2.503 2.503 0 013.366-.912l.126.066c.13.058.269.089.403.09a1.08 1.08 0 001.086-1.068l.008-.185c.049-.57.301-1.106.713-1.513A2.5 2.5 0 018.414 0h1.17zm0 1.375h-1.17c-.287 0-.562.113-.764.312-.179.177-.288.41-.308.628l-.012.29c-.098 1.262-1.172 2.253-2.486 2.253a2.475 2.475 0 01-1.013-.231l-.182-.095a1.1 1.1 0 00-1.488.407l-.616.993a1.05 1.05 0 00.296 1.392l.247.153A2.43 2.43 0 013.181 9.5c0 .802-.401 1.552-1.095 2.023l-.147.091c-.486.276-.674.873-.448 1.342l.053.102.597 1.01c.14.248.374.431.652.509.246.069.51.05.714-.04l.103-.05a2.506 2.506 0 011.882-.248 2.456 2.456 0 011.823 2.1l.02.335c.059.535.52.95 1.079.95h1.17c.566 0 1.036-.427 1.08-.95l.005-.104a2.412 2.412 0 01.726-1.732 2.508 2.508 0 011.779-.713c.331.009.658.082.992.23l.3.15c.469.202 1.026.054 1.309-.344l.068-.105.61-1a1.045 1.045 0 00-.288-1.383l-.257-.16a2.435 2.435 0 01-1.006-1.389 2.393 2.393 0 01.25-1.847c.181-.31.429-.575.752-.795l.152-.095c.485-.278.672-.875.448-1.346l-.067-.127-.012-.027-.554-.945a1.095 1.095 0 00-1.27-.487l-.105.041-.098.049a2.515 2.515 0 01-1.88.259 2.47 2.47 0 01-1.511-1.122 2.367 2.367 0 01-.325-.97l-.012-.24a1.056 1.056 0 00-.307-.774 1.096 1.096 0 00-.779-.323zm-.58 5.02c1.744 0 3.16 1.39 3.16 3.105s-1.416 3.105-3.16 3.105c-1.746 0-3.161-1.39-3.161-3.105s1.415-3.105 3.16-3.105zm0 1.376c-.973 0-1.761.774-1.761 1.729 0 .955.788 1.73 1.76 1.73s1.76-.775 1.76-1.73-.788-1.73-1.76-1.73z"></path>
+													  </svg>											  
+												</span>
+												Settings		
+											</div>
+											<button type="submit" class="_nav_drop_btn_link">
+												<svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" fill="none" viewBox="0 0 6 10">
+													<path fill="#112032" d="M5 5l.354.354L5.707 5l-.353-.354L5 5zM1.354 9.354l4-4-.708-.708-4 4 .708.708zm4-4.708l-4-4-.708.708 4 4 .708-.708z" opacity=".5"></path>
+												</svg>												  
+											</button>
+										</a>
+									</li>
+									<li class="_nav_dropdown_list_item">
+										<a href="#0" class="_nav_dropdown_link">
+											<div class="_nav_drop_info">
+												<span>
+													<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+														<path stroke="#377DFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19a9 9 0 100-18 9 9 0 000 18z"></path>
+														<path stroke="#377DFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.38 7.3a2.7 2.7 0 015.248.9c0 1.8-2.7 2.7-2.7 2.7M10 14.5h.009"></path>
+													</svg>												
+												</span>
+												Help &amp; Support		
+											</div>
+											<button type="submit" class="_nav_drop_btn_link">
+												<svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" fill="none" viewBox="0 0 6 10">
+													<path fill="#112032" d="M5 5l.354.354L5.707 5l-.353-.354L5 5zM1.354 9.354l4-4-.708-.708-4 4 .708.708zm4-4.708l-4-4-.708.708 4 4 .708-.708z" opacity=".5"></path>
+												</svg>												  
+											</button>
+										</a>
+									</li>
+									<li class="_nav_dropdown_list_item">
+										<a href="#0" class="_nav_dropdown_link">
+											<div class="_nav_drop_info">
+												<span>
+													<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="none" viewBox="0 0 19 19">
+														<path stroke="#377DFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.667 18H2.889A1.889 1.889 0 011 16.111V2.89A1.889 1.889 0 012.889 1h3.778M13.277 14.222L18 9.5l-4.723-4.722M18 9.5H6.667"></path>
+													</svg>			
+												</span>
+												Log Out		
+											</div>
+											<button type="submit" class="_nav_drop_btn_link">
+												<svg xmlns="http://www.w3.org/2000/svg" width="6" height="10" fill="none" viewBox="0 0 6 10">
+													<path fill="#112032" d="M5 5l.354.354L5.707 5l-.353-.354L5 5zM1.354 9.354l4-4-.708-.708-4 4 .708.708zm4-4.708l-4-4-.708.708 4 4 .708-.708z" opacity=".5"></path>
+												</svg>												  
+											</button>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!--Header End-->
+		<!--Chat Section Start-->
+		<section class="_chat_wrapper">
+			<div class="_chat_wrap">
+				<div class="container-xxl container-fluid-lg">
+					<div class="chat_inner_wrap">
+						<div class="row">
+							<div class="col-xxl-4 col-xl-5 col-lg-6 col-md-12 col-sm-12">
+								<div class="_chat_left">
+									<div class="_chat_left_content">
+										<div class="_chat_left_top">
+											<div class="_chat_top _mar_b24">
+												<h4 class="_chat_left_content_title _title5">Chat</h4>
+												<div class="_chat_left_top_drop">
+													<a href="#0" class="_chat_left_top_link">
+														<svg xmlns="http://www.w3.org/2000/svg" width="4" height="16" fill="none" viewBox="0 0 4 16">
+															<circle cx="2" cy="2" r="2" fill="#171515"></circle>
+															<circle cx="2" cy="8" r="2" fill="#171515"></circle>
+															<circle cx="2" cy="14" r="2" fill="#171515"></circle>
+														</svg>
+													</a>
+													<div class="_chat_drop">
+														<button type="submit" class="_chat_drop_link">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Create a new group
+														</button>
+													</div>
+												</div>
+											</div>
+											<div class="_chat_left_box _mar_b16">
+												<div class="_chat_left_box_btn">
+													<button type="button" class="_chat_left_box_btn_link">All Chat
+														<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" fill="none" viewBox="0 0 10 6">
+															<path fill="#112032" d="M5 5l.354.354L5 5.707l-.354-.353L5 5zm4.354-3.646l-4 4-.708-.708 4-4 .708.708zm-4.708 4l-4-4 .708-.708 4 4-.708.708z" />
+														</svg>
+													</button>
+													<div class="_chat_left_dropdown">
+														<ul class="_chat_left_dropdown_list">
+															<li class="_chat_left_dropdown_item">
+																<button class="_chat_left_dropdown_link" type="submit">
+																	Recent chat
+																</button>
+															</li>
+															<li class="_chat_left_dropdown_item">
+																<button class="_chat_left_dropdown_link" type="submit">
+																	Online
+																</button>
+															</li>
+															<li class="_chat_left_dropdown_item">
+																<button class="_chat_left_dropdown_link" type="submit">
+																	Unread
+																</button>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<form class="_chat_left_form">
+													<svg class="_chat_left_form_svg" xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="none" viewBox="0 0 17 17">
+														<circle cx="7" cy="7" r="6" stroke="#666" />
+														<path stroke="#666" stroke-linecap="round" d="M16 16l-3-3" />
+													</svg>
+													<input type="search" class="_chat_left_form_input" placeholder="input search text">
+												</form>
+											</div>
+										</div>
+                                        <!---Desktop-->
+										<div class="_chat_left_bottom _chat_left_bottom_desktop">
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8 _chat_active _chat_active_inner">
+												<div class="_chat_active_inner_bar"></div>
+                                                <div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat1_img.png" alt="Image" class="_chat_img"> <span class="_chat_left_inner_box_image_svg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+                                                            <path fill="#0ACF83" stroke="#fff" d="M11.5 6a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"/>
+                                                        </svg>                                                  
+                                                    </span>
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">3</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8 _chat_active">
+                                                <div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat_img.png" alt="Image" class="_chat_img"> <span class="_chat_left_inner_box_image_svg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+                                                            <path fill="#0ACF83" stroke="#fff" d="M11.5 6a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"/>
+                                                        </svg>                                                  
+                                                    </span>
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8">
+												<div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat2_img.png" alt="Image" class="_chat_img">
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8">
+												<div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat3_img.png" alt="Image" class="_chat_img">
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8">
+												<div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat4_img.png" alt="Image" class="_chat_img">
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8">
+												<div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat5_img.png" alt="Image" class="_chat_img">
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8">
+												<div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat6_img.png" alt="Image" class="_chat_img">
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+											<div class="_chat_left_inner_box _chat_box  _padd_t24 _padd_b24 _padd_r24 _padd_l24 _mar_b8">
+												<div class="_chat_left_info">
+                                                    <div class="_chat_left_inner_box_image">
+                                                        <img src="assets/images/chat7_img.png" alt="Image" class="_chat_img">
+                                                    </div>
+                                                    <div class="_chat_left_inner_box_txt">
+                                                        <h4 class="_chat_left_inner_box_txt_title _title4">Samuel Washington</h4>
+                                                        <p class="_chat_left_inner_box_txt_para">Lorem ipsum dolor sit amet...</p>
+                                                    </div>
+                                                </div>
+												<div class="_chat_left_inner_box_date">
+													<p class="_chat_left_inner_box_date_para">Monday</p>
+													<p class="_chat_left_inner_box_date_txt">1</p>
+												</div>
+											</div>
+										</div>
+                                        <!--Laptop-->
+									</div>
+								</div>
+							</div>
+							<div class="col-xxl-8 col-xl-7 col-lg-6 col-md-12 col-sm-12">
+								<div class="_chat_right">
+									<div class="_chat_right_top_inner _padd_b8 _padd_t24 _padd_l24 _padd_r24">
+										<div class="_chat_right_top_inner_box">
+											<div class="_chat_right_top_inner_box_image">
+												<img src="assets/images/chat_profile.png" alt="Image" class="_chat_profile_img">
+											</div>
+											<div class="_chat_right_top_inner_box_txt">
+												<h4 class="_chat_right_top_inner_box_txt_title _title4">Samuel Washington</h4>
+												<p class="_chat_right_top_inner_box_txt_para">Online</p>
+											</div>
+										</div>
+										<div class="_chat_right_top_inner_icon">
+											<div class="_chat_inner_top_icon">
+												<button type="button" class="_chat_inner_top_icon_link">
+													<svg xmlns="http://www.w3.org/2000/svg" width="27" height="16" fill="none" viewBox="0 0 27 16">
+														<path stroke="#1890FF" stroke-linecap="round" stroke-linejoin="round" d="M20.129 10.802l4.615 3.248A.893.893 0 0026 13.234V2.479a.894.894 0 00-1.256-.816L20.13 4.911a.894.894 0 00-.379.73v4.43a.893.893 0 00.379.73z" />
+														<path stroke="#1890FF" stroke-miterlimit="10" d="M14.17 15H3.902A2.91 2.91 0 011 12.098V3.616A2.91 2.91 0 013.902.714h10.294a2.884 2.884 0 012.875 2.875v8.51A2.91 2.91 0 0114.17 15z" />
+													</svg>
+												</button>
+												<div class="_chat_card_hover">
+													<a>start video call</a>
+												</div>
+											</div>
+											<div class="_chat_inner_top_icon">
+												<button type="button" class="_chat_inner_top_icon_link">
+													<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" fill="none" viewBox="0 0 17 16">
+														<g clip-path="url(#clip0_174:1173)">
+															<path fill="#1890FF" d="M13.435 9.911c-.348-.34-.768-.523-1.213-.523-.441 0-.865.179-1.227.52L9.86 10.972c-.093-.048-.186-.091-.276-.135a4.624 4.624 0 01-.355-.18c-1.062-.634-2.028-1.462-2.953-2.532-.449-.534-.75-.983-.969-1.439.294-.253.567-.516.832-.77l.302-.287c.753-.709.753-1.627 0-2.336l-.98-.922a14.503 14.503 0 01-.333-.321 16.5 16.5 0 00-.675-.628C4.106 1.098 3.69.925 3.252.925c-.438 0-.861.173-1.22.497l-.007.007-1.22 1.158c-.46.432-.721.959-.779 1.57-.086.986.223 1.905.46 2.506.581 1.475 1.45 2.843 2.745 4.309a16.78 16.78 0 005.622 4.143c.825.368 1.927.804 3.157.878.076.004.155.007.226.007.83 0 1.525-.28 2.07-.838.004-.006.011-.01.015-.016.187-.213.402-.406.628-.612.154-.138.312-.283.466-.435.356-.348.542-.753.542-1.169 0-.418-.19-.82-.553-1.158l-1.97-1.86zm1.284 3.556c-.003 0-.003.004 0 0-.14.142-.283.27-.438.412a9.17 9.17 0 00-.692.676c-.362.364-.79.537-1.35.537-.053 0-.11 0-.164-.004-1.066-.064-2.056-.456-2.799-.79a15.839 15.839 0 01-5.296-3.904C2.757 9.006 1.94 7.724 1.397 6.345 1.063 5.505.941 4.85.995 4.231c.036-.395.198-.722.495-1.003l1.224-1.151c.176-.155.362-.24.545-.24.226 0 .41.129.524.237l.01.01c.22.192.428.391.647.604.11.108.226.216.34.328l.98.922c.38.358.38.689 0 1.046-.104.098-.204.196-.309.29-.3.291-.588.561-.9.825-.007.007-.014.01-.018.017-.309.29-.251.574-.187.766l.011.03c.255.582.614 1.129 1.16 1.78l.003.004c.99 1.148 2.034 2.043 3.186 2.728.147.088.298.159.441.226.13.061.251.119.355.18.015.006.029.016.043.023a.817.817 0 00.356.085c.297 0 .484-.176.545-.234l1.227-1.154c.122-.115.316-.254.542-.254.222 0 .405.132.517.247l.007.007 1.977 1.86c.37.345.37.7.003 1.057zM9.186 3.806c.94.149 1.794.567 2.476 1.209a4.226 4.226 0 011.284 2.33c.04.223.244.378.477.378.029 0 .054-.003.083-.007a.46.46 0 00.398-.526 5.113 5.113 0 00-1.554-2.82 5.658 5.658 0 00-2.996-1.462c-.265-.04-.513.125-.56.371a.454.454 0 00.392.527zM16.98 7.058c-.32-1.763-1.202-3.367-2.558-4.643A9.309 9.309 0 009.488.007a.48.48 0 00-.556.371c-.043.25.133.483.399.527a8.335 8.335 0 014.41 2.151c1.212 1.142 2.001 2.577 2.285 4.15.04.223.244.379.477.379.029 0 .054-.004.082-.007a.451.451 0 00.395-.52z" />
+														</g>
+														<defs>
+															<clipPath id="clip0_174:1173">
+																<path fill="#fff" d="M0 0h17v16H0z" />
+															</clipPath>
+														</defs>
+													</svg>
+												</button>
+												<div class="_chat_card_hover">
+													<a>start audio call</a>
+												</div>
+											</div>
+											<div class="_chat_inner_top_icon">
+												<a href="#0" class="_chat_top_link">
+													<svg xmlns="http://www.w3.org/2000/svg" width="4" height="16" fill="none" viewBox="0 0 4 16">
+														<circle cx="2" cy="2" r="2" fill="#171515" />
+														<circle cx="2" cy="8" r="2" fill="#171515" />
+														<circle cx="2" cy="14" r="2" fill="#171515" />
+													</svg>
+												</a>
+												<div class="_top_inner_dropdown">
+													<ul class="_top_inner_dropdown_list">
+														<li class="_top_inner_dropdown_item">
+															<button type="button" class="_top_inner_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> View profile
+															</button>
+														</li>
+														<li class="_top_inner_dropdown_item">
+															<button type="button" class="_top_inner_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-headphones"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg> Audio call
+															</button>
+														</li>
+														<li class="_top_inner_dropdown_item">
+															<button type="button" class="_top_inner_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg> Video call
+															</button>
+														</li>
+														<li class="_top_inner_dropdown_item">
+															<button type="button" class="_top_inner_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-minus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="23" y1="11" x2="17" y2="11"></line></svg> Block
+															</button>
+														</li>
+														<li class="_top_inner_dropdown_item">
+															<button type="button" class="_top_inner_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Somethings wrong
+															</button>
+														</li>
+														<li class="_top_inner_dropdown_item">
+															<button type="button" class="_top_inner_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> Delete chat
+															</button>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr class="_border1">
+									<div class="_chat_middle_box  _padd_b24 _padd_t24 _padd_l24 _padd_r24">
+										<div class="_chat_middle_box_sender">
+											<div class="chat_middle_box_image">
+												<img src="assets/images/chat_profile.png" alt="Image" class="_chat_profile_img">
+											</div>
+											<div class="_chat_middle_message">
+												<div class="_chat_middle_box_sender_txt">
+													<p class="_chat_middle_box_sender_txt_para">Lorem ipsum dolor sit amet, conse tetur sadipscing.</p>
+												</div>
+											</div>
+										</div>
+										<div class="_chat_middle_box_time"> <span class="_chat_middle_box_time_txt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                <circle cx="8" cy="8" r="7.5" stroke="#707584"/>
+                                                <path stroke="#707584" stroke-linecap="round" d="M12 9H8.25A.25.25 0 018 8.75V5"/>
+                                              </svg>
+                                               9:30 PM
+											   <div class="_remove_btn_box">
+													<button type="button" class="_remove_btn">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="4" fill="none" viewBox="0 0 16 4">
+															<circle cx="2" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 2 2)"/>
+															<circle cx="8" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 8 2)"/>
+															<circle cx="14" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 14 2)"/>
+														</svg>
+													</button>
+													<div class="_remove_btn_dropdown">
+														<ul class="_remove_btn_dropdown_list">
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Arrow Undo</title><path d="M240 424v-96c116.4 0 159.39 33.76 208 96 0-119.23-39.57-240-208-240V88L64 256z" fill="none" stroke="#666" stroke-linejoin="round" stroke-width="32"/></svg>Reply
+																</button>
+															</li>
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Copy
+																</button>
+															</li>
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Remove
+																</button>
+															</li>
+														</ul>
+													</div>
+											   </div>
+                                              </span>
+										</div>
+										<div class="_chat_middle_box_reciver">
+											<div class="_chat_middle_box_reciver_area">
+												<div class="_chat_middle_message">
+													<div class="_chat_middle_box_sender_txt">
+														<p class="_chat_middle_box_sender_txt_para">Lorem ipsum dolor sit amet, conse tetur sadipscing.</p>
+													</div>
+												</div>
+												<div class="chat_middle_box_image">
+													<img src="assets/images/chat_profile.png" alt="Image" class="_chat_profile_img">
+												</div>
+											</div>
+											<div class="_chat_middle_box_time"> <span class="_chat_middle_box_time_txt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                    <circle cx="8" cy="8" r="7.5" stroke="#707584"/>
+                                                    <path stroke="#707584" stroke-linecap="round" d="M12 9H8.25A.25.25 0 018 8.75V5"/>
+                                                  </svg>
+                                                   9:30 PM
+												   <div class="_remove_btn_box">
+													<button type="button" class="_remove_btn">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="4" fill="none" viewBox="0 0 16 4">
+															<circle cx="2" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 2 2)"/>
+															<circle cx="8" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 8 2)"/>
+															<circle cx="14" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 14 2)"/>
+														</svg>
+													</button>
+													<div class="_remove_btn_dropdown">
+														<ul class="_remove_btn_dropdown_list">
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Arrow Undo</title><path d="M240 424v-96c116.4 0 159.39 33.76 208 96 0-119.23-39.57-240-208-240V88L64 256z" fill="none" stroke="#666" stroke-linejoin="round" stroke-width="32"/></svg>Reply
+																</button>
+															</li>
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Copy
+																</button>
+															</li>
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Remove
+																</button>
+															</li>
+														</ul>
+													</div>
+											   </div>
+                                                  </span>
+											</div>
+										</div>
+										<hr class="_border2">
+										<div class="_chat_middle_day">
+											<p class="_chat_middle_day_txt">Today</p>
+										</div>
+										<div class="_chat_middle_box_sender">
+											<div class="chat_middle_box_image">
+												<img src="assets/images/chat_profile.png" alt="Image" class="_chat_profile_img">
+											</div>
+											<div class="_chat_middle_message">
+												<div class="_chat_middle_box_sender_txt">
+													<p class="_chat_middle_box_sender_txt_para">Lorem ipsum dolor sit amet, conse tetur sadipscing.</p>
+												</div>
+											</div>
+										</div>
+										<div class="_chat_middle_box_time"> <span class="_chat_middle_box_time_txt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                <circle cx="8" cy="8" r="7.5" stroke="#707584"/>
+                                                <path stroke="#707584" stroke-linecap="round" d="M12 9H8.25A.25.25 0 018 8.75V5"/>
+                                              </svg>
+                                               9:30 PM
+											   <div class="_remove_btn_box">
+												<button type="button" class="_remove_btn">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="4" fill="none" viewBox="0 0 16 4">
+														<circle cx="2" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 2 2)"/>
+														<circle cx="8" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 8 2)"/>
+														<circle cx="14" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 14 2)"/>
+													</svg>
+												</button>
+												<div class="_remove_btn_dropdown">
+													<ul class="_remove_btn_dropdown_list">
+														<li class="_remove_btn_dropdown_item">
+															<button type="submit" class="_remove_btn_dropdown_link">
+																<svg width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Arrow Undo</title><path d="M240 424v-96c116.4 0 159.39 33.76 208 96 0-119.23-39.57-240-208-240V88L64 256z" fill="none" stroke="#666" stroke-linejoin="round" stroke-width="32"/></svg>Reply
+															</button>
+														</li>
+														<li class="_remove_btn_dropdown_item">
+															<button type="submit" class="_remove_btn_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Copy
+															</button>
+														</li>
+														<li class="_remove_btn_dropdown_item">
+															<button type="submit" class="_remove_btn_dropdown_link">
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Remove
+															</button>
+														</li>
+													</ul>
+												</div>
+										   </div>
+                                              </span>
+										</div>
+										<div class="_chat_middle_box_reciver">
+											<div class="_chat_middle_box_reciver_area">
+												<div class="_chat_middle_message">
+													<div class="_chat_middle_box_sender_txt">
+														<p class="_chat_middle_box_sender_txt_para">Lorem ipsum dolor sit amet, conse tetur sadipscing.</p>
+													</div>
+												</div>
+												<div class="chat_middle_box_image">
+													<img src="assets/images/chat_profile.png" alt="Image" class="_chat_profile_img">
+												</div>
+											</div>
+											<div class="_chat_middle_box_time"> <span class="_chat_middle_box_time_txt"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                    <circle cx="8" cy="8" r="7.5" stroke="#707584"/>
+                                                    <path stroke="#707584" stroke-linecap="round" d="M12 9H8.25A.25.25 0 018 8.75V5"/>
+                                                  </svg>
+                                                   9:30 PM
+												   <div class="_remove_btn_box">
+													<button type="button" class="_remove_btn">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="4" fill="none" viewBox="0 0 16 4">
+															<circle cx="2" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 2 2)"/>
+															<circle cx="8" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 8 2)"/>
+															<circle cx="14" cy="2" r="2" fill="#C4C4C4" transform="rotate(-90 14 2)"/>
+														</svg>
+													</button>
+													<div class="_remove_btn_dropdown">
+														<ul class="_remove_btn_dropdown_list">
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Arrow Undo</title><path d="M240 424v-96c116.4 0 159.39 33.76 208 96 0-119.23-39.57-240-208-240V88L64 256z" fill="none" stroke="#666" stroke-linejoin="round" stroke-width="32"/></svg>Reply
+																</button>
+															</li>
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>Copy
+																</button>
+															</li>
+															<li class="_remove_btn_dropdown_item">
+																<button type="submit" class="_remove_btn_dropdown_link">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 22 24" fill="none" stroke="#666"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Remove
+																</button>
+															</li>
+														</ul>
+													</div>
+											   </div>
+                                                  </span>
+											</div>
+										</div>
+									</div>
+									<div class="_chat_right_bottom_inner _padd_b24 _padd_t24 _padd_l24 _padd_r24">
+										<div class="_chat_right_bottom_inner_box">
+											<div class="chat_bottom_textarea">
+												<textarea placeholder="Enter Your Messages" class="_chat_textarea"></textarea>
+											</div>
+											<div class="_chat_bottom_icon">
+												<div class="_chat_bottom_icon_list">
+													<button class="_chat_bottom_icon_link" type="button">
+														<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+															<circle cx="10" cy="10" r="9.5" stroke="#1890FF" stroke-linecap="round" />
+															<path stroke="#1890FF" stroke-linecap="round" d="M6.209 13.378c.421.365.999.646 1.652.834.658.19 1.395.288 2.139.288.744 0 1.48-.098 2.139-.288.654-.188 1.23-.469 1.652-.834" />
+															<circle cx="7" cy="8" r="1" fill="#586ED1" stroke="#1890FF" stroke-linecap="round" />
+															<circle cx="13" cy="8" r="1" fill="#586ED1" stroke="#1890FF" stroke-linecap="round" />
+														</svg>
+													</button>
+												</div>
+												<div class="_chat_bottom_icon_list">
+													<button class="_chat_bottom_icon_link" type="button">
+														<svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" fill="none" viewBox="0 0 20 10">
+															<path stroke="#1890FF" stroke-linecap="round" stroke-linejoin="round" d="M8 9H5a4 4 0 01-4-4v0a4 4 0 014-4h3M14 5H6M12 9h3a4 4 0 004-4v0a4 4 0 00-4-4h-3" />
+														</svg>
+													</button>
+												</div>
+												<div class="_chat_bottom_icon_list">
+													<button class="_chat_bottom_icon_link _chat_bottom_icon_link1" type="button">post</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--Chat Section End-->
+	</div>
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script>
+		var profileDropdown = document.querySelector("#_prfoile_drop");
+		var profileDropShowBtn = document.querySelector("#_profile_drop_show_btn");
+		var isDropShow = false;
+		console.log(isDropShow);
+
+		profileDropShowBtn.addEventListener("click", function(){
+			isDropShow = !isDropShow;
+			console.log(isDropShow)
+			if(isDropShow){
+				profileDropdown.classList.add('show');
+				console.log("shown")
+			}
+			else{
+				profileDropdown.classList.remove('show');
+				console.log("hidden")
+			}
+		})
+		/*----- Notification -----*/
+		var notifyDropdown = document.querySelector("#_notify_drop");
+		var notifyDropShowBtn = document.querySelector("#_notify_btn");
+		var isDropShow1 = false;
+		console.log(isDropShow1);
+
+		notifyDropShowBtn.addEventListener("click", function(){
+			isDropShow1 = !isDropShow1;
+			console.log(isDropShow)
+			if(isDropShow1){
+				notifyDropdown.classList.add('show');
+				console.log("shown")
+			}
+			else{
+				notifyDropdown.classList.remove('show');
+				console.log("hidden")
+			}
+		})
+	</script>
+</body>
+
+</html>

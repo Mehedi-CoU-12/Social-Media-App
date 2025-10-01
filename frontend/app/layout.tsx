@@ -7,34 +7,36 @@ import "../styles/main.css";
 import "../styles/responsive.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Social Media App",
-  description: "Registration and social features",
+    title: "Social Media App",
+    description: "Registration and social features",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <head>
-        {/* Icon fonts (Flaticon) served from public */}
-        <link rel="stylesheet" href="/fonts/flaticon/flaticon.css" />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <head>
+                {/* Icon fonts (Flaticon) served from public */}
+                <link rel="stylesheet" href="/fonts/flaticon/flaticon.css" />
+            </head>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
+                {children}
+            </body>
+        </html>
+    );
 }
