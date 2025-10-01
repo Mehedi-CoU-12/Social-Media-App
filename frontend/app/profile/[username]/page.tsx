@@ -1,4 +1,4 @@
-"user client"
+"user client";
 export default function ProfilePage() {
     return (
         <div className="_layout_main_wrapper _layout_profile">
@@ -1160,7 +1160,6 @@ export default function ProfilePage() {
                 {/* <!-- Mobile Bottom Navigation End --> */}
             </header>
 
-
             {/* <!--Header End-->
 		<!-- Profile Section --> */}
             <div className="_profile_wrapper">
@@ -1742,6 +1741,9 @@ export default function ProfilePage() {
                                                         </a>
                                                     </span>
                                                 </div>
+
+                                                {/* #-------------------------------------phtoto section start------------------ */}
+
                                                 <div className="_left_inner_area_photos_area">
                                                     <div className="_left_inner_area_photos_box">
                                                         <img
@@ -1807,6 +1809,8 @@ export default function ProfilePage() {
                                                         />
                                                     </div>
                                                 </div>
+
+                                                {/* #-------------------------------------phtoto section end------------------ */}
                                             </div>
                                         </div>
                                     </div>
