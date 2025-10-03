@@ -6,19 +6,6 @@ import { errors as vineErrors } from '@vinejs/vine'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**
-   * In debug mode, the exception handler will display verbose errors
-   * with pretty printed stack traces.
-   */
-  protected debug = !app.inProduction
-
-  /**
-   * Status pages are used to display a custom HTML pages for certain error
-   * codes. You might want to enable them in production only, but feel
-   * free to enable them in development as well.
-   */
-  protected renderStatusPages = app.inProduction
-
-  /**
    * Status pages is a collection of error code range and a callback
    * to return the HTML contents to send as a response.
    */
@@ -66,6 +53,15 @@ export default class HttpExceptionHandler extends ExceptionHandler {
       }
     }
 
+    // Invalid credentials (thrown by auth.attempt)
+    if (error instanceof authErrors.E_INVALID_CREDENTIALS) {
+      if (isApi) {
+        return this.apiError(ctx, 401, 'Invalid email or password', {
+          code: 'AUTH_INVALID_CREDENTIALS',
+        })
+      }
+    }
+
     // Vine validation errors (422)
     if (error instanceof vineErrors.E_VALIDATION_ERROR) {
       if (isApi) {
@@ -86,6 +82,41 @@ export default class HttpExceptionHandler extends ExceptionHandler {
       }
     }
 
+    // Database connectivity issues (MySQL/XAMPP not running or unreachable)
+    {
+      const anyErr = error as any
+      const code = anyErr?.code ?? anyErr?.original?.code
+      const codeStr = typeof code === 'string' ? code : ''
+      const msg = String(anyErr?.message ?? '')
+      const mysqlLikeCodes = new Set([
+        'ECONNREFUSED',
+        'ER_ACCESS_DENIED_ERROR',
+        'ER_DBACCESS_DENIED_ERROR',
+        'ER_BAD_DB_ERROR',
+        'PROTOCOL_CONNECTION_LOST',
+        'ETIMEDOUT',
+        'ENOTFOUND',
+        'EHOSTUNREACH',
+      ])
+
+      const looksLikeDbConnectionIssue =
+        (codeStr && (mysqlLikeCodes.has(codeStr) || /^E_.*DB/i.test(codeStr))) ||
+        /connect ECONNREFUSED|Connection lost|Knex: Timeout acquiring a connection|getaddrinfo ENOTFOUND|connect ETIMEDOUT/i.test(
+          msg
+        )
+
+      if (looksLikeDbConnectionIssue) {
+        if (isApi) {
+          return this.apiError(
+            ctx,
+            503,
+            'Database is not reachable. Please ensure MySQL/XAMPP is running and database credentials are correct.',
+            { code: 'DB_CONN_001' }
+          )
+        }
+      }
+    }
+
     // Not found (route or resource)
     if ((error as any)?.code === 'E_ROUTE_NOT_FOUND') {
       if (isApi) {
@@ -93,11 +124,14 @@ export default class HttpExceptionHandler extends ExceptionHandler {
       }
     }
 
-    // Default: For API, return generic JSON; otherwise, fall back to status pages
+    // Generic: any error that defines a status/message for API routes
     if (isApi) {
-      const status = (error as any)?.status || 500
-      const message = app.inProduction ? 'Something went wrong' : (error as any)?.message || 'Error'
-      return this.apiError(ctx, status, message)
+      const anyErr = error as any
+      if (typeof anyErr?.status === 'number' && typeof anyErr?.message === 'string') {
+        return this.apiError(ctx, anyErr.status, anyErr.message, {
+          code: anyErr.code ?? 'UNKNOWN_ERROR',
+        })
+      }
     }
 
     return super.handle(error, ctx)

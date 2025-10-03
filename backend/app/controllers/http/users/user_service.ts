@@ -27,15 +27,25 @@ export default class UsersService {
   public async login(user: { email: string; password: string }, auth: any) {
     const { email, password } = user
 
-    //check if the user is registered
+    // 1) Check if user exists
     const existingUser = await this.Query.getUserByEmail(email)
-    if (!existingUser) if (!existingUser) throw new Error('Invalid email or password')
+    if (!existingUser) {
+      throw new Exception('Invalid email or password', {
+        status: 401,
+        code: 'AUTH_INVALID_CREDENTIALS',
+      })
+    }
 
-    //check if the password is correct
-    const isValid = await hash.verify(existingUser.password, password)
-    if (!isValid) throw new Exception('Invalid email or password')
+    // 2) Verify password using the configured hasher
+    const isValid = await (hash as any).verify(existingUser.password, password)
+    if (!isValid) {
+      throw new Exception('Invalid email or password', {
+        status: 401,
+        code: 'AUTH_INVALID_CREDENTIALS',
+      })
+    }
 
-    //save the session into the cookies
+    // 3) Start session
     await auth.use('web').login(existingUser)
 
     return { message: 'user login successfully!' }
@@ -48,7 +58,7 @@ export default class UsersService {
     profilePicture?: string
   }) {
     const { fullName, email, password } = payload
-    const hashedPassword = await hash.make(password)
+    const hashedPassword = await (hash as any).make(password)
     const newUser = {
       email,
       password: hashedPassword,
