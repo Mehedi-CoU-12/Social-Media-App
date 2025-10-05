@@ -3,7 +3,7 @@ import { useLogin } from "./useLogin";
 
 export default function RegisterPage() {
     const { state, submit, setField } = useLogin();
-    const { email, password, agree, loading, errors } = state;
+    const { email, password, agree, loading, errors, disabled } = state;
 
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">
@@ -167,11 +167,9 @@ export default function RegisterPage() {
                                                     type="button"
                                                     className="_social_registration_form_btn_link _btn1"
                                                     onClick={submit}
-                                                    disabled={loading}
+                                                    disabled={disabled}
                                                 >
-                                                    {loading
-                                                        ? "Logging in..."
-                                                        : "Log in"}
+                                                    Log in
                                                 </button>
                                             </div>
                                         </div>
