@@ -1,4 +1,4 @@
-# /Frontend-static
+/Frontend-static
 /node_modules
 .DS_Store
 .env
