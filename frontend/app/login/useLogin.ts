@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 type RegisterPayload = {
     email: string;
@@ -16,10 +17,8 @@ export function useLogin() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [agree, setAgree] = useState(true);
-    const [disabled, setDisabled] = useState(true);
+    const [agree, setAgree] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState<RegisterErrors>([]);
 
     function setField<K extends keyof RegisterPayload>(
         key: K,
@@ -33,39 +32,36 @@ export function useLogin() {
     if (!email || !password || !agree) {
     }
 
-    async function login(email: string, password: string) {
-        const res = await fetch("/api/users/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ email, password }),
-        });
-
-        const data = await res.json().catch(() => null);
-
-        if (!res.ok) {
-            // Expect data: { success:false, message, code, path, timestamp }
-            throw new Error(data?.message || "Login failed");
+    async function submit() {
+        if (!email || !password || !agree) {
+            toast.error("All fields are required");
+            return;
         }
-        return data;
-    }
+        try {
+            setLoading(true);
+            const res = await fetch("/api/users/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ email, password }),
+            });
 
-    async function submit(): Promise<boolean> {
-        if (!agree) {
-            alert("You must agree to the terms and conditions");
-            return false;
+            const data = await res.json().catch(() => null);
+
+            if (!res.ok) {
+                // Expect data: { success:false, message, code, path, timestamp }
+                throw new Error(data?.message || "Login failed");
+            }
+            setLoading(false);
+            toast.success("Login successful");
+            router.push("/");
+        } catch (error) {
+            toast.error((error as Error).message || "Login failed");
         }
-        setErrors([]);
-        setLoading(true);
-        const res = await login(email, password);
-        console.log("------------res------------------>", res);
-        setLoading(false);
-        router.push("/");
-        return true;
     }
 
     return {
-        state: { email, password, agree, disabled, loading, errors },
+        state: { email, password, agree, loading },
         setField,
         submit,
     };
