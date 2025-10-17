@@ -29,6 +29,9 @@ importers:
       '@adonisjs/vite':
         specifier: ^4.0.0
         version: 4.0.0(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(argon2@0.44.0)(edge.js@6.3.0))(@adonisjs/shield@8.2.0(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(argon2@0.44.0)(edge.js@6.3.0))(@adonisjs/session@7.5.1(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(argon2@0.44.0)(edge.js@6.3.0))(edge.js@6.3.0))(edge.js@6.3.0))(edge.js@6.3.0)(vite@6.3.6(@types/node@22.18.6))
+      '@faker-js/faker':
+        specifier: ^10.1.0
+        version: 10.1.0
       '@vinejs/vine':
         specifier: ^3.0.1
         version: 3.0.1
@@ -574,6 +577,10 @@ packages:
   '@eslint/plugin-kit@0.3.5':
     resolution: {integrity: sha512-Z5kJ+wU3oA7MMIqVR9tyZRtjYPr4OC004Q4Rw7pgOKUOKkJfZ3O24nz3WYfGRpMDNmcOi3TwQOmgm7B7Tpii0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@faker-js/faker@10.1.0':
+    resolution: {integrity: sha512-C3mrr3b5dRVlKPJdfrAXS8+dq+rq8Qm5SNRazca0JKgw1HQERFmrVb0towvMmw5uu8hHKNiQasMaR/tydf3Zsg==}
+    engines: {node: ^20.19.0 || ^22.13.0 || ^23.5.0 || >=24.0.0, npm: '>=10'}
 
   '@faker-js/faker@9.9.0':
     resolution: {integrity: sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==}
@@ -3349,6 +3356,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.15.2
       levn: 0.4.1
+
+  '@faker-js/faker@10.1.0': {}
 
   '@faker-js/faker@9.9.0': {}
 
