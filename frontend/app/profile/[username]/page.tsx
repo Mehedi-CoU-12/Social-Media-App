@@ -3,13 +3,13 @@ import PostCard from "@/components/PostCard";
 import PostCreate from "@/components/PostCreate";
 import IntroductionSection from "../IntroductionSection";
 import PhotoOrFriendList from "../PhotoOrFriendList";
-import SuggestFrined from "../SuggestFrined";
+import SuggestFrined from "../../../components/SuggestFrined";
 import ProfileAndCoverPhoto from "../ProfileAndCoverPhoto";
 import Header from "@/components/Header";
 
 export default function ProfilePage() {
     return (
-        <div className="_layout_main_wrapper _layout_profile">
+        <div className="_layout _layout_main_wrapper">
             <Header />
             <div className="_profile_wrapper">
                 <div className="_profile_wrap">
