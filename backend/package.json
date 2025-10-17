@@ -1,5 +1,5 @@
 {
-  "name": "Backend",
+  "name": "backend",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -58,6 +58,7 @@
     "@adonisjs/shield": "^8.2.0",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^4.0.0",
+    "@faker-js/faker": "^10.1.0",
     "@vinejs/vine": "^3.0.1",
     "argon2": "^0.44.0",
     "edge.js": "^6.2.1",

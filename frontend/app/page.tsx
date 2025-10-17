@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Image from "next/image";
 import SuggestFrined from "../components/SuggestFrined";
 import Explore from "@/components/Explore";
 import YouMightLike from "@/components/YouMightLike";
@@ -13,20 +12,9 @@ export default function Home() {
     return (
         <div className="_layout _layout_main_wrapper">
             <div className="_main_layout">
-                {/* <!--Desktop Menu Start--> */}
                 <Header />
-                {/* <!--Desktop Menu End-->
-                {/* <!-- Mobile Bottom Navigation End --> */}
                 <div className="_container_fluid_custom">
                     <div className="_layout_inner_wrap p-0 _layout_inner_wrap1">
-                        {/* <!-- For Different Pages --> */}
-                        <div className="_layout_top_full d-none">
-                            <div className="row">
-                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12"></div>
-                            </div>
-                        </div>
-                        {/* <!-- For Different Pages -->
-					<!-- Main Layout Structure --> */}
                         <div className="row">
                             {/* <!-- Left Sidebar --> */}
                             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">

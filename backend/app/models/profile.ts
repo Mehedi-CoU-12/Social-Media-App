@@ -15,9 +15,6 @@ export default class Profile extends BaseModel {
   @column()
   declare username: string | null
 
-  @column({ columnName: 'full_name' })
-  declare fullName: string | null
-
   @column({ columnName: 'display_name' })
   declare displayName: string | null
 
@@ -44,7 +41,7 @@ export default class Profile extends BaseModel {
   declare timezone: string
 
   // Personal
-  @column({ columnName: 'date_of_birth' })
+  @column.date({ columnName: 'date_of_birth' })
   declare dateOfBirth: DateTime | null
 
   @column()
@@ -66,6 +63,15 @@ export default class Profile extends BaseModel {
   // Privacy
   @column({ columnName: 'show_email' })
   declare showEmail: boolean
+
+  @column({ columnName: 'show_phone' })
+  declare showPhone: boolean
+
+  @column({ columnName: 'show_birthday' })
+  declare showBirthday: boolean
+
+  @column({ columnName: 'allow_messages_from' })
+  declare allowMessagesFrom: 'everyone' | 'friends' | 'nobody'
 
   @column({ columnName: 'allow_friend_requests' })
   declare allowFriendRequests: boolean
