@@ -38,7 +38,7 @@ export default function Story() {
                                         >
                                             <path
                                                 stroke="#fff"
-                                                stroke-linecap="round"
+                                                strokeLinecap="round"
                                                 d="M.5 4.884h9M4.884 9.5v-9"
                                             />
                                         </svg>

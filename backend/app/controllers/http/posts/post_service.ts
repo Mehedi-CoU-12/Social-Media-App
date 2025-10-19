@@ -6,6 +6,10 @@ export default class PostService {
     this.Query = new PostQuery()
   }
 
+  public async getAllPosts(){
+    return await this.Query.getAllPosts();
+  }
+
   public async getUserAllPosts(id: number) {
     return await this.Query.getUserAllPosts(id)
   }

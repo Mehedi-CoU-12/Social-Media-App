@@ -7,9 +7,39 @@ export default class PostController {
     this.service = new PostService()
   }
 
+  public async getAllPosts(ctx: HttpContext) {
+    try {
+      const posts = await this.service.getAllPosts()
+      return ctx.response.status(200).json({
+        success: true,
+        message: 'Posts retrieved successfully',
+        data: posts
+      })
+    } catch (error) {
+      return ctx.response.status(500).json({
+        success: false,
+        message: 'Failed to retrieve posts',
+        error: error.message
+      })
+    }
+  }
+
   public async getUserAllPosts(ctx: HttpContext) {
-    const id = Number(ctx.params.id)
-    return await this.service.getUserAllPosts(id)
+    try {
+      const id = Number(ctx.params.id)
+      const posts = await this.service.getUserAllPosts(id)
+      return ctx.response.status(200).json({
+        success: true,
+        message: 'User posts retrieved successfully',
+        data: posts
+      })
+    } catch (error) {
+      return ctx.response.status(500).json({
+        success: false,
+        message: 'Failed to retrieve user posts',
+        error: error.message
+      })
+    }
   }
 
   private async uploadFilesOnCloudinary(files: any[]) {}
