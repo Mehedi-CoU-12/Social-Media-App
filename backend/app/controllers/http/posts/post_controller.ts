@@ -11,4 +11,6 @@ export default class PostController {
     const id = Number(ctx.params.id)
     return await this.service.getUserAllPosts(id)
   }
+
+  private async uploadFilesOnCloudinary(files: any[]) {}
 }
