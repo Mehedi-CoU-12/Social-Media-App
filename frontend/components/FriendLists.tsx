@@ -1,3 +1,4 @@
+
 export default function FriendLists() {
     return (
         <div className="_layout_right_sidebar_wrap">
@@ -15,7 +16,7 @@ export default function FriendLists() {
                             <circle cx="7" cy="7" r="6" stroke="#666"></circle>
                             <path
                                 stroke="#666"
-                                stroke-linecap="round"
+                                strokeLinecap="round"
                                 d="M16 16l-3-3"
                             ></path>
                         </svg>
@@ -41,28 +42,28 @@ export default function FriendLists() {
                                 >
                                     <path
                                         fill="#1890FF"
-                                        fill-rule="evenodd"
+                                        fillRule="evenodd"
                                         d="M0 4c0-.245.199-.444.444-.444h7.112a.444.444 0 010 .888H.444A.444.444 0 010 4z"
-                                        clip-rule="evenodd"
+                                        clipRule="evenodd"
                                     />
                                     <path
                                         fill="#1890FF"
-                                        fill-rule="evenodd"
+                                        fillRule="evenodd"
                                         d="M0 4c0-.245.199-.444.444-.444h7.112a.444.444 0 010 .888H.444A.444.444 0 010 4z"
-                                        clip-rule="evenodd"
+                                        clipRule="evenodd"
                                     />
                                     <g>
                                         <path
                                             fill="#1890FF"
-                                            fill-rule="evenodd"
+                                            fillRule="evenodd"
                                             d="M3.686.13a.444.444 0 01.628 0L7.87 3.686a.444.444 0 010 .628L4.314 7.87a.444.444 0 01-.628-.629L6.927 4 3.686.759a.444.444 0 010-.629z"
-                                            clip-rule="evenodd"
+                                            clipRule="evenodd"
                                         />
                                         <path
                                             fill="#1890FF"
-                                            fill-rule="evenodd"
+                                            fillRule="evenodd"
                                             d="M3.686.13a.444.444 0 01.628 0L7.87 3.686a.444.444 0 010 .628L4.314 7.87a.444.444 0 01-.628-.629L6.927 4 3.686.759a.444.444 0 010-.629z"
-                                            clip-rule="evenodd"
+                                            clipRule="evenodd"
                                         />
                                     </g>
                                 </svg>
@@ -180,7 +181,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 />
                             </svg>
@@ -246,7 +247,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 ></rect>
                             </svg>
@@ -286,7 +287,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 />
                             </svg>
@@ -326,7 +327,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 />
                             </svg>
@@ -392,7 +393,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 ></rect>
                             </svg>
@@ -432,7 +433,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 ></rect>
                             </svg>
@@ -472,7 +473,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 ></rect>
                             </svg>
@@ -512,7 +513,7 @@ export default function FriendLists() {
                                     y="1"
                                     fill="#0ACF83"
                                     stroke="#fff"
-                                    stroke-width="2"
+                                    strokeWidth="2"
                                     rx="6"
                                 ></rect>
                             </svg>

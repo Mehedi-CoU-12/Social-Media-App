@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/components/Header";
 import SuggestFrined from "../components/SuggestFrined";
 import Explore from "@/components/Explore";
@@ -7,8 +8,34 @@ import FriendLists from "@/components/FriendLists";
 import Story from "@/components/Story";
 import PostCreate from "@/components/PostCreate";
 import PostCard from "@/components/PostCard";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch("http://localhost:3333/api/posts/get-all-posts");
+                const data = await response.json();
+                console.log("Fetched posts:----===", data.data);
+                
+                // Ensure we have valid data before setting state
+                if (data.success && Array.isArray(data.data)) {
+                    setPosts(data.data);
+                } else {
+                    console.error("Invalid posts data:", data);
+                    setPosts([]);
+                }
+            } catch (error) {
+                console.error("Failed to fetch posts:", error);
+                setPosts([]);
+            }
+        };
+        fetchPosts();
+    }, []);
+
     return (
         <div className="_layout _layout_main_wrapper">
             <div className="_main_layout">
@@ -22,7 +49,7 @@ export default function Home() {
                                     <Explore />
                                     <SuggestFrined />
                                     <YouMightLike />
-                                    <Events />
+                                    <Events /> 
                                 </div>
                             </div>
                             {/* <!-- Left Sidebar -->
@@ -32,17 +59,21 @@ export default function Home() {
                                     <div className="_layout_middle_inner">
                                         <Story />
                                         <PostCreate />
-                                        <PostCard
-                                            author={{
-                                                name: "Alice",
-                                                avatarUrl:
-                                                    "/images/profile-1.png",
-                                            }}
-                                            createdAt={new Date()}
-                                            content={"Hello feed!"}
-                                            images={["/images/img1.png"]}
-                                            stats={{ likes: 10, comments: 2 }}
-                                        />
+                                        {posts && posts.length > 0 && posts.map((post, index) => (
+                                            post && post.id ? (
+                                                <PostCard
+                                                    key={`post-${post.id}`}
+                                                    author={{
+                                                        name: post?.user?.name || 'Unknown User',
+                                                        avatarUrl: post?.user?.profile?.profilePictureUrl || '/images/Avatar.png',
+                                                    }}
+                                                    createdAt={post.createdAt ? new Date(post.createdAt) : new Date()}
+                                                    content={post.content || ''}
+                                                    images={post.imageUrl ? [post.imageUrl] : []}
+                                                    stats={{ likes: 10, comments: 2 }}
+                                                />
+                                            ) : null
+                                        ))}
                                     </div>
                                 </div>
                             </div>
