@@ -3,7 +3,7 @@
 import React, { useCallback, useState } from "react";
 import { Spinner } from "./Spinner";
 import Modal from "./Modal";
-import axios from "axios";
+import api from "@/lib/axiosInstance";
 
 export type PostCreateProps = {
     avatarUrl?: string;
@@ -33,9 +33,17 @@ export default function PostCreate({
             setSubmitting(true);
             const formData = new FormData();
             formData.append("text", text);
-            files.forEach((f) => formData.append("files", f));
 
-            const res=await axios.post()
+            files.forEach((file, index) => {
+                formData.append("files", file);
+            });
+
+            const res=await api.post('/api/posts/create-post', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log('-------response from server----',res.data);
         } finally {
             setSubmitting(false);
         }
@@ -50,8 +58,6 @@ export default function PostCreate({
     const removeFile = (index: number) => {
         setFiles(files.filter((_, i) => i !== index));
     };
-
-    const canPost = !!text.trim() && !disabled && !submitting;
 
     return (
         <>

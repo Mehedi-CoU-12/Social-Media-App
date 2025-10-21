@@ -9,6 +9,7 @@ import Story from "@/components/Story";
 import PostCreate from "@/components/PostCreate";
 import PostCard from "@/components/PostCard";
 import { useEffect, useState } from "react";
+import api from "@/lib/axiosInstance";
 
 export default function Home() {
 
@@ -17,8 +18,8 @@ export default function Home() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch("http://localhost:3333/api/posts/get-all-posts");
-                const data = await response.json();
+                const response = await api.get("/api/posts/get-all-posts");
+                const data =response.data;
                 console.log("Fetched posts:----===", data.data);
                 
                 // Ensure we have valid data before setting state
