@@ -13,4 +13,6 @@ export default class PostService {
   public async getUserAllPosts(id: number) {
     return await this.Query.getUserAllPosts(id)
   }
+
+  
 }

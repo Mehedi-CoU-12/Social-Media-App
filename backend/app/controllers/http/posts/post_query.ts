@@ -15,6 +15,6 @@ export default class PostQuery {
       .preload('user', (userQuery) => {
         userQuery.preload('profile')
       })
-      .orderBy('created_at', 'desc')
+      .orderBy('created_at', 'desc').limit(10)
   }
 }
