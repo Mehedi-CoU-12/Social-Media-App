@@ -9,7 +9,6 @@ export default class PostController {
 
   public async getAllPosts(ctx: HttpContext) {
     try {
-      console.log('-------getAllPosts called------');
       const posts = await this.service.getAllPosts()
       return ctx.response.status(200).json({
         success: true,
@@ -46,7 +45,7 @@ export default class PostController {
   public async createPost(ctx:HttpContext){
     const body=ctx.request.all();
     console.log('-------body------',body);
+
   }
 
-  private async uploadFilesOnCloudinary(files: any[]) {}
 }
