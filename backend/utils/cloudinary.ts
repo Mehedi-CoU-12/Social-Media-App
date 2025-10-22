@@ -2,36 +2,43 @@ import { v2 as cloudinary } from 'cloudinary'
 import fs from 'node:fs'
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME ,
-  api_key: process.env.CLOUDINARY_API_KEY ,
-  api_secret: process.env.CLOUDINARY_API_SECRET ,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRETE,
 })
+
+export type UploadedFile = { url: string | null; type: string | null }[]
 
 export const uploadFilesOnCloudinary = async (files: any[]) => {
   try {
     if (!files || files.length === 0) return null
 
+    const uploadResults: UploadedFile = []
+
     //upload files one by one
-    const uploadPromises = files.map((file) =>
-      cloudinary.uploader.upload(file.path, {
-        resource_type: 'auto',
-        folder: 'social_media_app',
+    for (const file of files) {
+      const result = await cloudinary.uploader.upload(file.tmpPath!, {
+        folder: 'posts',
+        resource_type: 'auto', // handles both images & videos
       })
-    )
+      uploadResults.push({
+        url: result.secure_url,
+        type: result.resource_type,
+      })
 
-    const uploadResults = await Promise.all(uploadPromises)
+      // ✅ Safely remove temp file (only if exists)
+      if (file.tmpPath && fs.existsSync(file.tmpPath)) {
+        fs.unlinkSync(file.tmpPath)
+      }
+    }
 
-    // Clean up local files after upload
-    files.forEach((file) => {
-      fs.unlinkSync(file.path)
-    })
-
-    return uploadResults.map((result) => ({
-      url: result.secure_url,
-      publicId: result.public_id,
-    }))
+    return uploadResults
   } catch (error) {
-    fs.unlinkSync(files[0].path)
+    for (const file of files) {
+      if (file.tmpPath && fs.existsSync(file.tmpPath)) {
+        fs.unlinkSync(file.tmpPath)
+      }
+    }
     return null
   }
 }

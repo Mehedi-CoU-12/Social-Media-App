@@ -38,16 +38,20 @@ export default function PostCreate({
                 formData.append("files", file);
             });
 
-            const res=await api.post('/api/posts/create-post', formData, {
+            console.log("--------formData------", formData);
+
+            const res = await api.post("/api/posts/create-post", formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-Type": "multipart/form-data",
                 },
             });
-            console.log('-------response from server----',res.data);
+            console.log("-------response from server----", res.data);
         } finally {
             setSubmitting(false);
+            setText("");
+            setFiles([]);
         }
-    }, [text, onSubmit, disabled, submitting]);
+    }, [text, files, onSubmit, disabled, submitting]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files ? Array.from(e.target.files) : [];

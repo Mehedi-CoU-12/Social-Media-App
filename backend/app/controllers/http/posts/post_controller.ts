@@ -13,13 +13,13 @@ export default class PostController {
       return ctx.response.status(200).json({
         success: true,
         message: 'Posts retrieved successfully',
-        data: posts
+        data: posts,
       })
     } catch (error) {
       return ctx.response.status(500).json({
         success: false,
         message: 'Failed to retrieve posts',
-        error: error.message
+        error: error.message,
       })
     }
   }
@@ -31,21 +31,26 @@ export default class PostController {
       return ctx.response.status(200).json({
         success: true,
         message: 'User posts retrieved successfully',
-        data: posts
+        data: posts,
       })
     } catch (error) {
       return ctx.response.status(500).json({
         success: false,
         message: 'Failed to retrieve user posts',
-        error: error.message
+        error: error.message,
       })
     }
   }
 
-  public async createPost(ctx:HttpContext){
-    const body=ctx.request.all();
-    console.log('-------body------',body);
+  public async createPost(ctx: HttpContext) {
+    const text = ctx.request.input('text')
+    const files = ctx.request.files('files', { size: '50mb' })
+    const post = await this.service.createPost(text, files)
 
+    return ctx.response.status(201).json({
+      success: true,
+      message: 'Post created successfully',
+      data: post,
+    })
   }
-
 }
