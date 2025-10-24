@@ -1,6 +1,6 @@
 import Image from "next/image";
 export default function ImageComponents({
-    src="/images/Avatar.png",
+    src = "/images/Avatar.png",
     alt,
     className,
     width = 40,
