@@ -11,7 +11,7 @@ export type PostCardProps = {
     };
     createdAt: string | Date;
     content: string;
-    images?: string[]; 
+    images?: string[];
     stats?: {
         likes?: number;
         comments?: number;
@@ -62,7 +62,7 @@ export default function PostCard({
                         style={{ width: 40, height: 40, position: "relative" }}
                     >
                         <Image
-                            src={author.avatarUrl || '/images/Avatar.png'}
+                            src={author.avatarUrl || "/images/Avatar.png"}
                             alt={`${author.name} avatar`}
                             fill
                             sizes="40px"
@@ -120,52 +120,60 @@ export default function PostCard({
             </div>
 
             {/* Media */}
-            {images.length > 0 && images.some(img => img && img.trim() !== '') && (
-                <div className="px-3 pb-3">
-                    {images.length === 1 ? (
-                        <div
-                            className="position-relative"
-                            style={{ width: "100%", height: 340 }}
-                        >
-                            {images[0] && images[0].trim() !== '' && (
-                                <Image
-                                    src={images[0] || '/images/Avatar.png'}
-                                    alt="Post image"
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 700px"
-                                    style={{ objectFit: "cover", borderRadius: 6 }}
-                                />
-                            )}
-                        </div>
-                    ) : (
-                        <div className="row g-2">
-                            {images
-                                .filter(src => src && src.trim() !== '')
-                                .slice(0, 4)
-                                .map((src, idx) => (
-                                    <div key={src + idx} className="col-6">
-                                        <div
-                                            className="position-relative"
-                                            style={{ width: "100%", height: 160 }}
-                                        >
-                                            <Image
-                                                src={src}
-                                                alt={`Post image ${idx + 1}`}
-                                                fill
-                                                sizes="(max-width: 768px) 50vw, 350px"
+            {images.length > 0 &&
+                images.some((img) => img && img.trim() !== "") && (
+                    <div className="px-3 pb-3">
+                        {images.length === 1 ? (
+                            <div
+                                className="position-relative"
+                                style={{ width: "100%", height: 340 }}
+                            >
+                                {images[0] && images[0].trim() !== "" && (
+                                    <Image
+                                        src={images[0] || "/images/Avatar.png"}
+                                        alt="Post image"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 700px"
+                                        style={{
+                                            objectFit: "cover",
+                                            borderRadius: 6,
+                                        }}
+                                    />
+                                )}
+                            </div>
+                        ) : (
+                            <div className="row g-2">
+                                {images
+                                    .filter((src) => src && src.trim() !== "")
+                                    .slice(0, 4)
+                                    .map((src, idx) => (
+                                        <div key={src + idx} className="col-6">
+                                            <div
+                                                className="position-relative"
                                                 style={{
-                                                    objectFit: "cover",
-                                                    borderRadius: 6,
+                                                    width: "100%",
+                                                    height: 160,
                                                 }}
-                                            />
+                                            >
+                                                <Image
+                                                    src={src}
+                                                    alt={`Post image ${
+                                                        idx + 1
+                                                    }`}
+                                                    fill
+                                                    sizes="(max-width: 768px) 50vw, 350px"
+                                                    style={{
+                                                        objectFit: "cover",
+                                                        borderRadius: 6,
+                                                    }}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    )}
-                </div>
-            )}
+                                    ))}
+                            </div>
+                        )}
+                    </div>
+                )}
 
             {/* Reactions summary */}
             <div

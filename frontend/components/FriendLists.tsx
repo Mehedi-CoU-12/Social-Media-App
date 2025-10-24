@@ -1,4 +1,3 @@
-
 export default function FriendLists() {
     return (
         <div className="_layout_right_sidebar_wrap">

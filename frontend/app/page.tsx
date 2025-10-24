@@ -12,16 +12,15 @@ import { useEffect, useState } from "react";
 import api from "@/lib/axiosInstance";
 
 export default function Home() {
-
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const response = await api.get("/api/posts/get-all-posts");
-                const data =response.data;
+                const data = response.data;
                 console.log("Fetched posts:----===", data.data);
-                
+
                 // Ensure we have valid data before setting state
                 if (data.success && Array.isArray(data.data)) {
                     setPosts(data.data);
@@ -50,7 +49,7 @@ export default function Home() {
                                     <Explore />
                                     <SuggestFrined />
                                     <YouMightLike />
-                                    <Events /> 
+                                    <Events />
                                 </div>
                             </div>
                             {/* <!-- Left Sidebar -->
@@ -60,21 +59,47 @@ export default function Home() {
                                     <div className="_layout_middle_inner">
                                         <Story />
                                         <PostCreate />
-                                        {posts && posts.length > 0 && posts.map((post, index) => (
-                                            post && post.id ? (
-                                                <PostCard
-                                                    key={`post-${post.id}`}
-                                                    author={{
-                                                        name: post?.user?.name || 'Unknown User',
-                                                        avatarUrl: post?.user?.profile?.profilePictureUrl || '/images/Avatar.png',
-                                                    }}
-                                                    createdAt={post.createdAt ? new Date(post.createdAt) : new Date()}
-                                                    content={post.content || ''}
-                                                    images={post.imageUrl ? [post.imageUrl] : []}
-                                                    stats={{ likes: 10, comments: 2 }}
-                                                />
-                                            ) : null
-                                        ))}
+                                        {posts &&
+                                            posts.length > 0 &&
+                                            posts.map((post, index) =>
+                                                post && post.id ? (
+                                                    <PostCard
+                                                        key={`post-${post.id}`}
+                                                        author={{
+                                                            name:
+                                                                post?.user
+                                                                    ?.name ||
+                                                                "Unknown User",
+                                                            avatarUrl:
+                                                                post?.user
+                                                                    ?.profile
+                                                                    ?.profilePictureUrl ||
+                                                                "/images/Avatar.png",
+                                                        }}
+                                                        createdAt={
+                                                            post.createdAt
+                                                                ? new Date(
+                                                                      post.createdAt
+                                                                  )
+                                                                : new Date()
+                                                        }
+                                                        content={
+                                                            post.content || ""
+                                                        }
+                                                        images={
+                                                            post.imageUrl
+                                                                ? [
+                                                                      post.imageUrl,
+                                                                  ]
+                                                                : []
+                                                        }
+                                                        stats={{
+                                                            likes: 10,
+                                                            comments: 2,
+                                                        }}
+                                                    />
+                                                ) : null
+                                            )}
                                     </div>
                                 </div>
                             </div>

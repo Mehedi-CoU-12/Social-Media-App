@@ -1,16 +1,34 @@
+"use client";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 export default function Events() {
+    const router = useRouter();
+
+    const handleCardKeyDown = (e: any, href: string) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            router.push(href);
+        }
+    };
+
     return (
         <div className="_layout_left_sidebar_inner">
             <div className="_left_inner_area_event _padd_t24  _padd_b6 _padd_r24 _padd_l24 _b_radious6 _feed_inner_area">
                 <div className="_left_inner_event_content">
                     <h4 className="_left_inner_event_title _title5">Events</h4>
-                    <a href="#0" className="_left_inner_event_link">
+                    <Link href="/" className="_left_inner_event_link">
                         See all
-                    </a>
+                    </Link>
                 </div>
-                <a
+
+                {/* Card 1: outer wrapper is a clickable div to avoid nested anchors */}
+                <div
                     className="_left_inner_event_card_link"
-                    href="event-single.html"
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => router.push("/")}
+                    onKeyDown={(e) => handleCardKeyDown(e, "/")}
                 >
                     <div className="_left_inner_event_card">
                         <div className="_left_inner_event_card_iamge">
@@ -37,19 +55,27 @@ export default function Events() {
                         <div className="_left_inner_event_bottom">
                             <p className="_left_iner_event_bottom">
                                 17 People Going
-                            </p>{" "}
-                            <a
-                                href="#0"
+                            </p>
+                            {/* inner Link remains an actual anchor (no nesting now) */}
+                            <Link
+                                href="/"
                                 className="_left_iner_event_bottom_link"
                             >
                                 Going
-                            </a>
+                            </Link>
                         </div>
                     </div>
-                </a>
-                <a
+                </div>
+
+                {/* Card 2: same treatment, navigate to event-single.html */}
+                <div
                     className="_left_inner_event_card_link"
-                    href="event-single.html"
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => router.push("/event-single.html")}
+                    onKeyDown={(e) =>
+                        handleCardKeyDown(e, "/event-single.html")
+                    }
                 >
                     <div className="_left_inner_event_card">
                         <div className="_left_inner_event_card_iamge">
@@ -76,16 +102,16 @@ export default function Events() {
                         <div className="_left_inner_event_bottom">
                             <p className="_left_iner_event_bottom">
                                 17 People Going
-                            </p>{" "}
-                            <a
-                                href="#0"
+                            </p>
+                            <Link
+                                href="/"
                                 className="_left_iner_event_bottom_link"
                             >
                                 Going
-                            </a>
+                            </Link>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     );
