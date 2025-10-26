@@ -1,3 +1,4 @@
+import api from "@/lib/axiosInstance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -36,32 +37,19 @@ export function useRegister() {
         setErrors([]);
         setLoading(true);
         try {
-            const res = await fetch("/api/users/register", {
-                method: "POST",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify({
-                    fullName,
-                    email,
-                    password,
-                    agree,
-                }),
+            const res = await api.post("/api/users/register", {
+                fullName,
+                email,
+                password,
+                agree,
             });
-            const data = await res.json();
-            console.log('-------data-----------',data);
-            if (!res.ok || !data?.ok) {
-                if (Array.isArray(data?.errors)) setErrors(data.errors);
-                else if (data?.message)
-                    setErrors([{ path: ["_"], message: data.message }]);
-                else
-                    setErrors([
-                        { path: ["_"], message: "Registration failed" },
-                    ]);
-                return false;
-            }
+
+            const data = res.data;
+            console.log("-------data-----------", data, res);
             router.push("/login");
             return true;
-        } catch(error) {
-            console.log('---------error---------------',error)
+        } catch (error) {
+            console.log("---------error---------------", error);
             setErrors([
                 { path: ["_"], message: "Network error. Please try again." },
             ]);

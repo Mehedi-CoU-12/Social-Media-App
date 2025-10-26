@@ -10,9 +10,10 @@ import PostCreate from "@/components/PostCreate";
 import PostCard from "@/components/PostCard";
 import { useEffect, useState } from "react";
 import api from "@/lib/axiosInstance";
+import { Post, User } from "./types/types";
 
 export default function Home() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
         const fetchPosts = async () => {

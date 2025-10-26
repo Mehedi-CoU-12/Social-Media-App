@@ -1,4 +1,5 @@
 import './users/routes.js'
+import './profiles/routes.js'
 import './posts/routes.js'
 import './comments/routes.js'
 import './likes/routes.js'

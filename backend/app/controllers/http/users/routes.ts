@@ -3,10 +3,7 @@ import { middleware } from '#start/kernel'
 router
   .group(() => {
     router.get('/get-all-users', '#controllers/http/users/user_controller.getAllUsers')
-    router.get(
-      '/get-individual-user/:id',
-      '#controllers/http/users/user_controller.getIndividualUser'
-    )
+    router.get('/me/:id', '#controllers/http/users/user_controller.getIndividualUser')
     router.post('/login', '#controllers/http/users/user_controller.login')
     router.post('/register', '#controllers/http/users/user_controller.createUser')
 

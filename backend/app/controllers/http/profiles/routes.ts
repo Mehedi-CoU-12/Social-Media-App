@@ -3,7 +3,7 @@ import { middleware } from '#start/kernel'
 
 router
   .group(() => {
-    router.get('/get-profile/:id', '#controllers/http/profiles/profile_controller.getProfile')
+    router.get('/me/:id', '#controllers/http/profiles/profile_controller.getProfile')
     router.post('/create-profile', '#controllers/http/profiles/profile_controller.createProfile')
     router.put('/update-profile/:id', '#controllers/http/profiles/profile_controller.updateProfile')
     router.delete(
@@ -11,5 +11,5 @@ router
       '#controllers/http/profiles/profile_controller.deleteProfile'
     )
   })
-  .prefix('/api/profiles')
-  .middleware(middleware.auth())
+  .prefix('/api/profile')
+//   .middleware(middleware.auth())

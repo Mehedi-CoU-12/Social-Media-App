@@ -58,15 +58,24 @@ export default class UsersService {
     profilePicture?: string
   }) {
     const { fullName, email, password } = payload
+
+    const user = await this.Query.getUserByEmail(email)
+    if (user)
+      throw new Exception('Email already in use', {
+        status: 400,
+        code: 'EMAIL_IN_USE',
+      })
+
     const hashedPassword = await (hash as any).make(password)
     const newUser = {
+      name: fullName,
       email,
       password: hashedPassword,
     }
 
     const profile = {
-      fullName,
-      username: new Date().getTime() + '.' + fullName.split(' ')[0],
+      displayName: fullName,
+      username: fullName.split(' ')[0].toLocaleLowerCase() + '.' + new Date().getTime(),
     }
     return await this.Query.createUser(newUser, profile)
   }
