@@ -6,6 +6,10 @@ export default class ProfileService {
     this.query = new ProfileQuery()
   }
 
+  public async getProfile(id: number) {
+    return await this.query.getProfile(id)
+  }
+
   public async createProfile(data: any) {
     return await this.query.createProfile(data)
   }

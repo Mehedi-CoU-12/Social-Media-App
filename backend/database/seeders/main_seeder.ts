@@ -15,7 +15,7 @@ export default class MainSeeder extends BaseSeeder {
     await new CommentSeeder(this.client).run()
     await new LikeSeeder(this.client).run()
     await new FriendshipSeeder(this.client).run()
-    
+
     console.log('✅ All seeders completed successfully!')
   }
 }

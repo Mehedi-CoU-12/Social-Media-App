@@ -7,18 +7,18 @@ export default class PostSeeder extends BaseSeeder {
   public async run() {
     const users = await User.all()
     const posts = []
-    
+
     // Generate posts for each user
     for (const user of users) {
       const postCount = faker.number.int({ min: 0, max: 15 })
-      
+
       for (let i = 0; i < postCount; i++) {
         const postType = faker.helpers.arrayElement(['text', 'image', 'video', 'text_image'])
-        
+
         let content = ''
         let imageUrl = null
         let videoUrl = null
-        
+
         // Generate content based on post type
         switch (postType) {
           case 'text':
@@ -31,7 +31,7 @@ export default class PostSeeder extends BaseSeeder {
               `Great day at ${faker.location.city()}! ${faker.lorem.sentence()}`,
             ])
             break
-            
+
           case 'image':
             content = faker.helpers.arrayElement([
               faker.lorem.sentence(),
@@ -41,7 +41,7 @@ export default class PostSeeder extends BaseSeeder {
             ])
             imageUrl = faker.image.url({ width: 800, height: 600 })
             break
-            
+
           case 'video':
             content = faker.helpers.arrayElement([
               faker.lorem.sentence(),
@@ -55,13 +55,13 @@ export default class PostSeeder extends BaseSeeder {
               'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
             ])
             break
-            
+
           case 'text_image':
             content = faker.lorem.paragraph()
             imageUrl = faker.image.url({ width: 800, height: 600 })
             break
         }
-        
+
         posts.push({
           userId: user.id,
           content,
@@ -70,7 +70,7 @@ export default class PostSeeder extends BaseSeeder {
         })
       }
     }
-    
+
     await Post.createMany(posts)
   }
 }

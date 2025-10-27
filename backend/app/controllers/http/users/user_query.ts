@@ -1,4 +1,3 @@
-import Profile from '#models/profile'
 import User from '#models/user'
 
 export default class UsersQuery {
@@ -14,7 +13,7 @@ export default class UsersQuery {
   }
 
   public async getUserById(id: number) {
-    return await User.query().where('id', id).first()
+    return await User.query().where('id', id).preload('profile').preload('posts').first()
   }
 
   public async getUserByEmail(email: string) {
@@ -26,7 +25,7 @@ export default class UsersQuery {
       email: string
       password: string
     },
-    profileInfo: { fullName: string; username: string }
+    profileInfo: { displayName: string; username: string }
   ) {
     //create user
     const user = await User.create(userInfo)

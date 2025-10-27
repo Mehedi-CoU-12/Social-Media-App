@@ -181,7 +181,7 @@ export default function RegisterPage() {
                                         <div className="_social_registration_bottom_txt">
                                             <p className="_social_registration_bottom_txt_para">
                                                 Dont have an account?{" "}
-                                                <a href="#0">Log in</a>
+                                                <a href="/register">sign up</a>
                                             </p>
                                         </div>
                                     </div>
