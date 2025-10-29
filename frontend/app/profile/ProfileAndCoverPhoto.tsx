@@ -5,6 +5,7 @@ type Props = {
 };
 
 export default function ProfileAndCoverPhoto({ profile }: Props) {
+    if (!profile) return;
     return (
         <div className="_profile_container_top">
             <div className="_profile_container_top_inner">

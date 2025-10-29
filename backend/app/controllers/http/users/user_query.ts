@@ -13,7 +13,11 @@ export default class UsersQuery {
   }
 
   public async getUserById(id: number) {
-    return await User.query().where('id', id).preload('profile').preload('posts').first()
+    return await User.query()
+      .where('id', id)
+      .preload('profile')
+      .preload('posts', (postQuery) => postQuery.orderBy('created_at', 'desc'))
+      .first()
   }
 
   public async getUserByEmail(email: string) {

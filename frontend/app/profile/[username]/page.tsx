@@ -59,8 +59,10 @@ export default function ProfilePage() {
                                 {/* #------------ profile middle section start------------ */}
                                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                     <PostCreate
-                                        avatarUrl="/images/txt_img.png"
-                                        // onSubmit={handleCreatePost}
+                                        avatarUrl={
+                                            profile?.profilePictureUrl ||
+                                            "/images/txt_img.png"
+                                        }
                                     />
                                     {posts &&
                                         posts.length > 0 &&
@@ -87,6 +89,11 @@ export default function ProfilePage() {
                                                     images={
                                                         post.imageUrl
                                                             ? [post.imageUrl]
+                                                            : []
+                                                    }
+                                                    videos={
+                                                        post.videoUrl
+                                                            ? [post.videoUrl]
                                                             : []
                                                     }
                                                     stats={{

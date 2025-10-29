@@ -4,19 +4,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Spinner } from "./Spinner";
 import Modal from "./Modal";
 import api from "@/lib/axiosInstance";
+import toast from "react-hot-toast";
 
 export type PostCreateProps = {
     avatarUrl?: string;
-    onSubmit?: (text: string) => void | Promise<void>;
     disabled?: boolean;
-    classNameName?: string;
 };
 
 export default function PostCreate({
     avatarUrl = "/images/Avatar.png",
-    onSubmit,
     disabled,
-    classNameName,
 }: PostCreateProps) {
     const [text, setText] = useState("");
     const [files, setFiles] = useState<File[]>([]);
@@ -38,20 +35,20 @@ export default function PostCreate({
                 formData.append("files", file);
             });
 
-            console.log("--------formData------", formData);
-
             const res = await api.post("/api/posts/create-post", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
             console.log("-------response from server----", res.data);
+        } catch (error) {
+            toast.error(error?.response?.data?.message || error?.message);
         } finally {
             setSubmitting(false);
             setText("");
             setFiles([]);
         }
-    }, [text, files, onSubmit, disabled, submitting]);
+    }, [text, files, disabled, submitting]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files ? Array.from(e.target.files) : [];
