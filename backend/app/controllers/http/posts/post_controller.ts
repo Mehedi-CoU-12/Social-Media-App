@@ -51,6 +51,7 @@ export default class PostController {
       success: true,
       message: 'Post created successfully',
       data: post,
+      //   data: post,
     })
   }
 }
