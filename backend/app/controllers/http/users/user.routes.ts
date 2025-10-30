@@ -12,11 +12,11 @@ router
     //authenticated route
     router
       .group(() => {
-        router.get('/logout', '#controllers/http/users/user_controller.logout')
-        router.post('/forget-password', '#controllers/http/users/user_controller.forgetPassword')
-        router.put('/reset-password', '#controllers/http/users/user_controller.resetPassword')
-        router.put('/update-user/:id', '#controllers/http/users/user_controller.updateUser')
-        router.delete('/delete-user/:id', '#controllers/http/users/user_controller.deleteUser')
+        router.get('/logout', [UsersController, 'logout'])
+        router.post('/forget-password', [UsersController, 'forgetPassword'])
+        router.put('/reset-password', [UsersController, 'resetPassword'])
+        router.put('/update-user/:id', [UsersController, 'updateUser'])
+        router.delete('/delete-user/:id', [UsersController, 'deleteUser'])
       })
       .middleware([middleware.auth()])
   })

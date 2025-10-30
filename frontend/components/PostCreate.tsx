@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import { Spinner } from "./Spinner";
-import Modal from "./Modal";
+import ImageAndVideoUploadModal from "../utils/ImageAndVideoUploadModal";
 import api from "@/lib/axiosInstance";
 import toast from "react-hot-toast";
 
@@ -224,8 +224,8 @@ export default function PostCreate({
                 </div>
             </div>
 
-            {/* -=-=-=-=-=-==-=-=-=-=- Modal -=-=-=-=-=-=-=-= */}
-            <Modal
+            {/* -=-=-=-=-=-==-=-=-=-=- ImageAndVideoUploadModal -=-=-=-=-=-=-=-= */}
+            <ImageAndVideoUploadModal
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}
                 title={fileType ? `Add ${fileType}` : "Select File Type"}
@@ -287,7 +287,7 @@ export default function PostCreate({
                         Done
                     </button>
                 </div>
-            </Modal>
+            </ImageAndVideoUploadModal>
         </>
     );
 }

@@ -42,6 +42,10 @@ export default class PostController {
     }
   }
 
+  public async getSinglePost(ctx: HttpContext) {
+    // Implementation for getting a single post
+  }
+
   public async createPost(ctx: HttpContext) {
     const text = ctx.request.input('text')
     const files = ctx.request.files('files', { size: '50mb' })
@@ -52,5 +56,13 @@ export default class PostController {
       message: 'Post created successfully',
       data: post,
     })
+  }
+
+  public async updatePost(ctx: HttpContext) {
+    // Implementation for updating a post
+  }
+
+  public async deletePost(ctx: HttpContext) {
+    // Implementation for deleting a post
   }
 }
