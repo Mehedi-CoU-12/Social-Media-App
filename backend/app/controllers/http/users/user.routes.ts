@@ -1,11 +1,13 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+const UsersController = () => import('./user.controller.js')
+
 router
   .group(() => {
-    router.get('/get-all-users', '#controllers/http/users/user_controller.getAllUsers')
-    router.get('/me/:id', '#controllers/http/users/user_controller.getIndividualUser')
-    router.post('/login', '#controllers/http/users/user_controller.login')
-    router.post('/register', '#controllers/http/users/user_controller.createUser')
+    router.get('/get-all-users', [UsersController, 'getAllUsers'])
+    router.get('/me/:id', [UsersController, 'getIndividualUser'])
+    router.post('/login', [UsersController, 'login'])
+    router.post('/register', [UsersController, 'createUser'])
 
     //authenticated route
     router

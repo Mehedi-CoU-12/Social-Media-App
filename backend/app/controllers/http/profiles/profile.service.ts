@@ -1,4 +1,4 @@
-import ProfileQuery from './profile_query.js'
+import ProfileQuery from './profile.query.js'
 
 export default class ProfileService {
   private query: ProfileQuery

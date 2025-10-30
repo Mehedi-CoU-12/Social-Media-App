@@ -1,5 +1,5 @@
 import { Exception } from '@adonisjs/core/exceptions'
-import UsersQuery from './user_query.js'
+import UsersQuery from './user.query.js'
 import hash from '@adonisjs/core/services/hash'
 
 export default class UsersService {

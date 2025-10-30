@@ -1,5 +1,5 @@
 import { HttpContext } from '@adonisjs/core/http'
-import PostService from './post_service.js'
+import PostService from './post.service.js'
 export default class PostController {
   private service = new PostService()
 

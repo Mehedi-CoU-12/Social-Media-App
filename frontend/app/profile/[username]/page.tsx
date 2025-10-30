@@ -48,7 +48,7 @@ export default function ProfilePage() {
                             <div className="row">
                                 {/* #------------ profile left section start------------ */}
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    <div className="_layout_left_wrap">
+                                    <div className="_layout_left_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <div className="_layout_left_sidebar_inner">
                                             <IntroductionSection />
                                             <PhotoOrFriendList />
@@ -107,7 +107,7 @@ export default function ProfilePage() {
 
                                 {/* #------------ profile right section end------------ */}
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    <div className="_layout_right_wrap">
+                                    <div className="_layout_right_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <SuggestFrined />
                                         <PhotoOrFriendList />
                                     </div>

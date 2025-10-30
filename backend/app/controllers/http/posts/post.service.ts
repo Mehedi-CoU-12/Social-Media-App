@@ -1,5 +1,5 @@
 import { uploadFilesOnCloudinary } from '../../../../utils/cloudinary.js'
-import PostQuery from './post_query.js'
+import PostQuery from './post.query.js'
 
 export default class PostService {
   private Query = new PostQuery()
