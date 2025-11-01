@@ -1,6 +1,10 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { listFriendsSchema } from './friend.validator.js'
+import FriendService from './friend.service.js'
 export default class FriendController {
+
+  constructor(private friendService: FriendService) {}
+
   public async sendFriendRequest(ctx: HttpContext) {
     // Logic to send a friend request
     // const { senderId, receiverId } = ctx.request.body()
@@ -19,7 +23,9 @@ export default class FriendController {
 
   public async listFriends(ctx: HttpContext) {
     // Logic to list friends of a user
-    const payload = ctx.request.validateUsing(listFriendsSchema, { data: ctx.params })
+    const payload =await ctx.request.validateUsing(listFriendsSchema, { data: ctx.params })
+    const friends=this.friendService.listFriends(payload)
+    return ctx.response.status(200).json({ message: `Listing friends for user ${payload}` })
   }
 
   public async listFriendRequests(ctx: HttpContext) {
