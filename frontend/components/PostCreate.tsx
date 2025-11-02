@@ -41,6 +41,10 @@ export default function PostCreate({
                 },
             });
             console.log("-------response from server----", res.data);
+            toast.success("Post created successfully");
+            setTimeout(() => {
+                window.location.reload();
+            },1000);
         } catch (error) {
             toast.error(error?.response?.data?.message || error?.message);
         } finally {

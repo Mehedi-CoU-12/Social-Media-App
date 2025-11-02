@@ -1,20 +1,26 @@
 import { HttpContext } from '@adonisjs/core/http'
-import { listFriendsSchema } from './friend.validator.js'
+import {
+  FriendRequestSchema,
+  listFriendRequestsSchema,
+  listFriendsSchema,
+} from './friend.validator.js'
 import FriendService from './friend.service.js'
-export default class FriendController {
+import { inject } from '@adonisjs/core'
 
+@inject()
+export default class FriendController {
   constructor(private friendService: FriendService) {}
 
   public async sendFriendRequest(ctx: HttpContext) {
-    // Logic to send a friend request
-    // const { senderId, receiverId } = ctx.request.body()
-    // Assume we have a FriendRequest model to handle database operations
-    // await FriendRequest.create({ senderId, receiverId, status: 'pending' })
-    // return response.status(200).json({ message: 'Friend request sent successfully' })
+    const payload = await ctx.request.validateUsing(FriendRequestSchema)
+    const friendRequest = await this.friendService.sendFriendRequest(payload)
+    return ctx.response.status(200).json({ message: 'Friend request sent', data: friendRequest })
   }
 
   public async acceptFriendRequest(ctx: HttpContext) {
-    // Logic to accept a friend request
+    const payload = await ctx.request.validateUsing(FriendRequestSchema)
+    await this.friendService.acceptFriendRequest(payload)
+    return ctx.response.status(200).json({ message: 'Friend request accepted!' })
   }
 
   public async declineFriendRequest(ctx: HttpContext) {
@@ -23,12 +29,22 @@ export default class FriendController {
 
   public async listFriends(ctx: HttpContext) {
     // Logic to list friends of a user
-    const payload =await ctx.request.validateUsing(listFriendsSchema, { data: ctx.params })
-    const friends=this.friendService.listFriends(payload)
-    return ctx.response.status(200).json({ message: `Listing friends for user ${payload}` })
+    const payload = await ctx.request.validateUsing(listFriendsSchema, { data: ctx.params })
+    const friends = await this.friendService.listFriends(payload)
+
+    return ctx.response.status(200).json({ data: friends, message: `all friend are fetched!` })
   }
 
   public async listFriendRequests(ctx: HttpContext) {
     // Logic to list friend requests for a user
+    const payload = await ctx.request.validateUsing(listFriendRequestsSchema, { data: ctx.params })
+    const friendRequests = await this.friendService.listFriendRequests(payload.userId)
+    return ctx.response.status(200).json({ data: friendRequests })
+  }
+
+  public async listSentRequests(ctx: HttpContext) {
+    const payload = await ctx.request.validateUsing(listFriendRequestsSchema, { data: ctx.params })
+    const sentList = await this.friendService.listSentRequests(payload.userId)
+    return ctx.response.status(200).json({ data: sentList })
   }
 }

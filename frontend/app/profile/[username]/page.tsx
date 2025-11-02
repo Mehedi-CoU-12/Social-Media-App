@@ -51,7 +51,7 @@ export default function ProfilePage() {
                                     <div className="_layout_left_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <div className="_layout_left_sidebar_inner">
                                             <IntroductionSection />
-                                            <PhotoOrFriendList />
+                                            <PhotoOrFriendList title="Photos" />
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@ export default function ProfilePage() {
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div className="_layout_right_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <SuggestFrined />
-                                        <PhotoOrFriendList />
+                                        <PhotoOrFriendList title="Friends" />
                                     </div>
                                 </div>
                             </div>
