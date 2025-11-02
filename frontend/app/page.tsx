@@ -94,6 +94,13 @@ export default function Home() {
                                                                   ]
                                                                 : []
                                                         }
+                                                        videos={
+                                                            post.videoUrl
+                                                                ? [
+                                                                      post.videoUrl,
+                                                                  ]
+                                                                : []
+                                                        }
                                                         stats={{
                                                             likes: 10,
                                                             comments: 2,

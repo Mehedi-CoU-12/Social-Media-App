@@ -1,5 +1,5 @@
 import { HttpContext } from '@adonisjs/core/http'
-import ProfileService from './profile_service.js'
+import ProfileService from './profile.service.js'
 
 export default class ProfileController {
   private service: ProfileService

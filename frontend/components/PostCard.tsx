@@ -12,6 +12,7 @@ export type PostCardProps = {
     createdAt: string | Date;
     content: string;
     images?: string[];
+    videos: string[];
     stats?: {
         likes?: number;
         comments?: number;
@@ -38,6 +39,7 @@ export default function PostCard({
     createdAt,
     content,
     images = [],
+    videos = [],
     stats,
     onLike,
     onComment,
@@ -119,7 +121,7 @@ export default function PostCard({
                 </p>
             </div>
 
-            {/* Media */}
+            {/* Images */}
             {images.length > 0 &&
                 images.some((img) => img && img.trim() !== "") && (
                     <div className="px-3 pb-3">
@@ -174,6 +176,59 @@ export default function PostCard({
                         )}
                     </div>
                 )}
+
+            {/* Videos */}
+            {videos.length > 0 && videos.some((v) => v && v.trim() !== "") && (
+                <div className="px-3 pb-3">
+                    {videos.length === 1 ? (
+                        <div
+                            className="position-relative"
+                            style={{ width: "100%", height: "auto" }}
+                        >
+                            <video
+                                src={videos[0]}
+                                controls
+                                style={{
+                                    width: "100%",
+                                    maxHeight: 360,
+                                    borderRadius: 6,
+                                    objectFit: "cover",
+                                    backgroundColor: "#000",
+                                }}
+                            />
+                        </div>
+                    ) : (
+                        <div className="row g-2">
+                            {videos
+                                .filter((src) => src && src.trim() !== "")
+                                .slice(0, 4)
+                                .map((src, idx) => (
+                                    <div key={src + idx} className="col-6">
+                                        <div
+                                            className="position-relative"
+                                            style={{
+                                                width: "100%",
+                                                height: 160,
+                                            }}
+                                        >
+                                            <video
+                                                src={src}
+                                                controls
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    borderRadius: 6,
+                                                    objectFit: "cover",
+                                                    backgroundColor: "#000",
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
+                    )}
+                </div>
+            )}
 
             {/* Reactions summary */}
             <div

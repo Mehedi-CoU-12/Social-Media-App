@@ -51,3 +51,38 @@ export interface Profile {
     username?: string | null;
     websiteUrl?: string | null;
 }
+
+export interface ProfileWithUser extends Profile {
+    user: User;
+}
+
+export interface Suggestion {
+    id: number;
+    name: string;
+    avatarUrl: string;
+}
+
+export interface Friend {
+    id: number;
+    name: string;
+    avatarUrl: string;
+}
+
+export interface ProfilePageProps {
+    profile: ProfileWithUser | null;
+    posts: Post[] | null;
+    suggestions: Suggestion[];
+    friends: Friend[];
+}
+
+export interface ApiResponse<T> {
+    data: T;
+    message: string;
+    status: string;
+}
+export interface PaginatedResponse<T> {
+    data: T[];
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+}

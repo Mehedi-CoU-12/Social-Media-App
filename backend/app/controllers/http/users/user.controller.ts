@@ -1,12 +1,12 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import UserService from './user_service.js'
+import UserService from './user.service.js'
 import {
   getAllUsersQuerySchema,
   loginSchema,
   signupSchema,
   updateUserSchema,
   userIdParamSchema,
-} from './user_validator.js'
+} from './user.validator.js'
 
 export default class UsersController {
   private service = new UserService()

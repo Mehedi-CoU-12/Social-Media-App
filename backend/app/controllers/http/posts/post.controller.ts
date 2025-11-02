@@ -1,5 +1,5 @@
 import { HttpContext } from '@adonisjs/core/http'
-import PostService from './post_service.js'
+import PostService from './post.service.js'
 export default class PostController {
   private service = new PostService()
 
@@ -42,6 +42,10 @@ export default class PostController {
     }
   }
 
+  public async getSinglePost(ctx: HttpContext) {
+    // Implementation for getting a single post
+  }
+
   public async createPost(ctx: HttpContext) {
     const text = ctx.request.input('text')
     const files = ctx.request.files('files', { size: '50mb' })
@@ -51,7 +55,14 @@ export default class PostController {
       success: true,
       message: 'Post created successfully',
       data: post,
-      //   data: post,
     })
+  }
+
+  public async updatePost(ctx: HttpContext) {
+    // Implementation for updating a post
+  }
+
+  public async deletePost(ctx: HttpContext) {
+    // Implementation for deleting a post
   }
 }

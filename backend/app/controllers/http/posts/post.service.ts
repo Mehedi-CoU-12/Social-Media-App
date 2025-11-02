@@ -1,5 +1,5 @@
 import { uploadFilesOnCloudinary } from '../../../../utils/cloudinary.js'
-import PostQuery from './post_query.js'
+import PostQuery from './post.query.js'
 
 export default class PostService {
   private Query = new PostQuery()
@@ -32,6 +32,10 @@ export default class PostService {
 
   public async createPost(text: string, files: any[]) {
     const { imageUrl, videoUrl } = await this.uploadFiles(files)
+
+    if (!text && !imageUrl && !videoUrl) {
+      throw new Error('Post content cannot be empty')
+    }
 
     const body = {
       user_id: 1,

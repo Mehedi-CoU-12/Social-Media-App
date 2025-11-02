@@ -48,7 +48,7 @@ export default function ProfilePage() {
                             <div className="row">
                                 {/* #------------ profile left section start------------ */}
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    <div className="_layout_left_wrap">
+                                    <div className="_layout_left_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <div className="_layout_left_sidebar_inner">
                                             <IntroductionSection />
                                             <PhotoOrFriendList />
@@ -59,8 +59,10 @@ export default function ProfilePage() {
                                 {/* #------------ profile middle section start------------ */}
                                 <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                     <PostCreate
-                                        avatarUrl="/images/txt_img.png"
-                                        // onSubmit={handleCreatePost}
+                                        avatarUrl={
+                                            profile?.profilePictureUrl ||
+                                            "/images/txt_img.png"
+                                        }
                                     />
                                     {posts &&
                                         posts.length > 0 &&
@@ -89,6 +91,11 @@ export default function ProfilePage() {
                                                             ? [post.imageUrl]
                                                             : []
                                                     }
+                                                    videos={
+                                                        post.videoUrl
+                                                            ? [post.videoUrl]
+                                                            : []
+                                                    }
                                                     stats={{
                                                         likes: 10,
                                                         comments: 2,
@@ -100,7 +107,7 @@ export default function ProfilePage() {
 
                                 {/* #------------ profile right section end------------ */}
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    <div className="_layout_right_wrap">
+                                    <div className="_layout_right_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <SuggestFrined />
                                         <PhotoOrFriendList />
                                     </div>
