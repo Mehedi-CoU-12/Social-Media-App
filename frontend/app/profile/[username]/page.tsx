@@ -2,13 +2,14 @@
 import PostCard from "@/components/PostCard";
 import PostCreate from "@/components/PostCreate";
 import IntroductionSection from "../IntroductionSection";
-import PhotoOrFriendList from "../PhotoOrFriendList";
 import SuggestFrined from "../../../components/SuggestFrined";
 import ProfileAndCoverPhoto from "../ProfileAndCoverPhoto";
 import Header from "@/components/Header";
 import api from "@/lib/axiosInstance";
 import { useEffect, useState } from "react";
 import { Post, Profile, User } from "@/app/types/types";
+import Friends from "../Friends";
+import Photos from "../Photos";
 
 export default function ProfilePage() {
     const [loading, setLoading] = useState(true);
@@ -16,16 +17,25 @@ export default function ProfilePage() {
     const [profile, setProfile] = useState<Profile>();
     const [posts, setPosts] = useState<Post[]>([]);
     const [user, setUser] = useState<User>();
+    const [friends, setFriends] = useState<User[]>([]);
 
     const fetchProfile = async (profileId: number) => {
         try {
             setLoading(true);
-            const res = await api.get(`/api/users/me/${profileId}`);
-            console.log("-------profile data------", res);
-            setData(res.data);
-            setProfile(res.data.profile);
-            setPosts(res.data.posts);
-            setUser(res.data);
+            const [profileResponse, friendsResponse] = await Promise.all([
+                api.get(`/api/users/me/${profileId}`),
+                api.get(`/api/friends/list-friends/${profileId}`),
+            ]);
+            setFriends(friendsResponse.data.data);
+            console.log("-------profile data------", profileResponse.data);
+            console.log("-------friends data------", friendsResponse.data);
+            console.log("-------posts data------", profileResponse.data.posts);
+            
+            setData(profileResponse.data);
+            setProfile(profileResponse.data.profile);
+            setPosts(profileResponse.data.posts);
+            setUser(profileResponse.data);
+            setFriends(friendsResponse.data.data);
         } catch (error) {
         } finally {
             setLoading(false);
@@ -51,7 +61,7 @@ export default function ProfilePage() {
                                     <div className="_layout_left_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <div className="_layout_left_sidebar_inner">
                                             <IntroductionSection />
-                                            <PhotoOrFriendList title="Photos" />
+                                            <Photos title="Photos" posts={posts} />
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +119,7 @@ export default function ProfilePage() {
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div className="_layout_right_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <SuggestFrined />
-                                        <PhotoOrFriendList title="Friends" />
+                                        <Friends title="Friends" friendsOrPhotos={friends} />
                                     </div>
                                 </div>
                             </div>
