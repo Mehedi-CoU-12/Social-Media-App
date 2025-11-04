@@ -8,5 +8,6 @@ router
     router.post('/decline-friend-request', [FriendController, 'declineFriendRequest'])
     router.get('/list-friends/:userId', [FriendController, 'listFriends'])
     router.get('/list-friend-requests/:userId', [FriendController, 'listFriendRequests'])
+    router.get('/list-sent-requests/:userId', [FriendController, 'listSentRequests'])
   })
   .prefix('/api/friends')

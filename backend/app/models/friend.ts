@@ -14,7 +14,7 @@ export default class Friendship extends BaseModel {
   declare receiverId: number
 
   @column()
-  declare status: 'pending' | 'accepted' | 'rejected'
+  declare status: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

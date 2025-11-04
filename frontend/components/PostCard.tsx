@@ -5,8 +5,8 @@ import React from "react";
 
 export type PostCardProps = {
     author: {
-        name: string;
-        avatarUrl: string;
+        name?: string;
+        avatarUrl?: string;
         username?: string;
     };
     createdAt: string | Date;
@@ -64,7 +64,7 @@ export default function PostCard({
                         style={{ width: 40, height: 40, position: "relative" }}
                     >
                         <Image
-                            src={author.avatarUrl || "/images/Avatar.png"}
+                            src={author.avatarUrl || "/profile_image.webp"}
                             alt={`${author.name} avatar`}
                             fill
                             sizes="40px"

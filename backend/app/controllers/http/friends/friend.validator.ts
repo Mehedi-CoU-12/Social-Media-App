@@ -6,17 +6,17 @@ export const listFriendsSchema = vine.compile(
   })
 )
 
-export const sendFriendRequestSchema = vine.compile(
+export const FriendRequestSchema = vine.compile(
   vine.object({
-    senderId: vine.number().positive(),
+    requesterId: vine.number().positive(),
     receiverId: vine.number().positive(),
   })
 )
 
 export const respondFriendRequestSchema = vine.compile(
   vine.object({
-    requestId: vine.number().positive(),
-    action: vine.enum(['accept', 'decline']),
+    requesterId: vine.number().positive(),
+    action: vine.enum(['accepted', 'rejected', 'pending']),
   })
 )
 

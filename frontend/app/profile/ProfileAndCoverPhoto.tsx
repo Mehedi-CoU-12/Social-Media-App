@@ -26,7 +26,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                 <img
                                     src={
                                         profile.profilePictureUrl ||
-                                        "/images/profile-1.png"
+                                        "/profile_image.webp"
                                     }
                                     alt=""
                                     title=""

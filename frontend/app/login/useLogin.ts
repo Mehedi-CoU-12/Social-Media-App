@@ -1,3 +1,4 @@
+import api from "@/lib/axiosInstance";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -39,16 +40,15 @@ export function useLogin() {
         }
         try {
             setLoading(true);
-            const res = await fetch("/api/users/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ email, password }),
+            const res = await api.post("/api/users/login", {
+                email,
+                password,
+                agree,
             });
 
-            const data = await res.json().catch(() => null);
+            const data = res.data;
 
-            if (!res.ok) {
+            if (!res.status || res.status >= 400) {
                 // Expect data: { success:false, message, code, path, timestamp }
                 throw new Error(data?.message || "Login failed");
             }
