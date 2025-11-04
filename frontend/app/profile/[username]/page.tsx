@@ -10,32 +10,39 @@ import { useEffect, useState } from "react";
 import { Post, Profile, User } from "@/app/types/types";
 import Friends from "../Friends";
 import Photos from "../Photos";
+import { useParams } from "next/navigation";
 
 export default function ProfilePage() {
+    const params=useParams();
+    const {username}=params;
+
     const [loading, setLoading] = useState(true);
-    const [Data, setData] = useState();
     const [profile, setProfile] = useState<Profile>();
     const [posts, setPosts] = useState<Post[]>([]);
     const [user, setUser] = useState<User>();
     const [friends, setFriends] = useState<User[]>([]);
+    const [photos, setPhotos] = useState<any[]>([]);
+
 
     const fetchProfile = async (profileId: number) => {
         try {
             setLoading(true);
-            const [profileResponse, friendsResponse] = await Promise.all([
+            const [profileResponse, friendsResponse,photoResponse] = await Promise.all([
                 api.get(`/api/users/me/${profileId}`),
                 api.get(`/api/friends/list-friends/${profileId}`),
+                api.get(`api/photos/get-all-photos/${profileId}`)
             ]);
-            setFriends(friendsResponse.data.data);
             console.log("-------profile data------", profileResponse.data);
             console.log("-------friends data------", friendsResponse.data);
             console.log("-------posts data------", profileResponse.data.posts);
+            console.log("-------photos data------", photoResponse.data);
             
-            setData(profileResponse.data);
+            setFriends(friendsResponse.data.data);
             setProfile(profileResponse.data.profile);
             setPosts(profileResponse.data.posts);
             setUser(profileResponse.data);
             setFriends(friendsResponse.data.data);
+            setPhotos(photoResponse.data);
         } catch (error) {
         } finally {
             setLoading(false);
@@ -43,7 +50,7 @@ export default function ProfilePage() {
     };
 
     useEffect(() => {
-        fetchProfile(1);
+        fetchProfile(username);
     }, []);
 
     return (
@@ -61,7 +68,7 @@ export default function ProfilePage() {
                                     <div className="_layout_left_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <div className="_layout_left_sidebar_inner">
                                             <IntroductionSection />
-                                            <Photos title="Photos" posts={posts} />
+                                            <Photos title="Photos" photos={photos} />
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +78,7 @@ export default function ProfilePage() {
                                     <PostCreate
                                         avatarUrl={
                                             profile?.profilePictureUrl ||
-                                            "/images/txt_img.png"
+                                            "/profile_image.webp"
                                         }
                                     />
                                     {posts &&
@@ -86,7 +93,7 @@ export default function ProfilePage() {
                                                             "Unknown User",
                                                         avatarUrl:
                                                             profile?.profilePictureUrl ||
-                                                            "/images/Avatar.png",
+                                                            "/profile_image.webp",
                                                     }}
                                                     createdAt={
                                                         post.createdAt

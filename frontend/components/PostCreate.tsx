@@ -12,7 +12,7 @@ export type PostCreateProps = {
 };
 
 export default function PostCreate({
-    avatarUrl = "/images/Avatar.png",
+    avatarUrl = "/profile_image.webp",
     disabled,
 }: PostCreateProps) {
     const [text, setText] = useState("");
@@ -73,18 +73,12 @@ export default function PostCreate({
                     </div>
                     <div className="form-floating _feed_inner_text_area_box_form ">
                         <textarea
-                            className="form-control _textarea"
-                            placeholder="Leave a comment here"
+                            // className="form-control _textarea"
+                            placeholder="Writing Somthing..."
                             id="floatingTextarea"
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                         ></textarea>
-                        <label
-                            className="_feed_textarea_label"
-                            htmlFor="floatingTextarea"
-                        >
-                            Write something ...
-                        </label>
                     </div>
                 </div>
                 <div className="_feed_inner_text_area_bottom">
