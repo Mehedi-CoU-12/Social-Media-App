@@ -1,14 +1,10 @@
 import Post from '#models/post'
+import Profile from '#models/profile'
 import User from '#models/user'
 
 export default class PostQuery {
-  public async getUserAllPosts(id: number) {
-    return await Post.query()
-      .where('user_id', id)
-      .preload('user', (userQuery) => {
-        userQuery.preload('profile')
-      })
-      .orderBy('created_at', 'desc')
+  public async getUserAllPosts(profile: Profile) {
+    return await Post.query().where('user_id', profile.userId).orderBy('created_at', 'desc')
   }
 
   public async getAllPosts() {
