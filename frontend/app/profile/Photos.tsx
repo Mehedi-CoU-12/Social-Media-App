@@ -1,6 +1,4 @@
-export default function Photos({title,photos}) {
-
-    console.log("-----photos in photo component-----",photos);
+export default function Photos({title,photos}:{title:string,photos:any[]}) {
 
     return (
         <div className="_left_inner_area_photos _padd_t24  _padd_b6 _padd_r24 _padd_l24 _b_radious6 _feed_inner_area">
@@ -21,7 +19,7 @@ export default function Photos({title,photos}) {
             <div className="_left_inner_area_photos_area">
                 {photos && photos.length > 0 ? (
                     photos.map((item, index) => (
-                        <div key={index} className="_left_inner_area_photos_box">
+                        <div key={index} className="_left_inner_area_photos_box hover:scale-105 transition-transform duration-300 ease-in-out _left_inner_area_photos_box">
                             <img
                                 src={item.imageUrl||"/images/photo_img1.png"}
                                 alt="Image"
