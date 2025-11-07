@@ -24,7 +24,6 @@ export default function PostCreate({
     const [submitting, setSubmitting] = useState(false);
 
     const handlePost = useCallback(async () => {
-        console.log("-------submit button clicked!---", text);
         if (disabled || submitting) return;
         try {
             setSubmitting(true);
@@ -40,7 +39,7 @@ export default function PostCreate({
                     "Content-Type": "multipart/form-data",
                 },
             });
-            console.log("-------response from server----", res.data);
+            
             toast.success("Post created successfully");
             setTimeout(() => {
                 window.location.reload();
@@ -66,7 +65,7 @@ export default function PostCreate({
 
     return (
         <>
-            <div className="_feed_inner_text_area  _b_radious6 _padd_b24 _padd_t24 _padd_r24 _padd_l24 _mar_b16">
+            <div className="_feed_inner_text_area  _b_radious6 _padd_b24 _padd_t24 _padd_r24 _padd_l24 _mar_b16 mt-3">
                 <div className="_feed_inner_text_area_box">
                     <div className="_feed_inner_text_area_box_image">
                         <img src={avatarUrl} alt="Image" className="_txt_img" />

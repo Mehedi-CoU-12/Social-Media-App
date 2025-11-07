@@ -14,7 +14,7 @@ import { useParams } from "next/navigation";
 
 export default function ProfilePage() {
     const params = useParams();
-    const { username } = params;
+    const {username} = params;
 
     const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState<Profile>();
@@ -22,7 +22,7 @@ export default function ProfilePage() {
     const [friends, setFriends] = useState<User[]>([]);
     const [photos, setPhotos] = useState<any[]>([]);
 
-    const fetchProfile = async (profileId: number | string) => {
+    const fetchProfile = async (profileId: any) => {
         try {
             setLoading(true);
             const [
@@ -38,7 +38,7 @@ export default function ProfilePage() {
             ]);
             console.log("-------posts data------", postResponse.data.data);
             // console.log("-------profile data------", profileResponse.data);
-            // console.log("-------friends data------", friendsResponse.data);
+            // console.log("-------friends data------", friendsResponse.data.data);
             // console.log("-------photos data------", photoResponse.data);
 
             setPosts(postResponse.data.data);
@@ -112,7 +112,7 @@ export default function ProfilePage() {
                                         <SuggestFrined />
                                         <Friends
                                             title="Friends"
-                                            friendsOrPhotos={friends}
+                                            friends={friends}
                                         />
                                     </div>
                                 </div>

@@ -9,7 +9,14 @@ export type PostCardProps = {
         avatarUrl?: string;
         username?: string;
     };
-    post: any;
+    post: {
+        content?: string| null;
+        createdAt: string | Date;
+        imageUrl?: string;
+        videoUrl?: string;
+        images?: string[];
+        videos?: string[];
+    };
 };
 
 function formatTime(t: string | Date): string {
@@ -27,14 +34,15 @@ export default function PostCard({ author, post }: PostCardProps) {
     const comments = 0;
     const shares = 0;
 
-    console.log("------post----", post);
+    post.images=post.imageUrl?[post.imageUrl]:[];
+    post.videos=post.videoUrl?[post.videoUrl]:[];
 
     if (!post) {
         return null;
     }
 
     return (
-        <article className="feed_inner_timeline_post_area">
+        <article className="_feed_inner_timeline_post_area mb-3 bg-white rounded-3 shadow-sm">
             {/* Header */}
             <div className="d-flex align-items-center justify-content-between p-3">
                 <div className="d-flex align-items-center gap-2">
@@ -101,7 +109,7 @@ export default function PostCard({ author, post }: PostCardProps) {
             </div>
 
             {/* Images */}
-            {/* {post?.images?.length > 0 &&
+            {post?.images?.length > 0 &&
                 post?.images.some((img) => img && img.trim() !== "") && (
                     <div className="px-3 pb-3">
                         {post?.images?.length === 1 ? (
@@ -158,30 +166,10 @@ export default function PostCard({ author, post }: PostCardProps) {
                             </div>
                         )}
                     </div>
-                )} */}
-
-            {post?.imageUrl && post?.imageUrl.trim() !== "" && (
-                <div className="px-3 pb-3">
-                    <div
-                        className="position-relative"
-                        style={{ width: "100%", height: 340 }}
-                    >
-                        <Image
-                            src={post?.imageUrl || "/images/Avatar.png"}
-                            alt="Post image"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 700px"
-                            style={{
-                                objectFit: "cover",
-                                borderRadius: 6,
-                            }}
-                        />
-                    </div>
-                </div>
-            )}
+                )}
 
             {/* Videos */}
-            {/* {post?.videos?.length > 0 &&
+            {post?.videos?.length > 0 &&
                 post?.videos?.some((v) => v && v.trim() !== "") && (
                     <div className="px-3 pb-3">
                         {post.videos.length === 1 ? (
@@ -232,28 +220,7 @@ export default function PostCard({ author, post }: PostCardProps) {
                             </div>
                         )}
                     </div>
-                )} */}
-
-            {post?.videoUrl && post?.videoUrl.trim() !== "" && (
-                <div className="px-3 pb-3">
-                    <div
-                        className="position-relative"
-                        style={{ width: "100%", height: "auto" }}
-                    >
-                        <video
-                            src={post.videoUrl}
-                            controls
-                            style={{
-                                width: "100%",
-                                maxHeight: 360,
-                                borderRadius: 6,
-                                objectFit: "cover",
-                                backgroundColor: "#000",
-                            }}
-                        />
-                    </div>
-                </div>
-            )}
+                )}
 
             {/* Reactions summary */}
             <div
