@@ -26,7 +26,7 @@ export default class PostController {
 
   public async getUserAllPosts(ctx: HttpContext) {
     try {
-      const id = Number(ctx.params.id)
+      const id = ctx.params.id
       const posts = await this.service.getUserAllPosts(id)
       return ctx.response.status(200).json({
         success: true,
