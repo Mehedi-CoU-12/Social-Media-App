@@ -9,19 +9,7 @@ export type PostCardProps = {
         avatarUrl?: string;
         username?: string;
     };
-    createdAt: string | Date;
-    content: string;
-    images?: string[];
-    videos: string[];
-    stats?: {
-        likes?: number;
-        comments?: number;
-        shares?: number;
-    };
-    onLike?: () => void;
-    onComment?: () => void;
-    onShare?: () => void;
-    className?: string;
+    post: any;
 };
 
 function formatTime(t: string | Date): string {
@@ -34,28 +22,19 @@ function formatTime(t: string | Date): string {
     }
 }
 
-export default function PostCard({
-    author,
-    createdAt,
-    content,
-    images = [],
-    videos = [],
-    stats,
-    onLike,
-    onComment,
-    onShare,
-    className,
-}: PostCardProps) {
-    const likes = stats?.likes ?? 0;
-    const comments = stats?.comments ?? 0;
-    const shares = stats?.shares ?? 0;
+export default function PostCard({ author, post }: PostCardProps) {
+    const likes = 0;
+    const comments = 0;
+    const shares = 0;
+
+    console.log("------post----", post);
+
+    if (!post) {
+        return null;
+    }
 
     return (
-        <article
-            className={`_feed_inner_timeline_post_area ${
-                className ?? ""
-            }`.trim()}
-        >
+        <article className="feed_inner_timeline_post_area">
             {/* Header */}
             <div className="d-flex align-items-center justify-content-between p-3">
                 <div className="d-flex align-items-center gap-2">
@@ -87,7 +66,7 @@ export default function PostCard({
                             className="_feed_inner_timeline_post_box_para m-0"
                             style={{ fontSize: 12 }}
                         >
-                            {formatTime(createdAt)}
+                            {formatTime(post.createdAt)}
                         </p>
                     </div>
                 </div>
@@ -117,35 +96,39 @@ export default function PostCard({
                     className="_feed_inner_timeline_post_title m-0"
                     style={{ whiteSpace: "pre-wrap" }}
                 >
-                    {content}
+                    {post.content}
                 </p>
             </div>
 
             {/* Images */}
-            {images.length > 0 &&
-                images.some((img) => img && img.trim() !== "") && (
+            {/* {post?.images?.length > 0 &&
+                post?.images.some((img) => img && img.trim() !== "") && (
                     <div className="px-3 pb-3">
-                        {images.length === 1 ? (
+                        {post?.images?.length === 1 ? (
                             <div
                                 className="position-relative"
                                 style={{ width: "100%", height: 340 }}
                             >
-                                {images[0] && images[0].trim() !== "" && (
-                                    <Image
-                                        src={images[0] || "/images/Avatar.png"}
-                                        alt="Post image"
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 700px"
-                                        style={{
-                                            objectFit: "cover",
-                                            borderRadius: 6,
-                                        }}
-                                    />
-                                )}
+                                {post?.images[0] &&
+                                    post?.images[0].trim() !== "" && (
+                                        <Image
+                                            src={
+                                                post?.images[0] ||
+                                                "/images/Avatar.png"
+                                            }
+                                            alt="Post image"
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 700px"
+                                            style={{
+                                                objectFit: "cover",
+                                                borderRadius: 6,
+                                            }}
+                                        />
+                                    )}
                             </div>
                         ) : (
                             <div className="row g-2">
-                                {images
+                                {post?.images
                                     .filter((src) => src && src.trim() !== "")
                                     .slice(0, 4)
                                     .map((src, idx) => (
@@ -175,58 +158,100 @@ export default function PostCard({
                             </div>
                         )}
                     </div>
-                )}
+                )} */}
+
+            {post?.imageUrl && post?.imageUrl.trim() !== "" && (
+                <div className="px-3 pb-3">
+                    <div
+                        className="position-relative"
+                        style={{ width: "100%", height: 340 }}
+                    >
+                        <Image
+                            src={post?.imageUrl || "/images/Avatar.png"}
+                            alt="Post image"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 700px"
+                            style={{
+                                objectFit: "cover",
+                                borderRadius: 6,
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
 
             {/* Videos */}
-            {videos.length > 0 && videos.some((v) => v && v.trim() !== "") && (
-                <div className="px-3 pb-3">
-                    {videos.length === 1 ? (
-                        <div
-                            className="position-relative"
-                            style={{ width: "100%", height: "auto" }}
-                        >
-                            <video
-                                src={videos[0]}
-                                controls
-                                style={{
-                                    width: "100%",
-                                    maxHeight: 360,
-                                    borderRadius: 6,
-                                    objectFit: "cover",
-                                    backgroundColor: "#000",
-                                }}
-                            />
-                        </div>
-                    ) : (
-                        <div className="row g-2">
-                            {videos
-                                .filter((src) => src && src.trim() !== "")
-                                .slice(0, 4)
-                                .map((src, idx) => (
-                                    <div key={src + idx} className="col-6">
-                                        <div
-                                            className="position-relative"
-                                            style={{
-                                                width: "100%",
-                                                height: 160,
-                                            }}
-                                        >
-                                            <video
-                                                src={src}
-                                                controls
+            {/* {post?.videos?.length > 0 &&
+                post?.videos?.some((v) => v && v.trim() !== "") && (
+                    <div className="px-3 pb-3">
+                        {post.videos.length === 1 ? (
+                            <div
+                                className="position-relative"
+                                style={{ width: "100%", height: "auto" }}
+                            >
+                                <video
+                                    src={post.videos[0]}
+                                    controls
+                                    style={{
+                                        width: "100%",
+                                        maxHeight: 360,
+                                        borderRadius: 6,
+                                        objectFit: "cover",
+                                        backgroundColor: "#000",
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <div className="row g-2">
+                                {post?.videos
+                                    .filter((src) => src && src.trim() !== "")
+                                    .slice(0, 4)
+                                    .map((src, idx) => (
+                                        <div key={src + idx} className="col-6">
+                                            <div
+                                                className="position-relative"
                                                 style={{
                                                     width: "100%",
-                                                    height: "100%",
-                                                    borderRadius: 6,
-                                                    objectFit: "cover",
-                                                    backgroundColor: "#000",
+                                                    height: 160,
                                                 }}
-                                            />
+                                            >
+                                                <video
+                                                    src={src}
+                                                    controls
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        borderRadius: 6,
+                                                        objectFit: "cover",
+                                                        backgroundColor: "#000",
+                                                    }}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                        </div>
-                    )}
+                                    ))}
+                            </div>
+                        )}
+                    </div>
+                )} */}
+
+            {post?.videoUrl && post?.videoUrl.trim() !== "" && (
+                <div className="px-3 pb-3">
+                    <div
+                        className="position-relative"
+                        style={{ width: "100%", height: "auto" }}
+                    >
+                        <video
+                            src={post.videoUrl}
+                            controls
+                            style={{
+                                width: "100%",
+                                maxHeight: 360,
+                                borderRadius: 6,
+                                objectFit: "cover",
+                                backgroundColor: "#000",
+                            }}
+                        />
+                    </div>
                 </div>
             )}
 
@@ -250,7 +275,7 @@ export default function PostCard({
                     <button
                         type="button"
                         className="_feed_inner_timeline_reaction_link btn btn-link"
-                        onClick={onLike}
+                        // onClick={onLike}
                     >
                         <span
                             className="_reaction_svg"
@@ -276,7 +301,7 @@ export default function PostCard({
                     <button
                         type="button"
                         className="_feed_inner_timeline_reaction_link btn btn-link"
-                        onClick={onComment}
+                        // onClick={onComment}
                     >
                         <span
                             className="_reaction_svg"
@@ -302,7 +327,7 @@ export default function PostCard({
                     <button
                         type="button"
                         className="_feed_inner_timeline_reaction_link btn btn-link"
-                        onClick={onShare}
+                        // onClick={onShare}
                     >
                         <span
                             className="_reaction_svg"

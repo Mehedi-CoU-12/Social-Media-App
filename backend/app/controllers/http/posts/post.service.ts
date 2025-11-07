@@ -1,3 +1,4 @@
+import Profile from '#models/profile'
 import { uploadFilesOnCloudinary } from '../../../../utils/cloudinary.js'
 import PostQuery from './post.query.js'
 
@@ -11,8 +12,17 @@ export default class PostService {
     return await this.Query.getAllPosts()
   }
 
-  public async getUserAllPosts(id: number) {
-    return await this.Query.getUserAllPosts(id)
+  public async getUserAllPosts(id: number | string) {
+    const profile = await Profile.query()
+      .where('username', id)
+      .orWhere('id', Number(id))
+      .select('user_id', 'display_name', 'username', 'profile_picture_url')
+      .first()
+    if (!profile) {
+      throw new Error('Profile not found')
+    }
+
+    return await this.Query.getUserAllPosts(profile)
   }
 
   private async uploadFiles(files: any[]) {
