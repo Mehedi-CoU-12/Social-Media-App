@@ -3,7 +3,7 @@ const PostController = () => import('./post.controller.js')
 
 router
   .group(() => {
-    router.get('/user-posts/:id', [PostController, 'getUserAllPosts'])
+    router.get('/get-user-all-posts/:id', [PostController, 'getUserAllPosts'])
     router.get('/get-all-posts', [PostController, 'getAllPosts'])
     router.get('/get-single-posts/:id', [PostController, 'getSinglePost'])
     router.post('/create-post', [PostController, 'createPost'])

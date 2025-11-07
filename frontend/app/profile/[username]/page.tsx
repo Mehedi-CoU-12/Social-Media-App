@@ -13,36 +13,34 @@ import Photos from "../Photos";
 import { useParams } from "next/navigation";
 
 export default function ProfilePage() {
-    const params = useParams();
-    const { username } = params;
+    const params=useParams();
+    const {username}=params;
 
     const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState<Profile>();
     const [posts, setPosts] = useState<Post[]>([]);
+    const [user, setUser] = useState<User>();
     const [friends, setFriends] = useState<User[]>([]);
     const [photos, setPhotos] = useState<any[]>([]);
 
-    const fetchProfile = async (profileId: number | string) => {
+
+    const fetchProfile = async (profileId: number) => {
         try {
             setLoading(true);
-            const [
-                profileResponse,
-                postResponse,
-                friendsResponse,
-                photoResponse,
-            ] = await Promise.all([
+            const [profileResponse, friendsResponse,photoResponse] = await Promise.all([
                 api.get(`/api/users/me/${profileId}`),
-                api.get(`/api/posts/user-posts/${profileId}`),
                 api.get(`/api/friends/list-friends/${profileId}`),
-                api.get(`api/photos/get-all-photos/${profileId}`),
+                api.get(`api/photos/get-all-photos/${profileId}`)
             ]);
-            console.log("-------posts data------", postResponse.data.data);
-            // console.log("-------profile data------", profileResponse.data);
-            // console.log("-------friends data------", friendsResponse.data);
-            // console.log("-------photos data------", photoResponse.data);
-
-            setPosts(postResponse.data.data);
+            console.log("-------profile data------", profileResponse.data);
+            console.log("-------friends data------", friendsResponse.data);
+            console.log("-------posts data------", profileResponse.data.posts);
+            console.log("-------photos data------", photoResponse.data);
+            
+            setFriends(friendsResponse.data.data);
             setProfile(profileResponse.data.profile);
+            setPosts(profileResponse.data.posts);
+            setUser(profileResponse.data);
             setFriends(friendsResponse.data.data);
             setPhotos(photoResponse.data);
         } catch (error) {
@@ -70,10 +68,7 @@ export default function ProfilePage() {
                                     <div className="_layout_left_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <div className="_layout_left_sidebar_inner">
                                             <IntroductionSection />
-                                            <Photos
-                                                title="Photos"
-                                                photos={photos}
-                                            />
+                                            <Photos title="Photos" photos={photos} />
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +95,28 @@ export default function ProfilePage() {
                                                             profile?.profilePictureUrl ||
                                                             "/profile_image.webp",
                                                     }}
-                                                    post={post}
+                                                    createdAt={
+                                                        post.createdAt
+                                                            ? new Date(
+                                                                  post.createdAt
+                                                              )
+                                                            : new Date()
+                                                    }
+                                                    content={post.content || ""}
+                                                    images={
+                                                        post.imageUrl
+                                                            ? [post.imageUrl]
+                                                            : []
+                                                    }
+                                                    videos={
+                                                        post.videoUrl
+                                                            ? [post.videoUrl]
+                                                            : []
+                                                    }
+                                                    stats={{
+                                                        likes: 10,
+                                                        comments: 2,
+                                                    }}
                                                 />
                                             ) : null
                                         )}
@@ -110,10 +126,7 @@ export default function ProfilePage() {
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div className="_layout_right_wrap sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                                         <SuggestFrined />
-                                        <Friends
-                                            title="Friends"
-                                            friendsOrPhotos={friends}
-                                        />
+                                        <Friends title="Friends" friendsOrPhotos={friends} />
                                     </div>
                                 </div>
                             </div>
