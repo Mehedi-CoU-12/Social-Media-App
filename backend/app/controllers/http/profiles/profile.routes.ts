@@ -1,15 +1,13 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+const ProfileController = () => import('./profile.controller.js')
 
 router
   .group(() => {
-    router.get('/me/:id', '#controllers/http/profiles/profile_controller.getProfile')
-    router.post('/create-profile', '#controllers/http/profiles/profile_controller.createProfile')
-    router.put('/update-profile/:id', '#controllers/http/profiles/profile_controller.updateProfile')
-    router.delete(
-      '/delete-profile/:id',
-      '#controllers/http/profiles/profile_controller.deleteProfile'
-    )
+    router.get('/me/:id', [ProfileController, 'getProfile'])
+    router.post('/create-profile', [ProfileController, 'createProfile'])
+    router.put('/update-profile/:id', [ProfileController, 'updateProfile'])
+    router.delete('/delete-profile/:id', [ProfileController, 'deleteProfile'])
   })
   .prefix('/api/profile')
 //   .middleware(middleware.auth())
