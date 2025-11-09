@@ -1,16 +1,20 @@
 import { HttpContext } from '@adonisjs/core/http'
 import ProfileService from './profile.service.js'
 import { deleteProfileSchema, getProfileSchema, updateProfileSchema } from './profile.validator.js'
+import AuthUtils from '../../../../utils/auth.utils.js'
 
 export default class ProfileController {
   private service: ProfileService
+  private AuthUtils: AuthUtils
 
   constructor() {
     this.service = new ProfileService()
+    this.AuthUtils = new AuthUtils()
   }
 
   public async getProfile(ctx: HttpContext) {
     const payload = await ctx.request.validateUsing(getProfileSchema, { data: ctx.params })
+    await this.AuthUtils.ensureOwner(ctx, payload.id)
     return await this.service.getProfile(payload)
   }
 

@@ -7,11 +7,14 @@ import {
   updateUserSchema,
   userIdParamSchema,
 } from './user.validator.js'
+import AuthUtils from '../../../../utils/auth.utils.js'
 
 export default class UsersController {
   private service = new UserService()
+  private AuthUtils = new AuthUtils()
   constructor() {
     this.service = new UserService()
+    this.AuthUtils = new AuthUtils()
   }
   public async getAllUsers(ctx: HttpContext) {
     const queryParams = await ctx.request.validateUsing(getAllUsersQuerySchema)
@@ -19,8 +22,8 @@ export default class UsersController {
   }
 
   public async getIndividualUser(ctx: HttpContext) {
-    await ctx.auth.authenticate()
     const payload = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
+    await this.AuthUtils.ensureOwner(ctx, ctx.params.id)
     return await this.service.getIndividualUser(payload)
   }
 
@@ -32,7 +35,7 @@ export default class UsersController {
 
   public async logout(ctx: HttpContext) {
     await ctx.auth.use('web').logout()
-    // return { message: 'log out successfully!' }
+    return { message: 'log out successfully!' }
   }
 
   public async createUser(ctx: HttpContext) {
@@ -53,12 +56,14 @@ export default class UsersController {
   public async updateUser(ctx: HttpContext) {
     const { id } = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
     const payload = await ctx.request.validateUsing(updateUserSchema)
+    await this.AuthUtils.ensureOwner(ctx, id)
 
     return await this.service.updateUser(id, payload)
   }
 
   public async deleteUser(ctx: HttpContext) {
     const { id } = await ctx.request.validateUsing(userIdParamSchema)
+    await this.AuthUtils.ensureOwner(ctx, id)
     return await this.service.deleteUser(id)
   }
 }
