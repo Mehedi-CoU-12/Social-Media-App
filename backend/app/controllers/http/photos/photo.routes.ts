@@ -1,3 +1,4 @@
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
 const PhotoController = () => import('./photo.controller.js')
@@ -6,4 +7,4 @@ router
     router.get('/get-all-photos/:id', [PhotoController, 'getAllPhotos'])
   })
   .prefix('api/photos')
-// .middleware('auth');
+  .middleware(middleware.auth())

@@ -19,18 +19,20 @@ export default class UsersController {
   }
 
   public async getIndividualUser(ctx: HttpContext) {
+    await ctx.auth.authenticate()
     const payload = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
     return await this.service.getIndividualUser(payload)
   }
 
   public async login(ctx: HttpContext) {
     const payload = await ctx.request.validateUsing(loginSchema)
-    return await this.service.login(payload, ctx.auth)
+    await this.service.login(payload, ctx.auth)
+    return { message: 'user log in successfully!', data: ctx.auth.user }
   }
 
   public async logout(ctx: HttpContext) {
     await ctx.auth.use('web').logout()
-    return { message: 'log out successfully!' }
+    // return { message: 'log out successfully!' }
   }
 
   public async createUser(ctx: HttpContext) {

@@ -10,4 +10,4 @@ router
     router.delete('/delete-profile/:id', [ProfileController, 'deleteProfile'])
   })
   .prefix('/api/profile')
-//   .middleware(middleware.auth())
+  .middleware(middleware.auth())
