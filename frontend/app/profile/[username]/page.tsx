@@ -36,9 +36,9 @@ export default function ProfilePage() {
                 api.get(`/api/friends/list-friends/${profileId}`),
                 api.get(`api/photos/get-all-photos/${profileId}`),
             ]);
-            console.log("-------posts data------", postResponse.data.data);
+            // console.log("-------posts data------", postResponse.data.data);
             // console.log("-------profile data------", profileResponse.data);
-            // console.log("-------friends data------", friendsResponse.data);
+            console.log("-------friends data------", friendsResponse.data);
             // console.log("-------photos data------", photoResponse.data);
 
             setPosts(postResponse.data.data);
@@ -112,7 +112,7 @@ export default function ProfilePage() {
                                         <SuggestFrined />
                                         <Friends
                                             title="Friends"
-                                            friendsOrPhotos={friends}
+                                            friends={friends}
                                         />
                                     </div>
                                 </div>

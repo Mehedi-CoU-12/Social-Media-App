@@ -1,3 +1,4 @@
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 const FriendController = () => import('./friend.controller.js')
 
@@ -11,3 +12,4 @@ router
     router.get('/list-sent-requests/:userId', [FriendController, 'listSentRequests'])
   })
   .prefix('/api/friends')
+  .middleware(middleware.auth())

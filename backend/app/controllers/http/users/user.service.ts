@@ -48,7 +48,7 @@ export default class UsersService {
     // 3) Start session
     await auth.use('web').login(existingUser)
 
-    return { message: 'user login successfully!' }
+    return { message: 'Login successful' }
   }
 
   public async createUser(payload: {

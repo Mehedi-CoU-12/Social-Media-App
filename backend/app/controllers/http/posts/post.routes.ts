@@ -1,3 +1,4 @@
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 const PostController = () => import('./post.controller.js')
 
@@ -11,4 +12,4 @@ router
     router.delete('/delete-post/:id', [PostController, 'deletePost'])
   })
   .prefix('api/posts')
-//   .middleware('auth')
+  .middleware(middleware.auth())

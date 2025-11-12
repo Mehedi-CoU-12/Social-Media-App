@@ -34,6 +34,8 @@ export const uploadFilesOnCloudinary = async (files: any[]) => {
 
     return uploadResults
   } catch (error) {
+    console.error('Error uploading files to Cloudinary:', error)
+    // Cleanup temp files in case of error
     for (const file of files) {
       if (file.tmpPath && fs.existsSync(file.tmpPath)) {
         fs.unlinkSync(file.tmpPath)
