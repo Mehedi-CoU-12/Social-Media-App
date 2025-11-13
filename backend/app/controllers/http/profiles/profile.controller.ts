@@ -13,8 +13,9 @@ export default class ProfileController {
   }
 
   public async getProfile(ctx: HttpContext) {
+    await ctx.auth.authenticate()
     const payload = await ctx.request.validateUsing(getProfileSchema, { data: ctx.params })
-    await this.AuthUtils.ensureOwner(ctx, payload.id)
+    // await this.AuthUtils.ensureOwner(ctx, payload.id)
     return await this.service.getProfile(payload)
   }
 

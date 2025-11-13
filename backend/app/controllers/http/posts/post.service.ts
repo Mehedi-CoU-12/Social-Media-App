@@ -15,7 +15,7 @@ export default class PostService {
   public async getUserAllPosts(id: number | string) {
     const profile = await Profile.query()
       .where('username', id)
-      .orWhere('id', Number(id))
+      .orWhere('id', id)
       .select('user_id', 'display_name', 'username', 'profile_picture_url')
       .first()
     if (!profile) {

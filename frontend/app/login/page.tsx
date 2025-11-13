@@ -1,9 +1,9 @@
-"use client";
-import { useLogin } from "./useLogin";
+'use client'
+import { useLogin } from './useLogin'
 
 export default function RegisterPage() {
-    const { state, submit, setField } = useLogin();
-    const { email, password, agree, loading } = state;
+    const { state, submit, setField } = useLogin()
+    const { email, password, agree, loading } = state
 
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">
@@ -100,12 +100,12 @@ export default function RegisterPage() {
                                                     id="email"
                                                     type="email"
                                                     className="form-control _social_registration_input"
-                                                    placeholder="johndoe@example.com"
+                                                    placeholder="Enter your email"
                                                     required
                                                     value={email}
                                                     onChange={(e) =>
                                                         setField(
-                                                            "email",
+                                                            'email',
                                                             e.target.value
                                                         )
                                                     }
@@ -124,11 +124,12 @@ export default function RegisterPage() {
                                                     id="password"
                                                     type="password"
                                                     className="form-control _social_registration_input"
+                                                    placeholder="Enter your password"
                                                     required
                                                     value={password}
                                                     onChange={(e) =>
                                                         setField(
-                                                            "password",
+                                                            'password',
                                                             e.target.value
                                                         )
                                                     }
@@ -146,7 +147,7 @@ export default function RegisterPage() {
                                                     name="terms"
                                                     id="terms"
                                                     onChange={() =>
-                                                        setField("agree", true)
+                                                        setField('agree', true)
                                                     }
                                                 />
                                                 <label
@@ -180,7 +181,7 @@ export default function RegisterPage() {
                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                         <div className="_social_registration_bottom_txt">
                                             <p className="_social_registration_bottom_txt_para">
-                                                Dont have an account?{" "}
+                                                Dont have an account?{' '}
                                                 <a href="/register">sign up</a>
                                             </p>
                                         </div>
@@ -192,5 +193,5 @@ export default function RegisterPage() {
                 </div>
             </div>
         </section>
-    );
+    )
 }

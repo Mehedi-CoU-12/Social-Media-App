@@ -30,7 +30,7 @@ export default class FriendController {
   public async listFriends(ctx: HttpContext) {
     // Logic to list friends of a user
     const payload = await ctx.request.validateUsing(listFriendsSchema, { data: ctx.params })
-    const friends = await this.friendService.listFriends(payload)
+    const friends = await this.friendService.listFriends({ userId: 1 })
 
     return ctx.response.status(200).json({ data: friends, message: `all friend are fetched!` })
   }

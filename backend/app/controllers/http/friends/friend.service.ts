@@ -6,7 +6,7 @@ import { Exception } from '@adonisjs/core/exceptions'
 export default class FriendService {
   constructor(private friendQuery: FriendQuery) {}
 
-  public async listFriends(payload: { userId: number }) {
+  public async listFriends(payload: { userId: number | string }) {
     return await this.friendQuery.listFriends(payload.userId)
   }
 

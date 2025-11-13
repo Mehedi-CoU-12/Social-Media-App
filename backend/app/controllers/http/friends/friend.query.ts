@@ -2,7 +2,7 @@ import Friendship from '#models/friend'
 
 export default class FriendQuery {
   // List friends for a given user ID
-  public async listFriends(userId: number) {
+  public async listFriends(userId: number | string) {
     const friendships = await Friendship.query()
       .where('status', 'accepted')
       .where((query) => {
