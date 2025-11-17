@@ -1,9 +1,12 @@
 'use client'
+import Loader from '@/components/Loader'
 import { useLogin } from './useLogin'
 
 export default function RegisterPage() {
     const { state, submit, setField } = useLogin()
     const { email, password, agree, loading } = state
+
+    if (loading) return <Loader />
 
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">

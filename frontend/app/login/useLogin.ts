@@ -2,6 +2,7 @@ import api from '@/lib/axiosInstance'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { ApiResponse } from '../types/types'
 
 type RegisterPayload = {
     email: string
@@ -40,7 +41,7 @@ export function useLogin() {
         }
         try {
             setLoading(true)
-            const res = await api.post(
+            const res: any = await api.post(
                 '/api/users/login',
                 {
                     email,
@@ -49,10 +50,12 @@ export function useLogin() {
                 },
                 { withCredentials: true }
             )
+            console.log('🚀 ~ submit ~ res:', res)
+            const username=res.data.username;
 
             setLoading(false)
             toast.success('Login successful')
-            // router.push('/')
+            router.push(`profile/${username}`)
         } catch (error) {
             toast.error((error as Error).message || 'Login failed')
         }

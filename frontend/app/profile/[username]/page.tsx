@@ -1,60 +1,28 @@
 'use client'
 import PostCard from '@/components/PostCard'
-import PostCreate from '@/components/PostCreate'
+import PostCreate from '@/components/post_create/PostCreate'
 import IntroductionSection from '../IntroductionSection'
 import SuggestFrined from '../../../components/SuggestFrined'
 import ProfileAndCoverPhoto from '../ProfileAndCoverPhoto'
 import Header from '@/components/Header'
-import api from '@/lib/axiosInstance'
-import { useEffect, useState } from 'react'
-import { Post, Profile, User } from '@/app/types/types'
 import Friends from '../Friends'
 import Photos from '../Photos'
 import { useParams } from 'next/navigation'
+import { useEffect } from 'react'
+import useProfile from './useProfile'
+import Loader from '@/components/Loader'
 
 export default function ProfilePage() {
+    const { profile, posts, friends, photos, loading, fetchProfile } =
+        useProfile()
     const params = useParams()
     const { username } = params
 
-    const [loading, setLoading] = useState(true)
-    const [profile, setProfile] = useState<Profile>()
-    const [posts, setPosts] = useState<Post[]>([])
-    const [friends, setFriends] = useState<User[]>([])
-    const [photos, setPhotos] = useState<any[]>([])
-
-    const fetchProfile = async (profileId: number | string) => {
-        try {
-            setLoading(true)
-            const [
-                profileResponse,
-                postResponse,
-                friendsResponse,
-                photoResponse,
-            ] = await Promise.all([
-                api.get(`/api/profile/me/${profileId}`),
-                api.get(`/api/posts/user-posts/${profileId}`),
-                api.get(`/api/friends/list-friends/${profileId}`),
-                api.get(`api/photos/get-all-photos/${profileId}`),
-            ])
-
-            console.log('-------posts data------', postResponse.data.data)
-            console.log('-------profile data------', profileResponse.data)
-            console.log('-------friends data------', friendsResponse.data)
-            console.log('-------photos data------', photoResponse.data)
-
-            setPosts(postResponse.data.data)
-            setProfile(profileResponse.data)
-            setFriends(friendsResponse.data.data)
-            setPhotos(photoResponse.data)
-        } catch (error) {
-        } finally {
-            setLoading(false)
-        }
-    }
-
     useEffect(() => {
         fetchProfile(username)
-    }, [])
+    }, [username])
+
+    if (loading) return <Loader />
 
     return (
         <div className="_layout _layout_main_wrapper">

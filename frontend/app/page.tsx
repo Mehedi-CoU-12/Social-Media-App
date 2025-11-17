@@ -1,41 +1,41 @@
-"use client";
-import Header from "@/components/Header";
-import SuggestFrined from "../components/SuggestFrined";
-import Explore from "@/components/Explore";
-import YouMightLike from "@/components/YouMightLike";
-import Events from "@/components/Events";
-import FriendLists from "@/components/FriendLists";
-import Story from "@/components/Story";
-import PostCreate from "@/components/PostCreate";
-import PostCard from "@/components/PostCard";
-import { useEffect, useState } from "react";
-import api from "@/lib/axiosInstance";
-import { Post, User } from "./types/types";
+'use client'
+import Header from '@/components/Header'
+import SuggestFrined from '../components/SuggestFrined'
+import Explore from '@/components/Explore'
+import YouMightLike from '@/components/YouMightLike'
+import Events from '@/components/Events'
+import FriendLists from '@/components/FriendLists'
+import Story from '@/components/Story'
+import PostCreate from '@/components/post_create/PostCreate'
+import PostCard from '@/components/PostCard'
+import { useEffect, useState } from 'react'
+import api from '@/lib/axiosInstance'
+import { Post, User } from './types/types'
 
 export default function Home() {
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([])
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await api.get("/api/posts/get-all-posts");
-                const data = response.data;
-                console.log("Fetched posts:----===", data.data);
+                const response = await api.get('/api/posts/get-all-posts')
+                const data = response.data
+                console.log('Fetched posts:----===', data.data)
 
                 // Ensure we have valid data before setting state
                 if (data.success && Array.isArray(data.data)) {
-                    setPosts(data.data);
+                    setPosts(data.data)
                 } else {
-                    console.error("Invalid posts data:", data);
-                    setPosts([]);
+                    console.error('Invalid posts data:', data)
+                    setPosts([])
                 }
             } catch (error) {
-                console.error("Failed to fetch posts:", error);
-                setPosts([]);
+                console.error('Failed to fetch posts:', error)
+                setPosts([])
             }
-        };
-        fetchPosts();
-    }, []);
+        }
+        fetchPosts()
+    }, [])
 
     return (
         <div className="_layout _layout_main_wrapper">
@@ -70,12 +70,12 @@ export default function Home() {
                                                             name:
                                                                 post?.user
                                                                     ?.name ||
-                                                                "Unknown User",
+                                                                'Unknown User',
                                                             avatarUrl:
                                                                 post?.user
                                                                     ?.profile
                                                                     ?.profilePictureUrl ||
-                                                                "/images/Avatar.png",
+                                                                '/images/Avatar.png',
                                                         }}
                                                         createdAt={
                                                             post.createdAt
@@ -85,7 +85,7 @@ export default function Home() {
                                                                 : new Date()
                                                         }
                                                         content={
-                                                            post.content || ""
+                                                            post.content || ''
                                                         }
                                                         images={
                                                             post.imageUrl
@@ -123,5 +123,5 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

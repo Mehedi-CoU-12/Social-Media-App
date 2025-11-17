@@ -1,69 +1,36 @@
-"use client";
+'use client'
 
-import React, { useCallback, useEffect, useState } from "react";
-import { Spinner } from "./Spinner";
-import ImageAndVideoUploadModal from "../utils/ImageAndVideoUploadModal";
-import api from "@/lib/axiosInstance";
-import toast from "react-hot-toast";
+import React from 'react'
+import { Spinner } from '../Spinner'
+import ImageAndVideoUploadModal from '../../utils/ImageAndVideoUploadModal'
+import usePostCreate from './usePostCreate'
+import { LoaderTiny } from '../Loader'
+
+export type FileType = 'photo' | 'video' | 'event' | 'article' | null
 
 export type PostCreateProps = {
-    avatarUrl?: string;
-    disabled?: boolean;
-};
+    avatarUrl?: string
+    disabled?: boolean
+}
 
 export default function PostCreate({
-    avatarUrl = "/profile_image.webp",
+    avatarUrl = '/profile_image.webp',
     disabled,
 }: PostCreateProps) {
-    const [text, setText] = useState("");
-    const [files, setFiles] = useState<File[]>([]);
-    const [fileType, setFileType] = useState<
-        "photo" | "video" | "event" | "article" | null
-    >(null);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [submitting, setSubmitting] = useState(false);
-
-    const handlePost = useCallback(async () => {
-        console.log("-------submit button clicked!---", text);
-        if (disabled || submitting) return;
-        try {
-            setSubmitting(true);
-            const formData = new FormData();
-            formData.append("text", text);
-
-            files.forEach((file, index) => {
-                formData.append("files", file);
-            });
-
-            const res = await api.post("/api/posts/create-post", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            console.log("-------response from server----", res.data);
-            toast.success("Post created successfully");
-            setTimeout(() => {
-                window.location.reload();
-            },1000);
-        } catch (error) {
-            toast.error(error?.response?.data?.message || error?.message);
-        } finally {
-            setSubmitting(false);
-            setText("");
-            setFiles([]);
-        }
-    }, [text, files, disabled, submitting]);
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFiles = e.target.files ? Array.from(e.target.files) : [];
-
-        setFiles((prev) => [...prev, ...selectedFiles]);
-    };
-
-    const removeFile = (index: number) => {
-        setFiles(files.filter((_, i) => i !== index));
-    };
-
+    const {
+        text,
+        setText,
+        files,
+        setFiles,
+        fileType,
+        setFileType,
+        modalOpen,
+        setModalOpen,
+        submitting,
+        handlePost,
+        handleFileChange,
+        removeFile,
+    } = usePostCreate()
     return (
         <>
             <div className="_feed_inner_text_area  _b_radious6 _padd_b24 _padd_t24 _padd_r24 _padd_l24 _mar_b16 mt-2">
@@ -88,13 +55,13 @@ export default function PostCreate({
                                 type="button"
                                 className="_feed_inner_text_area_bottom_photo_link"
                                 onClick={() => {
-                                    setModalOpen(true);
-                                    setFileType("photo");
+                                    setModalOpen(true)
+                                    setFileType('photo')
                                 }}
                             >
-                                {" "}
+                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {" "}
+                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="20"
@@ -116,13 +83,13 @@ export default function PostCreate({
                                 type="button"
                                 className="_feed_inner_text_area_bottom_photo_link"
                                 onClick={() => {
-                                    setModalOpen(true);
-                                    setFileType("video");
+                                    setModalOpen(true)
+                                    setFileType('video')
                                 }}
                             >
-                                {" "}
+                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {" "}
+                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="22"
@@ -144,9 +111,9 @@ export default function PostCreate({
                                 type="button"
                                 className="_feed_inner_text_area_bottom_photo_link"
                             >
-                                {" "}
+                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {" "}
+                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="22"
@@ -168,9 +135,9 @@ export default function PostCreate({
                                 type="button"
                                 className="_feed_inner_text_area_bottom_photo_link"
                             >
-                                {" "}
+                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {" "}
+                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="18"
@@ -196,7 +163,7 @@ export default function PostCreate({
                             disabled={submitting}
                         >
                             {submitting ? (
-                                <Spinner />
+                                <LoaderTiny />
                             ) : (
                                 <>
                                     <svg
@@ -213,7 +180,7 @@ export default function PostCreate({
                                             d="M6.37 7.879l2.438 3.955a.335.335 0 00.34.162c.068-.01.23-.05.289-.247l3.049-10.297a.348.348 0 00-.09-.35.341.341 0 00-.34-.088L1.75 4.03a.34.34 0 00-.247.289.343.343 0 00.16.347L5.666 7.17 9.2 3.597a.5.5 0 01.712.703L6.37 7.88zM9.097 13c-.464 0-.89-.236-1.14-.641L5.372 8.165l-4.237-2.65a1.336 1.336 0 01-.622-1.331c.074-.536.441-.96.957-1.112L11.774.054a1.347 1.347 0 011.67 1.682l-3.05 10.296A1.332 1.332 0 019.098 13z"
                                             clipRule="evenodd"
                                         ></path>
-                                    </svg>{" "}
+                                    </svg>{' '}
                                     <span>Post</span>
                                 </>
                             )}
@@ -226,7 +193,7 @@ export default function PostCreate({
             <ImageAndVideoUploadModal
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}
-                title={fileType ? `Add ${fileType}` : "Select File Type"}
+                title={fileType ? `Add ${fileType}` : 'Select File Type'}
             >
                 <label
                     htmlFor="fileInput"
@@ -234,8 +201,8 @@ export default function PostCreate({
                 >
                     <div>
                         <p className="text-gray-600 text-sm">
-                            Click to upload{" "}
-                            {fileType === "photo" ? "photos" : "videos"}
+                            Click to upload{' '}
+                            {fileType === 'photo' ? 'photos' : 'videos'}
                         </p>
                         <p className="text-gray-400 text-xs mt-1">
                             or drag and drop here
@@ -246,7 +213,7 @@ export default function PostCreate({
                 <input
                     id="fileInput"
                     type="file"
-                    accept={fileType === "photo" ? "image/*" : "video/*"}
+                    accept={fileType === 'photo' ? 'image/*' : 'video/*'}
                     multiple
                     onChange={handleFileChange}
                     className="hidden"
@@ -254,7 +221,7 @@ export default function PostCreate({
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
                     {files.map((file, i) => (
                         <div key={i} className="relative">
-                            {file.type.startsWith("image") ? (
+                            {file.type.startsWith('image') ? (
                                 <img
                                     src={URL.createObjectURL(file)}
                                     alt=""
@@ -287,5 +254,5 @@ export default function PostCreate({
                 </div>
             </ImageAndVideoUploadModal>
         </>
-    );
+    )
 }

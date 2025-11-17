@@ -1,7 +1,6 @@
 import { Exception } from '@adonisjs/core/exceptions'
 import UsersQuery from './user.query.js'
 import hash from '@adonisjs/core/services/hash'
-import Profile from '#models/profile'
 
 export default class UsersService {
   private Query: UsersQuery
@@ -49,7 +48,7 @@ export default class UsersService {
     // 3) Start session
     await auth.use('web').login(existingUser)
 
-    return Profile.query().where('user_id', existingUser.id).select('username', 'id').first()
+    return existingUser.username
   }
 
   public async createUser(payload: {
