@@ -72,7 +72,7 @@ export default class FriendService {
     }
   }
 
-  public async listFriendRequests(userId: number) {
+  public async listFriendRequests(userId: any) {
     return this.friendQuery.listFriendRequests(userId)
   }
 

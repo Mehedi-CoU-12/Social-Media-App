@@ -48,7 +48,7 @@ export const signupSchema = vine.compile(
 
 export const userIdParamSchema = vine.compile(
   vine.object({
-    id: vine.number().positive(),
+    // id: vine.union([vine.string().uuid() as any, vine.number().positive() as any]),
   })
 )
 

@@ -37,7 +37,8 @@ export default class FriendController {
 
   public async listFriendRequests(ctx: HttpContext) {
     // Logic to list friend requests for a user
-    const payload = await ctx.request.validateUsing(listFriendRequestsSchema, { data: ctx.params })
+    // const payload = await ctx.request.validateUsing(listFriendRequestsSchema, { data: ctx.params })
+    const userId = ctx.params.userId
     const friendRequests = await this.friendService.listFriendRequests(payload.userId)
     return ctx.response.status(200).json({ data: friendRequests })
   }

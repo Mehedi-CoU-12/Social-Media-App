@@ -17,20 +17,23 @@ export default class UsersController {
     this.AuthUtils = new AuthUtils()
   }
   public async getAllUsers(ctx: HttpContext) {
+    await this.AuthUtils.ensureOwner(ctx, ctx.auth.user!.id)
+
     const queryParams = await ctx.request.validateUsing(getAllUsersQuerySchema)
     return await this.service.getAllUsers(queryParams)
   }
 
   public async getIndividualUser(ctx: HttpContext) {
-    const payload = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
-    await this.AuthUtils.ensureOwner(ctx, ctx.params.id)
-    return await this.service.getIndividualUser(payload)
+    // const payload = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
+    // await this.AuthUtils.ensureOwner(ctx, ctx.params.id)
+    // return await this.service.getIndividualUser(payload)
+    return await this.service.getIndividualUser({ id: ctx.params.id })
   }
 
   public async login(ctx: HttpContext) {
     const payload = await ctx.request.validateUsing(loginSchema)
-    await this.service.login(payload, ctx.auth)
-    return { message: 'user log in successfully!', data: ctx.auth.user }
+    const data = await this.service.login(payload, ctx.auth)
+    return { message: 'user log in successfully!', user: data }
   }
 
   public async logout(ctx: HttpContext) {
@@ -54,7 +57,8 @@ export default class UsersController {
   }
 
   public async updateUser(ctx: HttpContext) {
-    const { id } = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
+    // const { id } = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
+    const { id } = ctx.params
     const payload = await ctx.request.validateUsing(updateUserSchema)
     await this.AuthUtils.ensureOwner(ctx, id)
 
@@ -62,7 +66,8 @@ export default class UsersController {
   }
 
   public async deleteUser(ctx: HttpContext) {
-    const { id } = await ctx.request.validateUsing(userIdParamSchema)
+    // const { id } = await ctx.request.validateUsing(userIdParamSchema)
+    const { id } = ctx.params
     await this.AuthUtils.ensureOwner(ctx, id)
     return await this.service.deleteUser(id)
   }

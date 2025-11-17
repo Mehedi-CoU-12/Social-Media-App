@@ -12,4 +12,4 @@ router
     router.get('/list-sent-requests/:userId', [FriendController, 'listSentRequests'])
   })
   .prefix('/api/friends')
-  .middleware(middleware.auth())
+// .middleware(middleware.auth())

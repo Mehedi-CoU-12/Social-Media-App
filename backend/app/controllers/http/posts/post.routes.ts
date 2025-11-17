@@ -12,4 +12,4 @@ router
     router.delete('/delete-post/:id', [PostController, 'deletePost'])
   })
   .prefix('api/posts')
-  .middleware(middleware.auth())
+// .middleware(middleware.auth())

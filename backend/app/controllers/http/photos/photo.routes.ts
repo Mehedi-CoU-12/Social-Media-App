@@ -7,4 +7,4 @@ router
     router.get('/get-all-photos/:id', [PhotoController, 'getAllPhotos'])
   })
   .prefix('api/photos')
-  .middleware(middleware.auth())
+// .middleware(middleware.auth())

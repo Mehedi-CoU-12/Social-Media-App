@@ -12,7 +12,7 @@ export default class UsersQuery {
     return await User.query().paginate(queryParams.page || 1, queryParams.limit || 10)
   }
 
-  public async getUserById(id: number) {
+  public async getUserById(id: number | string | any) {
     return await User.query()
       .where('id', id)
       .preload('profile')
@@ -28,13 +28,16 @@ export default class UsersQuery {
     userInfo: {
       email: string
       password: string
+      username: string
     },
     profileInfo: { displayName: string; username: string }
   ) {
     //create user
     const user = await User.create(userInfo)
     //create profile
-    await user.related('profile').create(profileInfo)
+    const profile = await user.related('profile').create(profileInfo)
+
+    console.log('Created User:', profile)
 
     return { message: 'User and Profile are created successfully' }
   }

@@ -9,5 +9,6 @@ export default class PhotoController {
   public async getAllPhotos(ctx: HttpContext) {
     console.log('🚀 ~ PhotoController ~ getAllPhotos ~ ctx.auth.user:', ctx.auth.user)
     return await this.photoService.getAllPhotos(Number(1))
+    // return await this.photoService.getAllPhotos(Number(ctx.params.id))
   }
 }

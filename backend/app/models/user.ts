@@ -12,6 +12,9 @@ export default class User extends BaseModel {
   declare id: number
 
   @column()
+  declare username: string
+
+  @column()
   declare name: string
 
   @column()
