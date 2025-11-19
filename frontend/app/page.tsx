@@ -7,7 +7,7 @@ import Events from '@/components/Events'
 import FriendLists from '@/components/FriendLists'
 import Story from '@/components/Story'
 import PostCreate from '@/components/post_create/PostCreate'
-import PostCard from '@/components/PostCard'
+import PostCard from '@/components/post_card/PostCard'
 import { useEffect, useState } from 'react'
 import api from '@/lib/axiosInstance'
 import { Post, User } from './types/types'
@@ -20,6 +20,7 @@ export default function Home() {
             try {
                 const response = await api.get('/api/posts/get-all-posts')
                 const data = response.data
+                console.log('🚀 ~ fetchPosts ~ data:', data)
                 console.log('Fetched posts:----===', data.data)
 
                 // Ensure we have valid data before setting state
@@ -77,34 +78,7 @@ export default function Home() {
                                                                     ?.profilePictureUrl ||
                                                                 '/images/Avatar.png',
                                                         }}
-                                                        createdAt={
-                                                            post.createdAt
-                                                                ? new Date(
-                                                                      post.createdAt
-                                                                  )
-                                                                : new Date()
-                                                        }
-                                                        content={
-                                                            post.content || ''
-                                                        }
-                                                        images={
-                                                            post.imageUrl
-                                                                ? [
-                                                                      post.imageUrl,
-                                                                  ]
-                                                                : []
-                                                        }
-                                                        videos={
-                                                            post.videoUrl
-                                                                ? [
-                                                                      post.videoUrl,
-                                                                  ]
-                                                                : []
-                                                        }
-                                                        stats={{
-                                                            likes: 10,
-                                                            comments: 2,
-                                                        }}
+                                                        post={post}
                                                     />
                                                 ) : null
                                             )}

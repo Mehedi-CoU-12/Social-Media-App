@@ -12,7 +12,6 @@ export default function usePostCreate() {
     const [submitting, setSubmitting] = useState(false)
 
     const handlePost = useCallback(async () => {
-        console.log('-------submit button clicked!---', text)
         if (submitting) return
         try {
             setSubmitting(true)

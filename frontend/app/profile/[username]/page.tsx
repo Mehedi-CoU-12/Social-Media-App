@@ -1,5 +1,5 @@
 'use client'
-import PostCard from '@/components/PostCard'
+import PostCard from '@/components/post_card/PostCard'
 import PostCreate from '@/components/post_create/PostCreate'
 import IntroductionSection from '../IntroductionSection'
 import SuggestFrined from '../../../components/SuggestFrined'
