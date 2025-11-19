@@ -37,8 +37,6 @@ export default class UsersQuery {
     //create profile
     const profile = await user.related('profile').create(profileInfo)
 
-    console.log('Created User:', profile)
-
     return { message: 'User and Profile are created successfully' }
   }
 

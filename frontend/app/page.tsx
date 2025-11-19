@@ -20,7 +20,6 @@ export default function Home() {
             try {
                 const response = await api.get('/api/posts/get-all-posts')
                 const data = response.data
-                console.log('🚀 ~ fetchPosts ~ data:', data)
                 console.log('Fetched posts:----===', data.data)
 
                 // Ensure we have valid data before setting state
