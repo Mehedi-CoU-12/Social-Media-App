@@ -1,6 +1,5 @@
 'use client'
 import Header from '@/components/Header'
-import SuggestFrined from '../components/SuggestFrined'
 import Explore from '@/components/Explore'
 import YouMightLike from '@/components/YouMightLike'
 import Events from '@/components/Events'
@@ -10,10 +9,28 @@ import PostCreate from '@/components/post_create/PostCreate'
 import PostCard from '@/components/post_card/PostCard'
 import { useEffect, useState } from 'react'
 import api from '@/lib/axiosInstance'
-import { Post, User } from './types/types'
+import { useQuery } from '@tanstack/react-query'
+import Loader from '@/components/Loader'
+import { Post } from '@/app/types/types'
+import SuggestFrined from '@/components/SuggestFrined'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
     const [posts, setPosts] = useState<Post[]>([])
+    const router = useRouter() //TODO: Redirect to login if not authenticated
+
+    const {
+        data: user,
+        isLoading,
+        status,
+    } = useQuery({
+        queryKey: ['user'],
+        queryFn: async () => {},
+    })
+
+    if (isLoading) return <Loader />
+
+    if (!user) router.push('/login')
 
     useEffect(() => {
         const fetchPosts = async () => {

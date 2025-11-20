@@ -2,7 +2,6 @@
 import PostCard from '@/components/post_card/PostCard'
 import PostCreate from '@/components/post_create/PostCreate'
 import IntroductionSection from '../IntroductionSection'
-import SuggestFrined from '../../../components/SuggestFrined'
 import ProfileAndCoverPhoto from '../ProfileAndCoverPhoto'
 import Header from '@/components/Header'
 import Friends from '../Friends'
@@ -11,6 +10,7 @@ import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
 import useProfile from './useProfile'
 import Loader from '@/components/Loader'
+import SuggestFrined from '@/components/SuggestFrined'
 
 export default function ProfilePage() {
     const { profile, posts, friends, photos, loading, fetchProfile } =

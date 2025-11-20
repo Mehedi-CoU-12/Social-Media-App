@@ -23,6 +23,11 @@ export default class UsersController {
     return await this.service.getAllUsers(queryParams)
   }
 
+  public async getMe(ctx: HttpContext) {
+    await this.AuthUtils.authenticated(ctx)
+    return await this.service.getIndividualUser({ id: ctx.auth.user!.id })
+  }
+
   public async getIndividualUser(ctx: HttpContext) {
     // const payload = await ctx.request.validateUsing(userIdParamSchema, { data: ctx.params })
     // await this.AuthUtils.ensureOwner(ctx, ctx.params.id)
