@@ -1,6 +1,5 @@
 'use client'
 import Header from '@/components/Header'
-import SuggestFrined from '../components/SuggestFrined'
 import Explore from '@/components/Explore'
 import YouMightLike from '@/components/YouMightLike'
 import Events from '@/components/Events'
@@ -8,34 +7,23 @@ import FriendLists from '@/components/FriendLists'
 import Story from '@/components/Story'
 import PostCreate from '@/components/post_create/PostCreate'
 import PostCard from '@/components/post_card/PostCard'
-import { useEffect, useState } from 'react'
 import api from '@/lib/axiosInstance'
-import { Post, User } from './types/types'
+import { useQuery } from '@tanstack/react-query'
+import Loader from '@/components/Loader'
+import SuggestFrined from '@/components/SuggestFrined'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function Home() {
-    const [posts, setPosts] = useState<Post[]>([])
+    const { data: user, isLoading } = useAuth()
+    const { data: posts, isLoading: isPostLoading } = useQuery({
+        queryKey: ['posts'],
+        queryFn: async () => {
+            const res = await api.get('/api/posts/get-all-posts')
+            return res.data.data
+        },
+    })
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await api.get('/api/posts/get-all-posts')
-                const data = response.data
-                console.log('Fetched posts:----===', data.data)
-
-                // Ensure we have valid data before setting state
-                if (data.success && Array.isArray(data.data)) {
-                    setPosts(data.data)
-                } else {
-                    console.error('Invalid posts data:', data)
-                    setPosts([])
-                }
-            } catch (error) {
-                console.error('Failed to fetch posts:', error)
-                setPosts([])
-            }
-        }
-        fetchPosts()
-    }, [])
+    if (isLoading || isPostLoading) return <Loader />
 
     return (
         <div className="_layout _layout_main_wrapper">
