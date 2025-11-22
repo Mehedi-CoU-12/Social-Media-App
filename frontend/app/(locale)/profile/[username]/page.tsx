@@ -1,4 +1,5 @@
 'use client'
+
 import PostCard from '@/components/post_card/PostCard'
 import PostCreate from '@/components/post_create/PostCreate'
 import IntroductionSection from '../IntroductionSection'
@@ -7,22 +8,64 @@ import Header from '@/components/Header'
 import Friends from '../Friends'
 import Photos from '../Photos'
 import { useParams } from 'next/navigation'
-import { useEffect } from 'react'
-import useProfile from './useProfile'
+import { useAuth } from '@/hooks/useAuth'
 import Loader from '@/components/Loader'
 import SuggestFrined from '@/components/SuggestFrined'
+import { useQueries } from '@tanstack/react-query'
+import api from '@/lib/axiosInstance'
 
 export default function ProfilePage() {
-    const { profile, posts, friends, photos, loading, fetchProfile } =
-        useProfile()
+    const { data: user, isLoading: isAuthQuery } = useAuth()
+
     const params = useParams()
     const { username } = params
 
-    useEffect(() => {
-        fetchProfile(username)
-    }, [username])
+    // Fetch profile, posts, friends, and photos in parallel
+    const results = useQueries({
+        queries: [
+            {
+                queryKey: ['profile', username],
+                queryFn: () =>
+                    api.get(`/api/profile/me/${username}`).then((r) => r.data),
+            },
+            {
+                queryKey: ['posts', username],
+                queryFn: () =>
+                    api
+                        .get(`/api/posts/user-posts/${username}`)
+                        .then((r) => r.data.data),
+            },
+            {
+                queryKey: ['friends', username],
+                queryFn: () =>
+                    api
+                        .get(`/api/friends/list-friends/${username}`)
+                        .then((r) => r.data.data),
+            },
+            {
+                queryKey: ['photos', username],
+                queryFn: () =>
+                    api
+                        .get(`/api/photos/get-all-photos/${username}`)
+                        .then((r) => r.data),
+            },
+        ],
+    })
 
-    if (loading) return <Loader />
+    const [profileQuery, postsQuery, friendsQuery, photosQuery] = results
+
+    const isLoading =
+        profileQuery.isLoading ||
+        postsQuery.isLoading ||
+        friendsQuery.isLoading ||
+        photosQuery.isLoading
+
+    if (isLoading || isAuthQuery) return <Loader />
+
+    const profile = profileQuery.data
+    const posts = postsQuery.data
+    const friends = friendsQuery.data
+    const photos = photosQuery.data
 
     return (
         <div className="_layout _layout_main_wrapper">
