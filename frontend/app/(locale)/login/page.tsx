@@ -2,54 +2,39 @@
 import Loader from '@/components/Loader'
 import { useLogin } from './useLogin'
 import { useMutation } from '@tanstack/react-query'
-import { notFound, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import api from '@/lib/axiosInstance'
 import toast from 'react-hot-toast'
 import { LoginPayload } from '@/app/types/types'
 import { useAuth } from '@/hooks/useAuth'
 
 export default function RegisterPage() {
-    const { data: authUser, status: loginStatus } = useAuth()
+    //TODO: redirect if logged in
+    // const { data: authUser, status: loginStatus } = useAuth()
 
     const { state, setField } = useLogin()
     const { email, password, agree } = state
     const router = useRouter()
 
-    const {
-        mutate,
-        data: user,
-        isPending,
-        isError,
-        status,
-    } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: async (payload: LoginPayload) => {
             const res = await api.post('/api/users/login', payload)
             return res.data
         },
+        onSuccess: (user) => router.replace(`/profile/${user.username}`),
+        onError: () => toast.error('Invalid email or password'),
     })
-
-    if (loginStatus === 'success' && authUser) router.push(`/`)
-
-    const submit = () => {
-        if (!email || !password || !agree) {
-            toast.error('Please fill all the fields and agree to terms')
-            return
-        }
-
-        const payload = {
-            email,
-            password,
-            agree,
-        }
-
-        mutate(payload)
-    }
 
     if (isPending) return <Loader />
 
-    if (isError) return notFound()
+    const handleSubmit = () => {
+        if (!email || !password || !agree) {
+            toast.error('Please fill all fields & agree to terms')
+            return
+        }
 
-    if (status === 'success' && user) router.push(`/profile/${user.username}`)
+        mutate({ email, password, agree })
+    }
 
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">
@@ -213,8 +198,8 @@ export default function RegisterPage() {
                                                 <button
                                                     type="button"
                                                     className="_social_registration_form_btn_link _btn1"
-                                                    onClick={submit}
-                                                    // disabled={disabled}
+                                                    onClick={handleSubmit}
+                                                    // disabled={}
                                                 >
                                                     Log in
                                                 </button>
