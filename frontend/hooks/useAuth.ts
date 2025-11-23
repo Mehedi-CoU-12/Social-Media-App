@@ -18,7 +18,7 @@ export function useAuth() {
 
     // Redirect on 401
     if (query.isError) {
-        setTimeout(() => router.push('/login'), 0)
+        setTimeout(() => router.push(`/login`), 50)
     }
 
     return query

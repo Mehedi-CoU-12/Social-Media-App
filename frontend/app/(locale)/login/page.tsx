@@ -6,8 +6,11 @@ import { notFound, useRouter } from 'next/navigation'
 import api from '@/lib/axiosInstance'
 import toast from 'react-hot-toast'
 import { LoginPayload } from '@/app/types/types'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function RegisterPage() {
+    const { data: authUser, status: loginStatus } = useAuth()
+
     const { state, setField } = useLogin()
     const { email, password, agree } = state
     const router = useRouter()
@@ -25,6 +28,8 @@ export default function RegisterPage() {
         },
     })
 
+    if (loginStatus === 'success' && authUser) router.push(`/`)
+
     const submit = () => {
         if (!email || !password || !agree) {
             toast.error('Please fill all the fields and agree to terms')
@@ -41,7 +46,7 @@ export default function RegisterPage() {
     }
 
     if (isPending) return <Loader />
-    
+
     if (isError) return notFound()
 
     if (status === 'success' && user) router.push(`/profile/${user.username}`)
