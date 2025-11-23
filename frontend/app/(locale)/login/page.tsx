@@ -7,6 +7,7 @@ import api from '@/lib/axiosInstance'
 import toast from 'react-hot-toast'
 import { LoginPayload } from '@/app/types/types'
 import { useAuth } from '@/hooks/useAuth'
+import React from 'react'
 
 export default function RegisterPage() {
     //TODO: redirect if logged in
@@ -27,7 +28,9 @@ export default function RegisterPage() {
 
     if (isPending) return <Loader />
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+
         if (!email || !password || !agree) {
             toast.error('Please fill all fields & agree to terms')
             return
