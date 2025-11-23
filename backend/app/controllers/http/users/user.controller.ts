@@ -38,7 +38,7 @@ export default class UsersController {
   public async login(ctx: HttpContext) {
     const payload = await ctx.request.validateUsing(loginSchema)
     const username = await this.service.login(payload, ctx.auth)
-    return { message: 'user log in successfully!', username }
+    return { message: 'user log in successfully!', username: username }
   }
 
   public async logout(ctx: HttpContext) {

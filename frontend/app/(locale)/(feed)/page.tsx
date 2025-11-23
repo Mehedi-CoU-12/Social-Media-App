@@ -12,10 +12,15 @@ import { useQuery } from '@tanstack/react-query'
 import Loader from '@/components/Loader'
 import SuggestFrined from '@/components/SuggestFrined'
 import { useAuth } from '@/hooks/useAuth'
+import { notFound } from 'next/navigation'
 
 export default function Home() {
     const { data: user, isLoading } = useAuth()
-    const { data: posts, isLoading: isPostLoading } = useQuery({
+    const {
+        data: posts,
+        isLoading: isPostLoading,
+        isError,
+    } = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
             const res = await api.get('/api/posts/get-all-posts')
@@ -24,6 +29,8 @@ export default function Home() {
     })
 
     if (isLoading || isPostLoading) return <Loader />
+
+    if (isError) return notFound()
 
     return (
         <div className="_layout _layout_main_wrapper">

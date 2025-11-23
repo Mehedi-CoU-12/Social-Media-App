@@ -7,7 +7,7 @@ import ProfileAndCoverPhoto from '../ProfileAndCoverPhoto'
 import Header from '@/components/Header'
 import Friends from '../Friends'
 import Photos from '../Photos'
-import { useParams } from 'next/navigation'
+import { notFound, useParams } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import Loader from '@/components/Loader'
 import SuggestFrined from '@/components/SuggestFrined'
@@ -60,7 +60,15 @@ export default function ProfilePage() {
         friendsQuery.isLoading ||
         photosQuery.isLoading
 
+    const isError =
+        profileQuery.isError ||
+        postsQuery.isError ||
+        friendsQuery.isError ||
+        photosQuery.isError
+
     if (isLoading || isAuthQuery) return <Loader />
+
+    if (isError) return notFound()
 
     const profile = profileQuery.data
     const posts = postsQuery.data

@@ -1,12 +1,50 @@
 'use client'
 import Loader from '@/components/Loader'
 import { useLogin } from './useLogin'
+import { useMutation } from '@tanstack/react-query'
+import { notFound, useRouter } from 'next/navigation'
+import api from '@/lib/axiosInstance'
+import toast from 'react-hot-toast'
+import { LoginPayload } from '@/app/types/types'
 
 export default function RegisterPage() {
-    const { state, submit, setField } = useLogin()
-    const { email, password, agree, loading } = state
+    const { state, setField } = useLogin()
+    const { email, password, agree } = state
+    const router = useRouter()
 
-    if (loading) return <Loader />
+    const {
+        mutate,
+        data: user,
+        isPending,
+        isError,
+        status,
+    } = useMutation({
+        mutationFn: async (payload: LoginPayload) => {
+            const res = await api.post('/api/users/login', payload)
+            return res.data
+        },
+    })
+
+    const submit = () => {
+        if (!email || !password || !agree) {
+            toast.error('Please fill all the fields and agree to terms')
+            return
+        }
+
+        const payload = {
+            email,
+            password,
+            agree,
+        }
+
+        mutate(payload)
+    }
+
+    if (isPending) return <Loader />
+    
+    if (isError) return notFound()
+
+    if (status === 'success' && user) router.push(`/profile/${user.username}`)
 
     return (
         <section className="_social_registration_wrapper _layout_main_wrapper">
