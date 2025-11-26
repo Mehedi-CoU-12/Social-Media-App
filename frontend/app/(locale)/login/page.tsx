@@ -31,7 +31,7 @@ export default function RegisterPage() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        if (!email || !password || !agree) {
+        if (!email || !password) {
             toast.error('Please fill all fields & agree to terms')
             return
         }
@@ -40,7 +40,7 @@ export default function RegisterPage() {
     }
 
     return (
-        <section className="_social_registration_wrapper _layout_main_wrapper">
+        <section className="_social_login_wrapper _layout_main_wrapper">
             <div className="_shape_one">
                 <img src="/images/shape1.svg" alt="" className="_shape_img" />
                 <img
@@ -65,77 +65,63 @@ export default function RegisterPage() {
                     className="_dark_shape _dark_shape_opacity"
                 />
             </div>
-
-            <div className="_social_registration_wrap">
+            <div className="_social_login_wrap">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                            <div className="_social_registration_right">
-                                <div className="_social_registration_right_image">
+                            <div className="_social_login_left">
+                                <div className="_social_login_left_image">
                                     <img
                                         src="/images/login.png"
-                                        alt="Registration"
-                                    />
-                                </div>
-                                <div className="_social_registration_right_image_dark">
-                                    <img
-                                        src="/images/login.png"
-                                        alt="Registration"
+                                        alt="Image"
+                                        className="_left_img"
                                     />
                                 </div>
                             </div>
                         </div>
-
                         <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                            <div className="_social_registration_content">
-                                <div className="_social_registration_right_logo _mar_b28">
+                            <div className="_social_login_content">
+                                <div className="_social_login_left_logo _mar_b28">
                                     <img
                                         src="/images/logo.svg"
-                                        alt="Logo"
-                                        className="_right_logo"
+                                        alt="Image"
+                                        className="_left_logo"
                                     />
                                 </div>
-
-                                <p className="_social_registration_content_para _mar_b8">
-                                    Get Started Now
+                                <p className="_social_login_content_para _mar_b8">
+                                    Welcome back
                                 </p>
-                                <h4 className="_social_registration_content_title _titl4 _mar_b50">
-                                    Log in
+                                <h4 className="_social_login_content_title _titl4 _mar_b50">
+                                    Login to your account
                                 </h4>
-
                                 <button
                                     type="button"
-                                    className="_social_registration_content_btn _mar_b40"
-                                    aria-label="Register with Google"
+                                    className="_social_login_content_btn _mar_b40"
                                 >
                                     <img
                                         src="/images/google.svg"
-                                        alt="Google"
+                                        alt="Image"
                                         className="_google_img"
-                                    />
-                                    <span>Signin With Google</span>
+                                    />{' '}
+                                    <span>Or sign-in with google</span>
                                 </button>
-
-                                <div className="_social_registration_content_bottom_txt _mar_b40">
+                                <div className="_social_login_content_bottom_txt _mar_b40">
+                                    {' '}
                                     <span>Or</span>
                                 </div>
-
-                                <form className="_social_registration_form">
+                                <form
+                                    className="_social_login_form"
+                                    onSubmit={handleSubmit}
+                                >
                                     <div className="row">
                                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                            <div className="_social_registration_form_input _mar_b14">
-                                                <label
-                                                    className="_social_registration_label _mar_b8"
-                                                    htmlFor="email"
-                                                >
+                                            <div className="_social_login_form_input _mar_b14">
+                                                <label className="_social_login_label _mar_b8">
                                                     Email
                                                 </label>
                                                 <input
-                                                    id="email"
                                                     type="email"
-                                                    className="form-control _social_registration_input"
-                                                    placeholder="Enter your email"
-                                                    required
+                                                    className="form-control _social_login_input"
                                                     value={email}
                                                     onChange={(e) =>
                                                         setField(
@@ -143,23 +129,18 @@ export default function RegisterPage() {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                            <div className="_social_registration_form_input _mar_b14">
-                                                <label
-                                                    className="_social_registration_label _mar_b8"
-                                                    htmlFor="password"
-                                                >
+                                            <div className="_social_login_form_input _mar_b14">
+                                                <label className="_social_login_label _mar_b8">
                                                     Password
                                                 </label>
                                                 <input
-                                                    id="password"
                                                     type="password"
-                                                    className="form-control _social_registration_input"
-                                                    placeholder="Enter your password"
-                                                    required
+                                                    className="form-control _social_login_input"
                                                     value={password}
                                                     onChange={(e) =>
                                                         setField(
@@ -167,56 +148,62 @@ export default function RegisterPage() {
                                                             e.target.value
                                                         )
                                                     }
+                                                    required
                                                 />
                                             </div>
                                         </div>
                                     </div>
-
                                     <div className="row">
-                                        <div className="col-lg-12 col-xl-12 col-md-12 col-sm-12">
-                                            <div className="form-check _social_registration_form_check">
+                                        <div className="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                                            <div className="form-check _social_login_form_check">
                                                 <input
-                                                    className="form-check-input _social_registration_form_check_input"
+                                                    className="form-check-input _social_login_form_check_input"
                                                     type="radio"
-                                                    name="terms"
-                                                    id="terms"
-                                                    onChange={() =>
-                                                        setField('agree', true)
-                                                    }
+                                                    name="flexRadioDefault"
+                                                    id="flexRadioDefault2"
+                                                    defaultChecked
                                                 />
                                                 <label
-                                                    className="form-check-label _social_registration_form_check_label"
-                                                    htmlFor="terms"
+                                                    className="form-check-label _social_login_form_check_label"
+                                                    htmlFor="flexRadioDefault2"
                                                 >
                                                     I agree to terms &
                                                     conditions
                                                 </label>
                                             </div>
                                         </div>
+                                        <div className="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                                            <div className="_social_login_form_left">
+                                                <p className="_social_login_form_left_para">
+                                                    Forgot password?
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-xl-12 col-sm-12">
-                                            <div className="_social_registration_form_btn _mar_t40 _mar_b60">
+                                            <div className="_social_login_form_btn _mar_t40 _mar_b60">
                                                 <button
-                                                    type="button"
-                                                    className="_social_registration_form_btn_link _btn1"
-                                                    onClick={handleSubmit}
-                                                    // disabled={}
+                                                    type="submit"
+                                                    className="_social_login_form_btn_link _btn1"
+                                                    disabled={isPending}
                                                 >
-                                                    Log in
+                                                    {isPending
+                                                        ? 'Logging in...'
+                                                        : 'Login now'}
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-
                                 <div className="row">
                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div className="_social_registration_bottom_txt">
-                                            <p className="_social_registration_bottom_txt_para">
+                                        <div className="_social_login_bottom_txt">
+                                            <p className="_social_login_bottom_txt_para">
                                                 Dont have an account?{' '}
-                                                <a href="/register">sign up</a>
+                                                <a href="/register">
+                                                    Create New Account
+                                                </a>
                                             </p>
                                         </div>
                                     </div>
