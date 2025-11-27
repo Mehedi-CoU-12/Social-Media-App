@@ -92,3 +92,14 @@ export type LoginPayload = {
     password: string
     agree: boolean
 }
+
+type RegisterPayload = {
+    email: string
+    password: string
+    agree: boolean
+}
+
+export type RegisterErrors = Array<{
+    path: (string | number)[]
+    message: string
+}>

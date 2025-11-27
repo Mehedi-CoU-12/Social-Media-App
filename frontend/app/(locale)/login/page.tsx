@@ -1,37 +1,44 @@
 'use client'
-import Loader from '@/components/Loader'
-import { useLogin } from './useLogin'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import api from '@/lib/axiosInstance'
 import toast from 'react-hot-toast'
 import { LoginPayload } from '@/app/types/types'
 import { useAuth } from '@/hooks/useAuth'
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function RegisterPage() {
     //TODO: redirect if logged in
     // const { data: authUser, status: loginStatus } = useAuth()
 
-    const { state, setField } = useLogin()
-    const { email, password, agree } = state
+    const [userInput, setUserInput] = useState({
+        email: '',
+        password: '',
+        agree: false,
+    })
+
     const router = useRouter()
 
     const { mutate, isPending } = useMutation({
         mutationFn: async (payload: LoginPayload) => {
             const res = await api.post('/api/users/login', payload)
-            return res.data
+            return res?.data
         },
-        onSuccess: (user) => router.replace(`/profile/${user.username}`),
-        onError: () => toast.error('Invalid email or password'),
+        onSuccess: (user) => {
+            toast.success('Login successful!')
+            router.replace(`/profile/${user.username}`)
+        },
+        onError: (error) => {
+            toast.error('Invalid email or password')
+            console.error('Login error:', error)
+        },
     })
-
-    if (isPending) return <Loader />
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+        const { email, password, agree } = userInput
 
-        if (!email || !password) {
+        if (!email || !password || !agree) {
             toast.error('Please fill all fields & agree to terms')
             return
         }
@@ -122,12 +129,13 @@ export default function RegisterPage() {
                                                 <input
                                                     type="email"
                                                     className="form-control _social_login_input"
-                                                    value={email}
+                                                    value={userInput.email}
                                                     onChange={(e) =>
-                                                        setField(
-                                                            'email',
-                                                            e.target.value
-                                                        )
+                                                        setUserInput({
+                                                            ...userInput,
+                                                            email: e.target
+                                                                .value,
+                                                        })
                                                     }
                                                     required
                                                 />
@@ -141,12 +149,13 @@ export default function RegisterPage() {
                                                 <input
                                                     type="password"
                                                     className="form-control _social_login_input"
-                                                    value={password}
+                                                    value={userInput.password}
                                                     onChange={(e) =>
-                                                        setField(
-                                                            'password',
-                                                            e.target.value
-                                                        )
+                                                        setUserInput({
+                                                            ...userInput,
+                                                            password:
+                                                                e.target.value,
+                                                        })
                                                     }
                                                     required
                                                 />
@@ -158,14 +167,20 @@ export default function RegisterPage() {
                                             <div className="form-check _social_login_form_check">
                                                 <input
                                                     className="form-check-input _social_login_form_check_input"
-                                                    type="radio"
-                                                    name="flexRadioDefault"
-                                                    id="flexRadioDefault2"
-                                                    defaultChecked
+                                                    type="checkbox" // Change from "radio" to "checkbox"
+                                                    id="agree" // Match the htmlFor
+                                                    checked={userInput.agree}
+                                                    onChange={(e) =>
+                                                        setUserInput({
+                                                            ...userInput,
+                                                            agree: e.target
+                                                                .checked,
+                                                        })
+                                                    }
                                                 />
                                                 <label
                                                     className="form-check-label _social_login_form_check_label"
-                                                    htmlFor="flexRadioDefault2"
+                                                    htmlFor="agree"
                                                 >
                                                     I agree to terms &
                                                     conditions
