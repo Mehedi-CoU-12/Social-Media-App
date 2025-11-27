@@ -12,6 +12,17 @@ export default class UsersQuery {
     return await User.query().paginate(queryParams.page || 1, queryParams.limit || 10)
   }
 
+  public async getMe(id: number) {
+    const user = await User.query().where('id', id).first()
+    if (!user) {
+      throw new Error('User not found')
+    }
+
+    const profilePicture = await user.related('profile').query().select('profile_picture_url')
+
+    return { ...user.toJSON(), profilePicture: profilePicture[0].profilePictureUrl || null }
+  }
+
   public async getUserById(id: number | string | any) {
     return await User.query()
       .where('id', id)

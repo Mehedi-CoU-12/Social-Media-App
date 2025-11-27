@@ -1,11 +1,11 @@
-import { Profile } from "../types/types";
+import { Profile } from '@/app/types/types'
 
 type Props = {
-    profile: Profile;
-};
+    profile: Profile
+}
 
 export default function ProfileAndCoverPhoto({ profile }: Props) {
-    if (!profile) return;
+    if (!profile) return
     return (
         <div className="_profile_container_top">
             <div className="_profile_container_top_inner">
@@ -14,7 +14,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                         <img
                             src={
                                 profile.coverPhotoUrl ||
-                                "/images/profile-cover-img.png"
+                                '/images/profile-cover-img.png'
                             }
                             alt="cover img"
                             className="_profile_cover_img"
@@ -26,7 +26,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                 <img
                                     src={
                                         profile.profilePictureUrl ||
-                                        "/profile_image.webp"
+                                        '/profile_image.webp'
                                     }
                                     alt=""
                                     title=""
@@ -35,11 +35,11 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                             </div>
                             <div className="_profile_card_info">
                                 <h4 className="_profile_card_info_title">
-                                    {profile.displayName || "John Doe"}
+                                    {profile.displayName || 'John Doe'}
                                 </h4>
                                 <p className="_profile_card_info_para">
                                     {profile.bio ||
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
                                 </p>
                             </div>
                             <div className="_profile_card_progress">
@@ -103,7 +103,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                         <div className="_top_inner_content_area_left">
                                             <ul className="_top_inner_content_area_left_list">
                                                 <li className="_top_inner_content_area_left_item">
-                                                    {" "}
+                                                    {' '}
                                                     <a
                                                         href="#0"
                                                         className="_top_inner_content_area_left_link _top_inner_content_area_left_link_active"
@@ -112,7 +112,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                                     </a>
                                                 </li>
                                                 <li className="_top_inner_content_area_left_item">
-                                                    {" "}
+                                                    {' '}
                                                     <a
                                                         href="#0"
                                                         className="_top_inner_content_area_left_link"
@@ -121,7 +121,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                                     </a>
                                                 </li>
                                                 <li className="_top_inner_content_area_left_item">
-                                                    {" "}
+                                                    {' '}
                                                     <a
                                                         href="#0"
                                                         className="_top_inner_content_area_left_link"
@@ -130,7 +130,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                                     </a>
                                                 </li>
                                                 <li className="_top_inner_content_area_left_item">
-                                                    {" "}
+                                                    {' '}
                                                     <a
                                                         href="#0"
                                                         className="_top_inner_content_area_left_link"
@@ -139,7 +139,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                                     </a>
                                                 </li>
                                                 <li className="_top_inner_content_area_left_item">
-                                                    {" "}
+                                                    {' '}
                                                     <a
                                                         href="#0"
                                                         className="_top_inner_content_area_left_link"
@@ -155,7 +155,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                                     type="button"
                                                     className="_top_inner_content_area_btn_link"
                                                 >
-                                                    {" "}
+                                                    {' '}
                                                     <span>+ Add Stories</span>
                                                 </button>
                                             </div>
@@ -164,7 +164,7 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                                                     type="button"
                                                     className="_top_inner_content_area_btn_link"
                                                 >
-                                                    {" "}
+                                                    {' '}
                                                     <span>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -231,5 +231,5 @@ export default function ProfileAndCoverPhoto({ profile }: Props) {
                 </div>
             </div>
         </div>
-    );
+    )
 }

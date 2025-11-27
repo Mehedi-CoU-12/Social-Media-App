@@ -9,6 +9,10 @@ export default class UsersService {
     this.Query = new UsersQuery()
   }
 
+  public async getMe(id: number) {
+    return await this.Query.getMe(id)
+  }
+
   public async getAllUsers(queryParams: {
     page?: number
     limit?: number

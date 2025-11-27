@@ -25,7 +25,7 @@ export default class UsersController {
 
   public async getMe(ctx: HttpContext) {
     await this.AuthUtils.authenticated(ctx)
-    return await this.service.getIndividualUser({ id: ctx.auth.user!.id })
+    return await this.service.getMe(ctx.auth.user!.id)
   }
 
   public async getIndividualUser(ctx: HttpContext) {
