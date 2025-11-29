@@ -5,7 +5,6 @@ import {
   loginSchema,
   signupSchema,
   updateUserSchema,
-  userIdParamSchema,
 } from './user.validator.js'
 import AuthUtils from '../../../../utils/auth.utils.js'
 

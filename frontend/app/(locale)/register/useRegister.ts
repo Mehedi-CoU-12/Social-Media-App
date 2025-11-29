@@ -45,11 +45,9 @@ export function useRegister() {
             });
 
             const data = res.data;
-            console.log("-------data-----------", data, res);
             router.push("/login");
             return true;
         } catch (error) {
-            console.log("---------error---------------", error);
             setErrors([
                 { path: ["_"], message: "Network error. Please try again." },
             ]);

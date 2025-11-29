@@ -1,13 +1,11 @@
 'use client'
 
-import { useAuth } from '@/hooks/useAuth'
+import { Logout, useAuth } from '@/hooks/useAuth'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 
 export default function Navbar() {
     const { data: user, isLoading } = useAuth()
-    console.log('🚀 ~ Navbar ~ user:', user)
     // const navigate = useRouter()
     const [showNotifications, setShowNotifications] = useState(false)
     const [showProfileDropdown, setShowProfileDropdown] = useState(false)
@@ -15,10 +13,10 @@ export default function Navbar() {
         useState(false)
 
     const profileDropdownRef = useRef(null)
+    const { logout } = Logout()
 
     const handleLogout = () => {
-        // logout()
-        // navigate('/login')
+        logout()
     }
 
     // Close dropdown when clicking outside

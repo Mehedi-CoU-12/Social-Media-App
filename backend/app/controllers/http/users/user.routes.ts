@@ -13,7 +13,7 @@ router
     router
       .group(() => {
         router.get('/me', [UsersController, 'getMe'])
-        router.get('/logout', [UsersController, 'logout'])
+        router.post('/logout', [UsersController, 'logout'])
         router.post('/forget-password', [UsersController, 'forgetPassword'])
         router.put('/reset-password', [UsersController, 'resetPassword'])
         router.put('/update-user/:id', [UsersController, 'updateUser'])

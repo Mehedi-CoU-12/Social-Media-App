@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { Spinner } from '../Spinner'
 import ImageAndVideoUploadModal from '../../utils/ImageAndVideoUploadModal'
 import usePostCreate from './usePostCreate'
 import { LoaderTiny } from '../Loader'

@@ -22,3 +22,14 @@ export function useAuth() {
 
     return query
 }
+
+export function Logout() {
+    const router = useRouter()
+
+    const logout = async () => {
+        await api.post('/api/users/logout')
+        router.push('/login')
+    }
+
+    return { logout }
+}

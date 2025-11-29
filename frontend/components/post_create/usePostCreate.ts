@@ -27,7 +27,6 @@ export default function usePostCreate() {
                     'Content-Type': 'multipart/form-data',
                 },
             })
-            console.log('-------response from server----', res.data)
             toast.success('Post created successfully')
             setTimeout(() => {
                 window.location.reload()

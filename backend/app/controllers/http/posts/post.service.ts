@@ -43,10 +43,6 @@ export default class PostService {
   public async createPost(text: string, files: any[]) {
     const { imageUrl, videoUrl } = await this.uploadFiles(files)
 
-    console.log('🚀 ~ PostService ~ createPost ~ text:', text)
-    console.log('🚀 ~ PostService ~ createPost ~ videoUrl:', videoUrl)
-    console.log('🚀  PostService ~ createPost ~ imageUrl:', imageUrl)
-
     if (!text && !imageUrl && !videoUrl) {
       throw new Error('Post content cannot be empty')
     }
