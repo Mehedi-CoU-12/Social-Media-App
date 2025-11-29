@@ -23,6 +23,9 @@ export default class User extends BaseModel {
   @column({ serializeAs: null })
   declare password: string
 
+  @column({ columnName: 'profile_picture_url' })
+  declare profilePictureUrl: string | null
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

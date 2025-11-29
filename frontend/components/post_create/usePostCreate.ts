@@ -8,6 +8,10 @@ export default function usePostCreate() {
     const [fileType, setFileType] = useState<
         'photo' | 'video' | 'event' | 'article' | null
     >(null)
+    const [privacy, setPrivacy] = useState<'public' | 'friends' | 'private'>(
+        'public'
+    )
+
     const [modalOpen, setModalOpen] = useState(false)
     const [submitting, setSubmitting] = useState(false)
 
@@ -63,5 +67,7 @@ export default function usePostCreate() {
         handlePost,
         handleFileChange,
         removeFile,
+        privacy,
+        setPrivacy,
     }
 }

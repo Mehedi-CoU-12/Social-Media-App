@@ -10,6 +10,11 @@ export default class Posts extends BaseSchema {
       table.text('content').nullable()
       table.string('image_url').nullable()
       table.string('video_url').nullable()
+      table.string('location').nullable()
+      table.integer('likes_count').defaultTo(0)
+      table.integer('comments_count').defaultTo(0)
+      table.integer('shares_count').defaultTo(0)
+      table.string('privacy_setting').defaultTo('public')
       table.timestamps(true)
     })
   }

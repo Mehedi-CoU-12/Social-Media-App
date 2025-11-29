@@ -67,6 +67,15 @@ export default class PostSeeder extends BaseSeeder {
           content,
           imageUrl,
           videoUrl,
+          location: faker.helpers.arrayElement([
+            `${faker.location.city()}, ${faker.location.country()}`,
+            faker.location.city(),
+            null,
+          ]),
+          likesCount: faker.number.int({ min: 0, max: 500 }),
+          commentsCount: faker.number.int({ min: 0, max: 50 }),
+          sharesCount: faker.number.int({ min: 0, max: 20 }),
+          privacySetting: faker.helpers.arrayElement(['public', 'friends', 'private']),
         })
       }
     }

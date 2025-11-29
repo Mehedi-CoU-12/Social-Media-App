@@ -29,6 +29,8 @@ export default function PostCreate({
         handlePost,
         handleFileChange,
         removeFile,
+        privacy,
+        setPrivacy,
     } = usePostCreate()
     return (
         <>
@@ -58,9 +60,7 @@ export default function PostCreate({
                                     setFileType('photo')
                                 }}
                             >
-                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="20"
@@ -86,9 +86,7 @@ export default function PostCreate({
                                     setFileType('video')
                                 }}
                             >
-                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="22"
@@ -110,9 +108,7 @@ export default function PostCreate({
                                 type="button"
                                 className="_feed_inner_text_area_bottom_photo_link"
                             >
-                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="22"
@@ -134,9 +130,7 @@ export default function PostCreate({
                                 type="button"
                                 className="_feed_inner_text_area_bottom_photo_link"
                             >
-                                {' '}
                                 <span className="_feed_inner_text_area_bottom_photo_iamge _mar_img">
-                                    {' '}
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="18"
@@ -152,6 +146,30 @@ export default function PostCreate({
                                 </span>
                                 Article
                             </button>
+                        </div>
+                        <div className="_feed_inner_text_area_bottom_article _feed_common">
+                            <select
+                                className="form-select form-select-sm me-2"
+                                style={{
+                                    width: 'auto',
+                                    borderRadius: '20px',
+                                    border: '1px solid #e5e5e5',
+                                    height: '36px',
+                                }}
+                                value={privacy}
+                                onChange={(e) =>
+                                    setPrivacy(
+                                        e.target.value as
+                                            | 'public'
+                                            | 'friends'
+                                            | 'private'
+                                    )
+                                }
+                            >
+                                <option value="PUBLIC">Public</option>
+                                <option value="FRIENDS">Friends</option>
+                                <option value="PRIVATE">Private</option>
+                            </select>
                         </div>
                     </div>
                     <div className="_feed_inner_text_area_btn">

@@ -15,9 +15,13 @@ export default class FriendshipSeeder extends BaseSeeder {
     while (friendships.length < 100) {
       const requesterId = faker.helpers.arrayElement(userIds)
       let receiverId = faker.helpers.arrayElement(userIds)
+
+      // Skip if same user
       if (requesterId === receiverId) continue
 
-      const key = `${requesterId}-${receiverId}`
+      // Create a unique key that prevents both A->B and B->A
+      const key = [requesterId, receiverId].sort().join('-')
+
       if (!friendshipSet.has(key)) {
         friendshipSet.add(key)
         friendships.push({
