@@ -7,6 +7,19 @@ import { DateTime } from 'luxon'
 export default class ProfileSeeder extends BaseSeeder {
   public async run() {
     const users = await User.all()
+
+    if (users.length === 0) {
+      console.log('⚠️  No users found. Skipping profile seeding.')
+      return
+    }
+
+    // Check if profiles already exist
+    const existingProfiles = await Profile.query().limit(1)
+    if (existingProfiles.length > 0) {
+      console.log('⚠️  Profiles already exist. Skipping profile seeding.')
+      return
+    }
+
     const profiles = []
 
     for (const user of users) {
@@ -19,7 +32,7 @@ export default class ProfileSeeder extends BaseSeeder {
 
       profiles.push({
         userId: user.id,
-        username: user.username, // Use the username from users table
+        username: user.username,
         displayName: `${firstName} ${lastName}`,
         bio: faker.helpers.arrayElement([
           faker.lorem.sentence(),
@@ -58,36 +71,43 @@ export default class ProfileSeeder extends BaseSeeder {
         allowFriendRequests: faker.datatype.boolean(),
         followersCount: faker.number.int({ min: 0, max: 1000 }),
         followingCount: faker.number.int({ min: 0, max: 500 }),
-        postsCount: 0, // Will be updated after posts are created
-        notificationPreferences: {
+        postsCount: 0,
+        notificationPreferences: JSON.stringify({
           emailNotifications: faker.datatype.boolean(),
           pushNotifications: faker.datatype.boolean(),
           likes: faker.datatype.boolean(),
           comments: faker.datatype.boolean(),
           friendRequests: faker.datatype.boolean(),
-        },
-        socialLinks: {
-          ...(faker.datatype.boolean() && { instagram: faker.internet.url() }),
-          ...(faker.datatype.boolean() && { twitter: faker.internet.url() }),
-          ...(faker.datatype.boolean() && { linkedin: faker.internet.url() }),
-          ...(faker.datatype.boolean() && { facebook: faker.internet.url() }),
-        },
-        interests: faker.helpers.arrayElements(
-          [
-            'technology',
-            'sports',
-            'music',
-            'art',
-            'photography',
-            'travel',
-            'food',
-            'fitness',
-            'gaming',
-            'reading',
-            'movies',
-            'fashion',
-          ],
-          { min: 2, max: 6 }
+        }),
+        socialLinks: JSON.stringify(
+          faker.helpers.maybe(
+            () => ({
+              instagram: faker.internet.url(),
+              twitter: faker.internet.url(),
+              linkedin: faker.internet.url(),
+              facebook: faker.internet.url(),
+            }),
+            { probability: 0.7 }
+          ) || {}
+        ),
+        interests: JSON.stringify(
+          faker.helpers.arrayElements(
+            [
+              'technology',
+              'sports',
+              'music',
+              'art',
+              'photography',
+              'travel',
+              'food',
+              'fitness',
+              'gaming',
+              'reading',
+              'movies',
+              'fashion',
+            ],
+            faker.number.int({ min: 2, max: 6 })
+          )
         ),
         lastSeenAt: DateTime.fromJSDate(faker.date.recent({ days: 7 })),
         emailVerifiedAt: faker.helpers.arrayElement([DateTime.fromJSDate(faker.date.past()), null]),
@@ -95,5 +115,6 @@ export default class ProfileSeeder extends BaseSeeder {
     }
 
     await Profile.createMany(profiles)
+    console.log('✅ Created profiles for all users')
   }
 }

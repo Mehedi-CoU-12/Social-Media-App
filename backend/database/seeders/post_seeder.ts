@@ -6,6 +6,19 @@ import { faker } from '@faker-js/faker'
 export default class PostSeeder extends BaseSeeder {
   public async run() {
     const users = await User.all()
+
+    if (users.length === 0) {
+      console.log('⚠️  No users found. Skipping post seeding.')
+      return
+    }
+
+    // Check if posts already exist
+    const existingPosts = await Post.query().limit(1)
+    if (existingPosts.length > 0) {
+      console.log('⚠️  Posts already exist. Skipping post seeding.')
+      return
+    }
+
     const posts = []
 
     // Generate posts for each user
@@ -37,7 +50,7 @@ export default class PostSeeder extends BaseSeeder {
               faker.lorem.sentence(),
               `Check out this ${faker.lorem.word()}!`,
               faker.lorem.words(5),
-              '', // Sometimes no caption
+              '',
             ])
             imageUrl = faker.image.url({ width: 800, height: 600 })
             break
@@ -81,5 +94,6 @@ export default class PostSeeder extends BaseSeeder {
     }
 
     await Post.createMany(posts)
+    console.log(`✅ Created ${posts.length} posts`)
   }
 }

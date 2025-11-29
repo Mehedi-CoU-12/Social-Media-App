@@ -5,11 +5,24 @@ import { faker } from '@faker-js/faker'
 
 export default class FriendshipSeeder extends BaseSeeder {
   public async run() {
-    const friendships = []
-    const friendshipSet = new Set<string>()
-
     // fetch all user IDs
     const users = await User.all()
+
+    // Check if we have enough users
+    if (users.length < 2) {
+      console.log('⚠️  Not enough users found. Skipping friendship seeding.')
+      return
+    }
+
+    // Check if friendships already exist
+    const existingFriendships = await Friendship.query().limit(1)
+    if (existingFriendships.length > 0) {
+      console.log('⚠️  Friendships already exist. Skipping friendship seeding.')
+      return
+    }
+
+    const friendships = []
+    const friendshipSet = new Set<string>()
     const userIds = users.map((u) => u.id)
 
     while (friendships.length < 100) {
@@ -33,5 +46,6 @@ export default class FriendshipSeeder extends BaseSeeder {
     }
 
     await Friendship.createMany(friendships)
+    console.log('✅ Created 100 friendships')
   }
 }

@@ -6,12 +6,25 @@ import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class LikeSeeder extends BaseSeeder {
   public async run() {
-    const likes: Array<{ postId: number; userId: number }> = []
-    const likeSet = new Set<string>()
-
     // fetch all post and user IDs
     const users = await User.all()
     const posts = await Post.all()
+
+    // Check if we have posts and users
+    if (posts.length === 0 || users.length === 0) {
+      console.log('⚠️  No posts or users found. Skipping like seeding.')
+      return
+    }
+
+    // Check if likes already exist
+    const existingLikes = await Like.query().limit(1)
+    if (existingLikes.length > 0) {
+      console.log('⚠️  Likes already exist. Skipping like seeding.')
+      return
+    }
+
+    const likes: Array<{ postId: number; userId: number }> = []
+    const likeSet = new Set<string>()
     const userIds = users.map((u) => u.id)
     const postIds = posts.map((p) => p.id)
 
@@ -27,5 +40,6 @@ export default class LikeSeeder extends BaseSeeder {
     }
 
     await Like.createMany(likes)
+    console.log('✅ Created 200 likes')
   }
 }

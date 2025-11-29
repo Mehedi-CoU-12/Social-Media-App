@@ -8,6 +8,8 @@ import FriendshipSeeder from './friend_seeder.js'
 
 export default class MainSeeder extends BaseSeeder {
   public async run() {
+    console.log('🌱 Starting database seeding...\n')
+
     // Run seeders in dependency order
     await new UserSeeder(this.client).run()
     await new ProfileSeeder(this.client).run()
@@ -16,6 +18,6 @@ export default class MainSeeder extends BaseSeeder {
     await new LikeSeeder(this.client).run()
     await new FriendshipSeeder(this.client).run()
 
-    console.log('✅ All seeders completed successfully!')
+    console.log('\n✅ All seeders completed successfully!')
   }
 }
