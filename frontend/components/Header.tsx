@@ -6,7 +6,6 @@ import React, { useState, useRef } from 'react'
 
 export default function Navbar() {
     const { data: user, isLoading } = useAuth()
-    // const navigate = useRouter()
     const [showNotifications, setShowNotifications] = useState(false)
     const [showProfileDropdown, setShowProfileDropdown] = useState(false)
     const [showNotificationOptions, setShowNotificationOptions] =
