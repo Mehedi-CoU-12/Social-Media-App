@@ -12,7 +12,7 @@ This directory contains the AdonisJS backend for the Social-Media-App. This READ
 
 ## Requirements
 
-- Node 18+ (matching the project setup)
+- Node 187+ (matching the project setup)
 - pnpm (recommended) or npm/yarn
 - MySQL server (matching `.env` values)
 - Cloudinary account (optional — required for uploads)
