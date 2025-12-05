@@ -26,8 +26,3 @@ cd backend
 cp .env.example .env
 # then edit .env
 ```
-
-cd backend
-pnpm install
-# or
-npm install
